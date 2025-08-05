@@ -1,0 +1,8 @@
+filename,url,source
+sample_comment_1.pdf,https://example.com/sample1.pdf,Example Agency
+sample_comment_2.pdf,https://example.com/sample2.pdf,Example Department  
+sample_comment_3.docx,https://example.com/sample3.docx,Sample Organization
+
+# This is a sample CSV file showing the expected format
+# Replace with your actual comment URLs before running the tool
+# Format: filename,url,source
