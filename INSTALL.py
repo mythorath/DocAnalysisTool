@@ -37,8 +37,16 @@ class InstallationGUI:
     def __init__(self):
         self.root = tk.Tk()
         self.root.title("Public Comment Analysis Tool - Installer")
-        self.root.geometry("800x600")
+        self.root.geometry("900x650")
         self.root.resizable(False, False)
+        
+        # Make window more prominent and centered
+        self.root.attributes('-topmost', True)
+        self.root.update_idletasks()
+        x = (self.root.winfo_screenwidth() // 2) - (self.root.winfo_width() // 2)
+        y = (self.root.winfo_screenheight() // 2) - (self.root.winfo_height() // 2)
+        self.root.geometry(f"+{x}+{y}")
+        self.root.attributes('-topmost', False)
         
         # Installation state
         self.install_queue = queue.Queue()
@@ -47,6 +55,9 @@ class InstallationGUI:
         
         self.setup_ui()
         self.check_install_updates()
+        
+        # Start button animation to draw attention
+        self.animate_install_button()
     
     def setup_ui(self):
         """Setup installer interface."""
@@ -67,7 +78,7 @@ class InstallationGUI:
         main_frame = tk.Frame(self.root)
         main_frame.pack(fill=tk.BOTH, expand=True, padx=20, pady=20)
         
-        # Welcome message
+        # Welcome message with clear call to action
         welcome_text = """
 🚀 Welcome to the Public Comment Analysis Tool Installer!
 
@@ -81,14 +92,16 @@ This installer will automatically:
 ✅ Validate your installation
 ✅ Launch the setup wizard
 
-The installation process is completely automated and will take 3-5 minutes.
-No technical knowledge required - just click "Start Installation" below!
+⏱️ Installation takes 3-5 minutes and is completely automated.
+🎯 No technical knowledge required!
 
 📋 System Requirements:
 • Windows 10+ (64-bit) | Linux (Ubuntu 18+) | macOS 10.14+
 • 4GB RAM minimum, 8GB recommended
 • 2GB free disk space
 • Internet connection for downloading dependencies
+
+👇 CLICK THE GREEN "START INSTALLATION" BUTTON BELOW TO BEGIN! 👇
         """
         
         welcome_widget = scrolledtext.ScrolledText(main_frame, wrap=tk.WORD, height=15, 
@@ -101,9 +114,9 @@ No technical knowledge required - just click "Start Installation" below!
         progress_frame = tk.LabelFrame(main_frame, text="Installation Progress", font=('Arial', 10, 'bold'))
         progress_frame.pack(fill=tk.X, pady=(0, 20))
         
-        self.progress_var = tk.StringVar(value="Ready to install")
+        self.progress_var = tk.StringVar(value="👆 Ready to install - Click the green button above to start!")
         self.progress_label = tk.Label(progress_frame, textvariable=self.progress_var, 
-                                      font=('Arial', 10))
+                                      font=('Arial', 10, 'bold'), fg='#e74c3c')
         self.progress_label.pack(pady=5)
         
         self.progress_bar = ttk.Progressbar(progress_frame, mode='indeterminate', length=400)
@@ -113,15 +126,37 @@ No technical knowledge required - just click "Start Installation" below!
         self.log_text = scrolledtext.ScrolledText(progress_frame, height=8, font=('Consolas', 9))
         self.log_text.pack(fill=tk.X, pady=5)
         
+        # Add initial instruction to log
+        self.log_text.insert(tk.END, "🎯 INSTRUCTIONS: Click the green 'START INSTALLATION' button above to begin!\n")
+        self.log_text.insert(tk.END, "⏱️ The installation will take 3-5 minutes and is completely automated.\n")
+        self.log_text.insert(tk.END, "📋 Progress will be shown here once you start the installation.\n\n")
+        
         # Buttons
         button_frame = tk.Frame(main_frame)
         button_frame.pack(fill=tk.X)
         
-        self.install_btn = tk.Button(button_frame, text="🚀 Start Installation", 
+        self.install_btn = tk.Button(button_frame, text="🚀 START INSTALLATION", 
                                     command=self.start_installation,
-                                    font=('Arial', 12, 'bold'), bg='#27ae60', fg='white',
-                                    padx=20, pady=10)
+                                    font=('Arial', 14, 'bold'), bg='#27ae60', fg='white',
+                                    padx=30, pady=15, relief='raised', bd=3,
+                                    activebackground='#2ecc71', activeforeground='white',
+                                    cursor='hand2')
         self.install_btn.pack(side=tk.LEFT)
+        
+        # Add button hover effects
+        def on_enter(e):
+            self.install_btn.config(bg='#2ecc71', relief='sunken')
+        
+        def on_leave(e):
+            self.install_btn.config(bg='#27ae60', relief='raised')
+        
+        self.install_btn.bind("<Enter>", on_enter)
+        self.install_btn.bind("<Leave>", on_leave)
+        
+        # Add instructions near the button
+        instruction_label = tk.Label(button_frame, text="← Click this button to begin installation", 
+                                   font=('Arial', 10, 'italic'), fg='#27ae60')
+        instruction_label.pack(side=tk.LEFT, padx=(10, 0))
         
         self.cancel_btn = tk.Button(button_frame, text="❌ Cancel", 
                                    command=self.cancel_installation,
@@ -210,6 +245,25 @@ No technical knowledge required - just click "Start Installation" below!
         help_widget.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
         help_widget.insert(tk.END, help_text)
         help_widget.config(state=tk.DISABLED)
+    
+    def animate_install_button(self):
+        """Animate the install button to draw attention."""
+        def flash_button():
+            try:
+                current_bg = self.install_btn.cget('bg')
+                if current_bg == '#27ae60':
+                    self.install_btn.config(bg='#f39c12')  # Orange
+                else:
+                    self.install_btn.config(bg='#27ae60')  # Green
+                
+                # Continue flashing until installation starts
+                if not self.installation_complete and self.install_btn['state'] != 'disabled':
+                    self.root.after(800, flash_button)
+            except:
+                pass  # Button might be destroyed
+        
+        # Start flashing after a short delay
+        self.root.after(1000, flash_button)
     
     def check_install_updates(self):
         """Check for installation updates from worker thread."""
