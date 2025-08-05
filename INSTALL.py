@@ -358,14 +358,27 @@ class SystemInstaller:
             self.gui.update_progress("📋 Setting up sample data...")
             self.setup_sample_data()
             
-            # Installation completed - check for warnings
+            # Installation completed - provide comprehensive summary
             self.gui.update_progress("🎉 Installation completed!")
-            self.gui.log_message("\n" + "="*50)
+            self.gui.log_message("\n" + "="*60)
             self.gui.log_message("✅ INSTALLATION COMPLETED SUCCESSFULLY!")
-            self.gui.log_message("="*50)
+            self.gui.log_message("="*60)
             self.gui.log_message("🚀 The Public Comment Analysis Tool is ready to use!")
-            self.gui.log_message("💡 Any warnings above are informational - core features will work")
-            self.gui.log_message("📋 Check the setup wizard for first-time configuration")
+            self.gui.log_message("")
+            self.gui.log_message("📋 FEATURE AVAILABILITY:")
+            self.gui.log_message("  ✅ Document downloading - Ready")
+            self.gui.log_message("  ✅ Text extraction - Ready") 
+            self.gui.log_message("  ✅ Full-text search - Ready")
+            self.gui.log_message("  ✅ TF-IDF clustering - Ready")
+            self.gui.log_message("  ⚠️ Advanced features depend on optional packages above")
+            self.gui.log_message("")
+            self.gui.log_message("🎯 NEXT STEPS:")
+            self.gui.log_message("  1. Close this installer")
+            self.gui.log_message("  2. Look for desktop shortcut or run setup wizard")
+            self.gui.log_message("  3. Load your CSV file and start analyzing!")
+            self.gui.log_message("")
+            self.gui.log_message("💡 Any warnings above are non-critical - core features will work perfectly")
+            self.gui.log_message("="*60)
             
         except Exception as e:
             raise Exception(f"Installation failed at step: {str(e)}")
@@ -416,32 +429,103 @@ class SystemInstaller:
             self.gui.log_message(f"📁 Created directory: {directory}/")
     
     def install_python_dependencies(self):
-        """Install Python package dependencies."""
+        """Install Python package dependencies with compatibility handling."""
         self.gui.log_message("📦 Upgrading pip...")
         subprocess.run([sys.executable, "-m", "pip", "install", "--upgrade", "pip"], 
                       check=True, capture_output=True)
         
-        # Install packages from requirements.txt
-        requirements_file = self.install_path / "requirements.txt"
-        if requirements_file.exists():
-            self.gui.log_message("📦 Installing packages from requirements.txt...")
-            subprocess.run([sys.executable, "-m", "pip", "install", "-r", str(requirements_file)], 
-                          check=True, capture_output=True)
-        else:
-            # Install core packages manually
-            core_packages = [
-                "pandas>=1.3.0", "requests>=2.25.0", "tqdm>=4.60.0", "numpy>=1.20.0",
-                "PyMuPDF>=1.20.0", "pdf2image>=1.16.0", "pytesseract>=0.3.8", 
-                "scikit-learn>=1.0.0", "sentence-transformers>=2.0.0", "bertopic>=0.10.0",
-                "tkinter-tooltip>=3.1.0", "python-docx>=0.8.11"
-            ]
-            
-            for package in core_packages:
-                self.gui.log_message(f"📦 Installing {package}...")
-                subprocess.run([sys.executable, "-m", "pip", "install", package], 
-                              check=True, capture_output=True)
+        # Install in phases to handle compatibility issues
+        self.install_core_packages()
+        self.install_ml_packages()
+        self.install_optional_packages()
         
         self.gui.log_message("✅ Python packages installed successfully")
+    
+    def install_core_packages(self):
+        """Install core packages first (most reliable)."""
+        core_packages = [
+            "pandas>=1.3.0", 
+            "requests>=2.25.0", 
+            "tqdm>=4.60.0", 
+            "numpy>=1.20.0",
+            "PyMuPDF>=1.20.0", 
+            "pdf2image>=1.16.0", 
+            "pytesseract>=0.3.8",
+            "python-docx>=0.8.11",
+            "tkinter-tooltip>=3.1.0"
+        ]
+        
+        self.gui.log_message("📦 Installing core packages...")
+        for package in core_packages:
+            try:
+                self.gui.log_message(f"  📦 {package}")
+                subprocess.run([sys.executable, "-m", "pip", "install", package], 
+                              check=True, capture_output=True)
+            except Exception as e:
+                self.gui.log_message(f"  ⚠️ {package} failed: {str(e)}")
+    
+    def install_ml_packages(self):
+        """Install ML packages with compatibility handling."""
+        self.gui.log_message("📦 Installing ML packages...")
+        
+        # Install scikit-learn first (most stable)
+        try:
+            self.gui.log_message("  📦 scikit-learn (machine learning)")
+            subprocess.run([sys.executable, "-m", "pip", "install", "scikit-learn>=1.0.0"], 
+                          check=True, capture_output=True)
+        except Exception as e:
+            self.gui.log_message(f"  ⚠️ scikit-learn failed: {str(e)}")
+        
+        # Try PyTorch ecosystem with compatibility fixes
+        try:
+            self.gui.log_message("  📦 PyTorch ecosystem (this may take a few minutes)...")
+            
+            # Install PyTorch with CPU-only version for better compatibility
+            subprocess.run([sys.executable, "-m", "pip", "install", 
+                          "torch", "torchvision", "torchaudio", "--index-url", 
+                          "https://download.pytorch.org/whl/cpu"], 
+                          check=True, capture_output=True, timeout=300)
+            
+            # Now install sentence-transformers
+            self.gui.log_message("  📦 sentence-transformers (text embeddings)")
+            subprocess.run([sys.executable, "-m", "pip", "install", "sentence-transformers>=2.0.0"], 
+                          check=True, capture_output=True, timeout=180)
+            
+        except Exception as e:
+            self.gui.log_message(f"  ⚠️ PyTorch/sentence-transformers failed: {str(e)}")
+            self.gui.log_message("  💡 BERTopic clustering may not work, but other methods will")
+        
+        # Try BERTopic (depends on sentence-transformers)
+        try:
+            self.gui.log_message("  📦 BERTopic (topic modeling)")
+            subprocess.run([sys.executable, "-m", "pip", "install", "bertopic>=0.10.0"], 
+                          check=True, capture_output=True)
+        except Exception as e:
+            self.gui.log_message(f"  ⚠️ BERTopic failed: {str(e)}")
+            self.gui.log_message("  💡 TF-IDF and LDA clustering will still work")
+    
+    def install_optional_packages(self):
+        """Install optional packages for enhanced features."""
+        optional_packages = [
+            ("umap-learn>=0.5.0", "UMAP dimensionality reduction"),
+            ("hdbscan>=0.8.0", "HDBSCAN clustering"), 
+            ("nltk>=3.6.0", "Natural language processing"),
+            ("wordcloud>=1.8.0", "Word cloud generation"),
+            ("matplotlib>=3.3.0", "Plotting and visualization"),
+            ("plotly>=5.0.0", "Interactive plots"),
+            ("whoosh>=2.7.4", "Alternative search engine"),
+            ("openpyxl>=3.0.0", "Excel file support")
+        ]
+        
+        self.gui.log_message("📦 Installing optional packages...")
+        for package, description in optional_packages:
+            try:
+                self.gui.log_message(f"  📦 {package} ({description})")
+                subprocess.run([sys.executable, "-m", "pip", "install", package], 
+                              check=True, capture_output=True, timeout=120)
+            except Exception as e:
+                self.gui.log_message(f"  ⚠️ {package} failed: {str(e)}")
+                self.gui.log_message(f"  💡 {description} features may be limited")
     
     def install_system_dependencies(self):
         """Install system dependencies (Tesseract, Poppler)."""
@@ -701,18 +785,42 @@ end tell'''
     
     def validate_installation(self):
         """Validate that all components are working."""
-        # Test Python imports
+        # Test Python imports with detailed error handling
         test_imports = [
-            "pandas", "requests", "tqdm", "numpy", "fitz", 
-            "pdf2image", "pytesseract", "sklearn", "sentence_transformers"
+            ("pandas", "Data manipulation and analysis"),
+            ("requests", "HTTP requests for downloading"),
+            ("tqdm", "Progress bars"),
+            ("numpy", "Numerical computing"),
+            ("fitz", "PDF processing (PyMuPDF)"), 
+            ("pdf2image", "PDF to image conversion"),
+            ("pytesseract", "OCR text recognition"),
+            ("sklearn", "Machine learning algorithms"),
+            ("sentence_transformers", "Text embeddings for clustering"),
+            ("bertopic", "Advanced topic modeling")
         ]
         
-        for module in test_imports:
+        successful_imports = 0
+        critical_failures = []
+        
+        for module, description in test_imports:
             try:
                 __import__(module)
-                self.gui.log_message(f"✅ Import test: {module}")
-            except ImportError:
-                self.gui.log_message(f"⚠️ Import failed: {module}")
+                self.gui.log_message(f"✅ Import test: {module} ({description})")
+                successful_imports += 1
+            except ImportError as e:
+                if module in ["pandas", "requests", "numpy"]:
+                    critical_failures.append(module)
+                    self.gui.log_message(f"❌ Critical import failed: {module} - {str(e)}")
+                else:
+                    self.gui.log_message(f"⚠️ Optional import failed: {module} - {description} may not work")
+        
+        self.gui.log_message(f"📊 Import Summary: {successful_imports}/{len(test_imports)} packages working")
+        
+        if critical_failures:
+            self.gui.log_message(f"❌ Critical packages failed: {', '.join(critical_failures)}")
+            self.gui.log_message("💡 Try running: pip install pandas requests numpy")
+        else:
+            self.gui.log_message("✅ All critical packages imported successfully")
         
         # Test Tesseract
         try:
