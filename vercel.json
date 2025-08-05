@@ -19,10 +19,5 @@
     "FLASK_ENV": "production",
     "PYTHONPATH": "/var/task",
     "SECRET_KEY": "vercel-demo-key-change-in-production"
-  },
-  "functions": {
-    "vercel_app.py": {
-      "maxDuration": 30
-    }
   }
 }
