@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  comment-analyzer:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/app/data
+      - ./uploads:/app/uploads
+      - ./output:/app/output
+    environment:
+      - FLASK_ENV=production
+      - PYTHONPATH=/app
+      - MAX_CONTENT_LENGTH=500000000  # 500MB max file size
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Optional Redis for caching (can be removed for minimal setup)
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    command: redis-server --maxmemory 100mb --maxmemory-policy allkeys-lru
+
+volumes:
+  data:
+  uploads:
+  output:

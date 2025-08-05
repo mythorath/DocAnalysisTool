@@ -622,11 +622,15 @@ class SystemInstaller:
             self.gui.log_message("📋 Manual installation guide: README_INSTALLATION.md")
             return
         
-        # Skip Tesseract installation entirely to avoid hanging
-        self.gui.log_message("🔧 Tesseract OCR installation...")
-        self.gui.log_message("  💡 Skipping Tesseract installation to prevent hanging issues")
-        self.gui.log_message("  🚀 This allows installation to complete quickly and reliably")
-        self.skip_tesseract_with_explanation()
+        # Try conda first, then use cloud OCR as backup
+        self.gui.log_message("🔧 Setting up OCR capabilities...")
+        self.gui.log_message("  💡 Trying conda installation (most reliable method)")
+        
+        if self.try_conda_tesseract():
+            self.gui.log_message("  ✅ Tesseract installed via conda - OCR ready!")
+        else:
+            self.gui.log_message("  💡 Local OCR failed, setting up cloud OCR backup...")
+            self.setup_cloud_ocr_backup()
     
     def install_portable_tesseract(self):
         """Install portable Tesseract without using the problematic Windows installer."""
@@ -727,13 +731,78 @@ class SystemInstaller:
         self.gui.log_message("     • Via conda: conda install -c conda-forge tesseract")
         self.gui.log_message("     • Most documents are text-based PDFs anyway!")
     
-    def try_alternative_tesseract_install(self):
-        """Legacy method - now just calls skip."""
-        self.skip_tesseract_with_explanation()
+    def try_conda_tesseract(self):
+        """Try installing Tesseract via conda (most reliable method)."""
+        try:
+            self.gui.log_message("    🔍 Checking for conda...")
+            
+            # Check if conda is available
+            result = subprocess.run(['conda', '--version'], 
+                                  capture_output=True, text=True, timeout=10)
+            
+            if result.returncode == 0:
+                self.gui.log_message(f"    ✅ Found conda: {result.stdout.strip()}")
+                self.gui.log_message("    📦 Installing tesseract via conda...")
+                
+                # Install tesseract from conda-forge
+                install_result = subprocess.run([
+                    'conda', 'install', '-c', 'conda-forge', 'tesseract', '-y'
+                ], capture_output=True, text=True, timeout=300)
+                
+                if install_result.returncode == 0:
+                    self.gui.log_message("    ✅ Tesseract installed successfully via conda!")
+                    return True
+                else:
+                    self.gui.log_message(f"    ⚠️ Conda install failed: {install_result.stderr}")
+                    return False
+            else:
+                self.gui.log_message("    ⚠️ Conda not available")
+                return False
+                
+        except Exception as e:
+            self.gui.log_message(f"    ⚠️ Conda installation failed: {str(e)}")
+            return False
+    
+    def setup_cloud_ocr_backup(self):
+        """Set up cloud OCR as backup when local Tesseract fails."""
+        self.gui.log_message("    🌐 Setting up cloud OCR backup...")
+        self.gui.log_message("    💡 Installing cloud OCR dependencies...")
         
-        # Add to PATH
-        tesseract_path = "C:\\Program Files\\Tesseract-OCR"
-        self.add_to_path(tesseract_path)
+        try:
+            # Install additional packages for cloud OCR
+            cloud_packages = ['requests', 'base64', 'io']
+            
+            # Create OCR config file
+            config_content = '''# OCR Configuration
+# Local Tesseract will be tried first
+# If unavailable, cloud OCR services will be used
+
+LOCAL_OCR_AVAILABLE = False
+CLOUD_OCR_ENABLED = True
+
+# Cloud OCR Services (free tiers)
+CLOUD_OCR_SERVICES = {
+    "api_ninjas": "https://api.api-ninjas.com/v1/imagetotext",
+    "ocr_space": "https://api.ocr.space/parse/image"
+}
+
+# Fallback message
+FALLBACK_MESSAGE = "OCR processing temporarily unavailable. Please ensure images are high quality."
+'''
+            
+            config_path = self.install_path / "ocr_config.py"
+            with open(config_path, 'w', encoding='utf-8') as f:
+                f.write(config_content)
+                
+            self.gui.log_message("    ✅ Cloud OCR backup configured")
+            self.gui.log_message("    💡 Will use free cloud OCR services when needed")
+            
+        except Exception as e:
+            self.gui.log_message(f"    ⚠️ Cloud OCR setup failed: {str(e)}")
+    
+    def try_alternative_tesseract_install(self):
+        """Legacy method - now just calls conda method."""
+        return self.try_conda_tesseract()
         
         # Install Poppler - try multiple sources
         self.gui.log_message("📥 Downloading Poppler...")

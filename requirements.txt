@@ -33,3 +33,7 @@ openpyxl>=3.0.0
 
 # GUI dependencies (tkinter is built-in to Python)
 tkinter-tooltip>=3.1.0
+
+# Web application dependencies
+flask>=2.0.0
+werkzeug>=2.0.0

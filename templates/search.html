@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Search Documents - Public Comment Analysis Tool{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="text-center mb-4">
+            <h2 class="text-primary">
+                <i class="fas fa-search me-2"></i>
+                Search Documents
+            </h2>
+            <p class="text-muted">Search through analyzed document content</p>
+        </div>
+
+        <!-- Search Form -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <form method="POST">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label for="query" class="form-label">Search Query</label>
+                                <input type="text" class="form-control form-control-lg" 
+                                       id="query" name="query" 
+                                       placeholder="Enter keywords, phrases, or topics..."
+                                       value="{{ request.form.query or '' }}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="limit" class="form-label">Max Results</label>
+                                <select class="form-select" id="limit" name="limit">
+                                    <option value="10" {{ 'selected' if request.form.limit == '10' else '' }}>10</option>
+                                    <option value="25" {{ 'selected' if request.form.limit == '25' else '' }}>25</option>
+                                    <option value="50" {{ 'selected' if request.form.limit == '50' else '' }}>50</option>
+                                    <option value="100" {{ 'selected' if request.form.limit == '100' else '' }}>100</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-search me-2"></i>Search
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Search Tips -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h6 class="mb-0">
+                    <i class="fas fa-lightbulb me-2"></i>Search Tips
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li><strong>Keywords:</strong> climate change</li>
+                            <li><strong>Phrases:</strong> "environmental impact"</li>
+                            <li><strong>Boolean:</strong> policy AND implementation</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li><strong>Exclude:</strong> policy NOT draft</li>
+                            <li><strong>Wildcards:</strong> econom*</li>
+                            <li><strong>Near:</strong> NEAR(budget, allocation, 5)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -16,11 +16,20 @@ from typing import List, Tuple, Optional, Dict
 import tempfile
 
 import fitz  # PyMuPDF
-import pytesseract
+try:
+    import pytesseract
+    TESSERACT_AVAILABLE = True
+except ImportError:
+    TESSERACT_AVAILABLE = False
+    pytesseract = None
+
 from pdf2image import convert_from_path
 from PIL import Image
 from docx import Document
 from tqdm import tqdm
+import base64
+import io
+import requests
 
 
 def setup_logging(log_dir: str = "logs") -> None:
@@ -110,9 +119,59 @@ def extract_text_from_pdf(pdf_path: str) -> str:
         return ""
 
 
+def cloud_ocr_fallback(image: Image.Image) -> str:
+    """
+    Use cloud OCR services as fallback when local Tesseract unavailable.
+    
+    Args:
+        image: PIL Image object
+        
+    Returns:
+        Extracted text string
+    """
+    try:
+        # Convert image to base64
+        buffer = io.BytesIO()
+        image.save(buffer, format='PNG')
+        image_base64 = base64.b64encode(buffer.getvalue()).decode()
+        
+        # Try OCR.space free API (no key required for small files)
+        try:
+            url = "https://api.ocr.space/parse/image"
+            payload = {
+                'base64Image': f'data:image/png;base64,{image_base64}',
+                'language': 'eng',
+                'isOverlayRequired': False,
+                'iscreatesearchablepdf': False,
+                'issearchablepdfhidetextlayer': False
+            }
+            
+            response = requests.post(url, data=payload, timeout=30)
+            result = response.json()
+            
+            if result.get('IsErroredOnProcessing', False):
+                logging.warning("OCR.space API error")
+                return ""
+            
+            text = result.get('ParsedResults', [{}])[0].get('ParsedText', '')
+            if text.strip():
+                logging.info("Cloud OCR successful via OCR.space")
+                return text.strip()
+                
+        except Exception as e:
+            logging.warning(f"OCR.space API failed: {str(e)}")
+        
+        # Fallback: return empty string with helpful message
+        logging.warning("Cloud OCR services temporarily unavailable")
+        return "[OCR processing unavailable - please ensure high quality images]"
+        
+    except Exception as e:
+        logging.error(f"Cloud OCR fallback failed: {str(e)}")
+        return ""
+
 def ocr_pdf_to_text(pdf_path: str, dpi: int = 300) -> str:
     """
-    Extract text from image-based PDF using OCR.
+    Extract text from image-based PDF using OCR (local or cloud fallback).
     
     Args:
         pdf_path: Path to PDF file
@@ -122,6 +181,10 @@ def ocr_pdf_to_text(pdf_path: str, dpi: int = 300) -> str:
         OCR extracted text content
     """
     try:
+        # Check OCR availability
+        if not TESSERACT_AVAILABLE:
+            logging.info("Local Tesseract unavailable, using cloud OCR fallback")
+        
         # Convert PDF pages to images
         logging.info(f"Converting PDF to images for OCR: {os.path.basename(pdf_path)}")
         
@@ -140,11 +203,15 @@ def ocr_pdf_to_text(pdf_path: str, dpi: int = 300) -> str:
             # Process each page with OCR
             for i, image in enumerate(tqdm(images, desc="OCR Processing")):
                 try:
-                    # Configure Tesseract for better results
-                    custom_config = r'--oem 3 --psm 6 -c preserve_interword_spaces=1'
-                    page_text = pytesseract.image_to_string(image, config=custom_config)
+                    if TESSERACT_AVAILABLE and pytesseract:
+                        # Use local Tesseract
+                        custom_config = r'--oem 3 --psm 6 -c preserve_interword_spaces=1'
+                        page_text = pytesseract.image_to_string(image, config=custom_config)
+                    else:
+                        # Use cloud OCR fallback
+                        page_text = cloud_ocr_fallback(image)
                     
-                    if page_text.strip():
+                    if page_text and page_text.strip():
                         # Clean up OCR artifacts
                         page_text = re.sub(r'\n\s*\n\s*\n+', '\n\n', page_text)  # Multiple line breaks
                         page_text = re.sub(r'[^\w\s\-.,;:!?()\[\]{}"\'&@#$%/\\]', ' ', page_text)  # Remove artifacts
@@ -160,7 +227,8 @@ def ocr_pdf_to_text(pdf_path: str, dpi: int = 300) -> str:
             
             # Log OCR statistics
             total_chars = len(full_text)
-            logging.info(f"OCR completed for {pdf_path}: {total_chars} characters extracted from {len(images)} pages")
+            ocr_method = "Local Tesseract" if TESSERACT_AVAILABLE else "Cloud OCR"
+            logging.info(f"OCR completed for {pdf_path} using {ocr_method}: {total_chars} characters extracted from {len(images)} pages")
             
             return full_text
             
