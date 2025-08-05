@@ -579,7 +579,8 @@ class SystemInstaller:
         self.temp_path.mkdir(exist_ok=True)
         
         # Install Tesseract - try multiple sources
-        self.gui.log_message("📥 Downloading Tesseract OCR...")
+        self.gui.log_message("📥 Downloading Tesseract OCR (for scanned PDF processing)...")
+        self.gui.log_message("💡 Note: This step sometimes hangs. If it does, the installer will timeout and continue.")
         
         # Try current release first
         tesseract_urls = [
@@ -602,26 +603,99 @@ class SystemInstaller:
                 self.gui.log_message(f"❌ Failed: {str(e)}")
                 continue
         
+        # Check for existing installation before downloading
+        try:
+            self.gui.log_message("🔍 Checking for existing Tesseract installation...")
+            import pytesseract
+            version = pytesseract.get_tesseract_version()
+            self.gui.log_message(f"✅ Found existing Tesseract {version} - skipping installation")
+            return
+        except:
+            self.gui.log_message("📥 No existing Tesseract found - proceeding with installation")
+        
         if not download_success:
-            # Fallback: try to use existing installation or skip
-            self.gui.log_message("⚠️ Could not download Tesseract. Checking existing installation...")
-            try:
-                import pytesseract
-                pytesseract.get_tesseract_version()
-                self.gui.log_message("✅ Found existing Tesseract installation")
-                return
-            except:
-                self.gui.log_message("⚠️ Tesseract not found. Manual installation may be required.")
-                return
+            # Fallback: skip installation with helpful message
+            self.gui.log_message("⚠️ Could not download Tesseract installer")
+            self.gui.log_message("💡 OCR features will not work, but text-based PDFs will still be processed")
+            self.gui.log_message("📋 Manual installation guide: README_INSTALLATION.md")
+            return
         
         self.gui.log_message("🔧 Installing Tesseract OCR...")
         try:
-            subprocess.run([str(tesseract_installer), "/S", "/D=C:\\Program Files\\Tesseract-OCR"], 
-                          check=True, timeout=300)  # 5 minute timeout
-        except subprocess.TimeoutExpired:
-            self.gui.log_message("⚠️ Tesseract installation timeout - may still be running in background")
+            # Try silent installation with progress updates
+            self.gui.log_message("  📦 Attempting silent installation (this may take 30-60 seconds)...")
+            self.gui.log_message("  ⏳ Please wait - Tesseract is installing in the background...")
+            
+            # Use Popen for better control and progress updates
+            process = subprocess.Popen([str(tesseract_installer), "/VERYSILENT", "/NORESTART", 
+                                      "/DIR=C:\\Program Files\\Tesseract-OCR"],
+                                     stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            
+            # Wait with progress updates
+            for i in range(60):  # 60 seconds max
+                if process.poll() is not None:  # Process finished
+                    break
+                if i % 10 == 0:  # Update every 10 seconds
+                    self.gui.log_message(f"  ⏳ Still installing... ({i+10}s)")
+                import time
+                time.sleep(1)
+            
+            # Check if process is still running
+            if process.poll() is None:
+                self.gui.log_message("  ⚠️ Installation taking too long - terminating...")
+                process.terminate()
+                time.sleep(2)
+                if process.poll() is None:
+                    process.kill()
+                self.try_alternative_tesseract_install()
+                return
+            
+            # Check result
+            if process.returncode == 0:
+                self.gui.log_message("✅ Tesseract installed successfully")
+            else:
+                self.gui.log_message(f"⚠️ Silent install failed (code {process.returncode}), trying alternative...")
+                self.try_alternative_tesseract_install()
+                
         except Exception as e:
-            self.gui.log_message(f"⚠️ Tesseract installation warning: {str(e)}")
+            self.gui.log_message(f"⚠️ Tesseract installation error: {str(e)}")
+            self.try_alternative_tesseract_install()
+    
+    def try_alternative_tesseract_install(self):
+        """Try alternative Tesseract installation methods."""
+        # Method 1: Try portable version
+        try:
+            self.gui.log_message("  🔄 Trying portable Tesseract installation...")
+            portable_url = "https://digi.bib.uni-mannheim.de/tesseract/tesseract-ocr-w64-setup-5.3.3.20231005.exe"
+            portable_installer = self.temp_path / "tesseract_portable.exe"
+            
+            urllib.request.urlretrieve(portable_url, portable_installer)
+            
+            # Extract to local directory instead of Program Files
+            tesseract_dir = self.install_path / "tesseract"
+            tesseract_dir.mkdir(exist_ok=True)
+            
+            # Try extraction with 7zip-style command
+            result = subprocess.run([str(portable_installer), "/VERYSILENT", 
+                                   f"/DIR={tesseract_dir}"], 
+                                  timeout=30, capture_output=True)
+            
+            if tesseract_dir.exists() and any(tesseract_dir.iterdir()):
+                self.gui.log_message("✅ Portable Tesseract installed successfully")
+                self.add_to_path(str(tesseract_dir))
+                return
+                
+        except Exception as e:
+            self.gui.log_message(f"  ⚠️ Portable installation failed: {str(e)}")
+        
+        # Method 2: Skip Tesseract with helpful message
+        self.gui.log_message("  ⚠️ Skipping Tesseract installation")
+        self.gui.log_message("  💡 IMPACT: OCR features will not work")
+        self.gui.log_message("     ✅ Text-based PDFs will still be processed normally")
+        self.gui.log_message("     ✅ DOCX files will work perfectly")
+        self.gui.log_message("     ✅ Search and clustering features will work")
+        self.gui.log_message("     ❌ Scanned/image PDFs cannot be processed")
+        self.gui.log_message("  📋 Manual installation later: https://github.com/UB-Mannheim/tesseract/releases")
         
         # Add to PATH
         tesseract_path = "C:\\Program Files\\Tesseract-OCR"
