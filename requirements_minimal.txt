@@ -1,0 +1,2 @@
+# Minimal requirements for Vercel demo
+flask==2.3.3

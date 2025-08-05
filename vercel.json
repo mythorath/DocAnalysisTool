@@ -2,22 +2,21 @@
   "version": 2,
   "builds": [
     {
-      "src": "vercel_app.py",
+      "src": "simple_vercel_app.py",
       "use": "@vercel/python",
       "config": {
-        "runtime": "python3.10"
+        "runtime": "python3.9"
       }
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "vercel_app.py"
+      "dest": "simple_vercel_app.py"
     }
   ],
   "env": {
     "FLASK_ENV": "production",
-    "PYTHONPATH": "/var/task",
-    "SECRET_KEY": "vercel-demo-key-change-in-production"
+    "SECRET_KEY": "demo-key-2024"
   }
 }
