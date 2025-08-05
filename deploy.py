@@ -102,6 +102,28 @@ def deploy_fly():
     
     print("✅ Deployed to Fly.io!")
 
+def deploy_vercel():
+    """Deploy to Vercel"""
+    print("⚡ Deploying to Vercel...")
+    
+    # Check if Vercel CLI is installed
+    result = run_command("vercel --version", check=False)
+    if result.returncode != 0:
+        print("Installing Vercel CLI...")
+        run_command("npm install -g vercel")
+    
+    # Login and deploy
+    print("Please login to Vercel:")
+    run_command("vercel login")
+    
+    # Deploy
+    print("Deploying to Vercel...")
+    run_command("vercel --prod")
+    
+    print("✅ Deployed to Vercel!")
+    print("📝 Note: This is a demo version with limited functionality.")
+    print("   For full processing, deploy to Railway or DigitalOcean.")
+
 def deploy_digitalocean():
     """Deploy to DigitalOcean App Platform"""
     print("🌊 Deploying to DigitalOcean...")
@@ -149,21 +171,24 @@ def main():
         platform = sys.argv[1].lower()
     else:
         print("Available deployment options:")
-        print("1. railway    - Railway.app (Recommended, easy)")
-        print("2. render     - Render.com (Free tier)")
-        print("3. fly        - Fly.io (Global edge)")
-        print("4. do         - DigitalOcean (Paid, reliable)")
-        print("5. local      - Test locally with Docker")
+        print("1. vercel     - Vercel (You have account, demo version)")
+        print("2. railway    - Railway.app (Recommended for full version)")
+        print("3. render     - Render.com (Free tier)")
+        print("4. fly        - Fly.io (Global edge)")
+        print("5. do         - DigitalOcean (Paid, reliable)")
+        print("6. local      - Test locally with Docker")
         print()
-        platform = input("Choose platform (1-5): ").strip()
+        platform = input("Choose platform (1-6): ").strip()
     
     # Map choices
     platform_map = {
-        '1': 'railway',
-        '2': 'render', 
-        '3': 'fly',
-        '4': 'do',
-        '5': 'local',
+        '1': 'vercel',
+        '2': 'railway',
+        '3': 'render', 
+        '4': 'fly',
+        '5': 'do',
+        '6': 'local',
+        'vercel': 'vercel',
         'railway': 'railway',
         'render': 'render',
         'fly': 'fly',
@@ -175,7 +200,9 @@ def main():
     
     platform = platform_map.get(platform)
     
-    if platform == 'railway':
+    if platform == 'vercel':
+        deploy_vercel()
+    elif platform == 'railway':
         deploy_railway()
     elif platform == 'render':
         deploy_render()
@@ -186,7 +213,7 @@ def main():
     elif platform == 'local':
         test_local()
     else:
-        print("❌ Invalid option. Please choose 1-5.")
+        print("❌ Invalid option. Please choose 1-6.")
         sys.exit(1)
 
 if __name__ == "__main__":

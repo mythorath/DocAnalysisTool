@@ -1,0 +1,306 @@
+{% extends "base.html" %}
+
+{% block title %}Full Deployment Guide - Public Comment Analysis Tool{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-10 mx-auto">
+        <div class="text-center mb-5">
+            <h1 class="display-5 text-primary">
+                <i class="fas fa-rocket me-3"></i>
+                Deploy Full Version
+            </h1>
+            <p class="lead text-muted">
+                Complete document processing with OCR, clustering, and unlimited capacity
+            </p>
+        </div>
+
+        <!-- Why Deploy Full Version -->
+        <div class="card mb-4 border-primary">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-star me-2"></i>
+                    Why Deploy the Full Version?
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-success">✅ Full Features:</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i>Complete OCR processing</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Unlimited document processing</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Full text extraction</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Advanced search indexing</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Document clustering</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Large file support</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="text-warning">⚠️ Vercel Limitations:</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-times text-danger me-2"></i>Max 100 documents</li>
+                            <li><i class="fas fa-times text-danger me-2"></i>10MB file size limit</li>
+                            <li><i class="fas fa-times text-danger me-2"></i>No OCR processing</li>
+                            <li><i class="fas fa-times text-danger me-2"></i>No text extraction</li>
+                            <li><i class="fas fa-times text-danger me-2"></i>Basic file detection only</li>
+                            <li><i class="fas fa-times text-danger me-2"></i>15-second timeout limits</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deployment Options -->
+        <div class="row">
+            <!-- Railway.app -->
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 border-success">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-train me-2"></i>
+                            Railway.app (RECOMMENDED)
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <span class="badge bg-success fs-6">EASIEST DEPLOYMENT</span>
+                        </div>
+                        
+                        <h6>💰 Pricing:</h6>
+                        <ul>
+                            <li><strong>Free:</strong> $0/month (good for testing)</li>
+                            <li><strong>Hobby:</strong> $5/month (perfect for production)</li>
+                        </ul>
+                        
+                        <h6>🚀 One-Click Deploy:</h6>
+                        <div class="text-center mb-3">
+                            <a href="https://railway.app/new/template?template=https://github.com/your-repo" 
+                               class="btn btn-success btn-lg">
+                                <i class="fas fa-rocket me-2"></i>Deploy to Railway
+                            </a>
+                        </div>
+                        
+                        <h6>📋 Manual Steps:</h6>
+                        <ol class="small">
+                            <li>Sign up at <a href="https://railway.app" target="_blank">railway.app</a></li>
+                            <li>Connect your GitHub account</li>
+                            <li>Import your repository</li>
+                            <li>Set environment variables</li>
+                            <li>Deploy automatically</li>
+                        </ol>
+                        
+                        <div class="alert alert-success small">
+                            <strong>Perfect for:</strong> Single client, moderate to high volume processing
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DigitalOcean -->
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 border-info">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-server me-2"></i>
+                            DigitalOcean App Platform
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <span class="badge bg-info fs-6">BEST PERFORMANCE</span>
+                        </div>
+                        
+                        <h6>💰 Pricing:</h6>
+                        <ul>
+                            <li><strong>Basic:</strong> $5/month</li>
+                            <li><strong>Professional:</strong> $12/month</li>
+                            <li><strong>Predictable costs</strong></li>
+                        </ul>
+                        
+                        <h6>📋 Deployment Steps:</h6>
+                        <ol class="small">
+                            <li>Sign up at <a href="https://cloud.digitalocean.com" target="_blank">DigitalOcean</a></li>
+                            <li>Go to "Apps" section</li>
+                            <li>Create new app from GitHub</li>
+                            <li>Select Docker deployment</li>
+                            <li>Configure auto-deploy</li>
+                        </ol>
+                        
+                        <div class="text-center mb-3">
+                            <a href="https://cloud.digitalocean.com/apps/new" 
+                               class="btn btn-info" target="_blank">
+                                <i class="fas fa-external-link-alt me-2"></i>Deploy on DigitalOcean
+                            </a>
+                        </div>
+                        
+                        <div class="alert alert-info small">
+                            <strong>Perfect for:</strong> Production use, guaranteed resources
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Google Cloud Run -->
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 border-warning">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="mb-0">
+                            <i class="fas fa-bolt me-2"></i>
+                            Google Cloud Run
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <span class="badge bg-warning text-dark fs-6">PAY-PER-USE</span>
+                        </div>
+                        
+                        <h6>💰 Pricing:</h6>
+                        <ul>
+                            <li><strong>Pay only for usage</strong></li>
+                            <li>$0.40 per million requests</li>
+                            <li>CPU/memory per second</li>
+                            <li>Scales to zero when idle</li>
+                        </ul>
+                        
+                        <h6>📋 Quick Deploy:</h6>
+                        <div class="bg-dark text-light p-2 rounded small mb-3">
+                            <code>
+                                gcloud run deploy comment-analyzer \<br>
+                                &nbsp;&nbsp;--source . \<br>
+                                &nbsp;&nbsp;--platform managed \<br>
+                                &nbsp;&nbsp;--allow-unauthenticated
+                            </code>
+                        </div>
+                        
+                        <div class="alert alert-warning small">
+                            <strong>Perfect for:</strong> Variable workloads, enterprise scale
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Render.com -->
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 border-secondary">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-paint-brush me-2"></i>
+                            Render.com
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <span class="badge bg-secondary fs-6">FREE OPTION</span>
+                        </div>
+                        
+                        <h6>💰 Pricing:</h6>
+                        <ul>
+                            <li><strong>Free:</strong> $0/month (sleeps when idle)</li>
+                            <li><strong>Starter:</strong> $7/month</li>
+                        </ul>
+                        
+                        <h6>📋 Deployment:</h6>
+                        <ol class="small">
+                            <li>Connect GitHub to Render</li>
+                            <li>Create "Web Service"</li>
+                            <li>Use Docker environment</li>
+                            <li>Deploy automatically</li>
+                        </ol>
+                        
+                        <div class="text-center mb-3">
+                            <a href="https://render.com" 
+                               class="btn btn-secondary" target="_blank">
+                                <i class="fas fa-external-link-alt me-2"></i>Deploy on Render
+                            </a>
+                        </div>
+                        
+                        <div class="alert alert-secondary small">
+                            <strong>Perfect for:</strong> Testing, occasional use
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Environment Variables -->
+        <div class="card mb-4">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-cog me-2"></i>
+                    Required Environment Variables
+                </h5>
+            </div>
+            <div class="card-body">
+                <p>Set these environment variables on your chosen platform:</p>
+                <div class="bg-dark text-light p-3 rounded">
+                    <code>
+                        FLASK_ENV=production<br>
+                        SECRET_KEY=your-secret-key-here<br>
+                        PORT=8080<br>
+                        MAX_CONTENT_LENGTH=500000000
+                    </code>
+                </div>
+            </div>
+        </div>
+
+        <!-- Repository Setup -->
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">
+                    <i class="fab fa-github me-2"></i>
+                    Repository Setup
+                </h5>
+            </div>
+            <div class="card-body">
+                <h6>📋 Quick Setup:</h6>
+                <ol>
+                    <li><strong>Clone/Download</strong> the complete project files</li>
+                    <li><strong>Push to GitHub</strong> (create new repository)</li>
+                    <li><strong>Connect to platform</strong> of your choice</li>
+                    <li><strong>Configure environment</strong> variables</li>
+                    <li><strong>Deploy!</strong></li>
+                </ol>
+                
+                <div class="alert alert-info">
+                    <h6><i class="fas fa-download me-2"></i>Get Complete Project Files</h6>
+                    <p class="mb-0">
+                        Download the complete project with all files needed for deployment.
+                        Includes Docker configuration, deployment scripts, and documentation.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Support -->
+        <div class="card border-success">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-question-circle me-2"></i>
+                    Need Help?
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>📚 Documentation:</h6>
+                        <ul>
+                            <li>Complete deployment guide included</li>
+                            <li>Platform-specific instructions</li>
+                            <li>Troubleshooting tips</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>🛠️ Technical Support:</h6>
+                        <ul>
+                            <li>All platforms have excellent docs</li>
+                            <li>Community support available</li>
+                            <li>Discord/Slack communities</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
