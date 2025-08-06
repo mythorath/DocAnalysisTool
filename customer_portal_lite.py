@@ -877,16 +877,17 @@ def admin_upload_database():
         
         if not customer:
             # Create new customer with default password
+            import uuid
+            customer_id = str(uuid.uuid4())
             customer_name = customer_email.split('@')[0].replace('.', ' ').title()
             default_password = 'welcome123'  # Customer should change this
             password_hash = generate_password_hash(default_password)
             
             cursor.execute('''
-                INSERT INTO customers (email, name, password_hash, created_at)
-                VALUES (?, ?, ?, CURRENT_TIMESTAMP)
-            ''', (customer_email, customer_name, password_hash))
+                INSERT INTO customers (id, email, name, password_hash, created_at)
+                VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)
+            ''', (customer_id, customer_email, customer_name, password_hash))
             
-            customer_id = cursor.lastrowid
             logger.info(f"Auto-created customer via upload: {customer_email}")
         else:
             customer_id = customer['id']
@@ -991,13 +992,13 @@ def admin_create_customer():
             return jsonify({'error': f'Customer already exists: {customer_email}'}), 409
         
         # Create new customer
+        import uuid
+        customer_id = str(uuid.uuid4())
         password_hash = generate_password_hash(password)
         cursor.execute('''
-            INSERT INTO customers (email, name, password_hash, created_at)
-            VALUES (?, ?, ?, CURRENT_TIMESTAMP)
-        ''', (customer_email, customer_name, password_hash))
-        
-        customer_id = cursor.lastrowid
+            INSERT INTO customers (id, email, name, password_hash, created_at)
+            VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)
+        ''', (customer_id, customer_email, customer_name, password_hash))
         conn.commit()
         conn.close()
         
