@@ -453,7 +453,7 @@
             
             data.results.forEach((result, index) => {
                 html += `
-                    <div class="card result-card mb-3" onclick="viewDocumentWithSearch('${result.document_id}', \`${result.query || query}\`)" 
+                    <div class="card result-card mb-3" onclick="viewDocumentWithSearch('${result.document_id}', \`${result.query || currentSearchQuery}\`)" 
                          data-document-id="${result.document_id}">
                         <div class="card-body p-4">
                             <div class="row align-items-center">
@@ -492,7 +492,7 @@
                                         <small class="text-muted d-block">Content Size</small>
                                         <span class="fw-bold">${result.character_count ? result.character_count.toLocaleString() : 'N/A'} chars</span>
                                     </div>
-                                    <button class="btn view-btn btn-sm px-3" onclick="event.stopPropagation(); viewDocumentWithSearch('${result.document_id}', \`${result.query || query}\`)">
+                                    <button class="btn view-btn btn-sm px-3" onclick="event.stopPropagation(); viewDocumentWithSearch('${result.document_id}', \`${result.query || currentSearchQuery}\`)">
                                         <i class="bi bi-eye me-1"></i>View Document
                                     </button>
                                 </div>
