@@ -1,0 +1,31 @@
+# RAILWAY OPTIMIZED REQUIREMENTS - Under 4GB limit
+# Core functionality only, minimal ML dependencies
+
+# Essential document processing
+pandas>=1.3.0
+requests>=2.25.0
+tqdm>=4.60.0
+numpy>=1.20.0
+
+# PDF processing (lightweight)
+PyMuPDF>=1.20.0
+pdfminer.six>=20211012
+pytesseract>=0.3.8
+Pillow>=8.0.0
+
+# Document processing
+python-docx>=0.8.11
+
+# Lightweight ML (no heavy transformers)
+scikit-learn>=1.0.0
+nltk>=3.6.0
+
+# Web application
+flask>=2.0.0
+werkzeug>=2.0.0
+
+# Basic visualization
+matplotlib>=3.3.0
+
+# Optional lightweight dependencies
+openpyxl>=3.0.0

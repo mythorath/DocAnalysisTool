@@ -1,0 +1,58 @@
+# Railway deployment ignore file
+# Exclude large local files to stay under 4GB limit
+
+# Virtual environments (2GB+)
+venv/
+env/
+.venv/
+.env/
+__pycache__/
+
+# Customer data folders (should be empty anyway)
+downloads/*
+!downloads/.gitkeep
+text/*
+!text/.gitkeep
+output/*
+!output/.gitkeep
+logs/*
+!logs/.gitkeep
+input/*
+!input/.gitkeep
+!input/sample_comment_links.csv
+
+# Development files
+.git/
+.pytest_cache/
+.coverage
+.tox/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Large dependency files
+*.whl
+*.egg-info/
+
+# Jupyter notebooks
+*.ipynb_checkpoints/
+
+# Testing files
+test_*/
+tests/
+
+# Documentation drafts
+NOTES.md
+TODO.md
+
+# Backup files
+*.bak
+*.backup
+*~
