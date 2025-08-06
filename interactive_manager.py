@@ -448,6 +448,7 @@ class InteractiveManager:
         print("-" * 30)
         
         email = self.get_input("Customer email")
+        name = self.get_input("Customer name (optional)", "")
         password = self.get_input("Customer password", "password123")
         
         if not email:
@@ -456,8 +457,33 @@ class InteractiveManager:
             return
         
         safe_print(f"\n📧 Creating customer: {email}")
-        safe_print("⚠️ Note: Customer creation requires direct portal API access")
-        safe_print("💡 For now, customers will be created when first database is uploaded")
+        safe_print("📡 Connecting to portal...")
+        
+        try:
+            import subprocess
+            cmd = [
+                'python', 'remote_data_manager.py', 
+                '--url', self.portal_url, 
+                '--key', self.admin_key,
+                'create-customer', email
+            ]
+            
+            if name.strip():
+                cmd.extend(['--name', name.strip()])
+            if password != 'password123':
+                cmd.extend(['--password', password])
+            
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+            
+            if result.returncode == 0:
+                safe_print("✅ Customer created successfully!")
+                safe_print(result.stdout)
+            else:
+                safe_print("❌ Failed to create customer")
+                safe_print(result.stderr)
+                
+        except Exception as e:
+            safe_print(f"❌ Error creating customer: {e}")
         
         input("\nPress Enter to continue...")
     
