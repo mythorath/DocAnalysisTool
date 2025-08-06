@@ -727,76 +727,7 @@ def admin_list_customers_endpoint():
         logger.error(f"Admin list customers error: {e}")
         return jsonify({'error': f'Failed to list customers: {str(e)}'}), 500
 
-@app.route('/admin/upload-database', methods=['POST'])
-@require_admin_key
-def admin_upload_database_endpoint():
-    """Upload a database via API."""
-    try:
-        data = request.get_json()
-        
-        customer_email = data.get('customer_email')
-        project_name = data.get('project_name')
-        description = data.get('description', '')
-        database_data = data.get('database_data')  # Base64 encoded
-        
-        if not all([customer_email, project_name, database_data]):
-            return jsonify({'error': 'Missing required fields: customer_email, project_name, database_data'}), 400
-        
-        # Decode database data
-        import base64
-        try:
-            db_content = base64.b64decode(database_data)
-        except Exception as e:
-            return jsonify({'error': f'Invalid base64 data: {str(e)}'}), 400
-        
-        # Generate unique filename
-        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-        safe_name = "".join(c for c in project_name if c.isalnum() or c in (' ', '-', '_')).rstrip()
-        safe_name = safe_name.replace(' ', '_').lower()
-        db_filename = f"{safe_name}_{timestamp}.db"
-        
-        # Save database file
-        db_path = CUSTOMER_DATABASES_DIR / db_filename
-        with open(db_path, 'wb') as f:
-            f.write(db_content)
-        
-        # Get customer
-        db_admin_path = ADMIN_DATA_DIR / 'customers.db'
-        conn = sqlite3.connect(db_admin_path)
-        cursor = conn.cursor()
-        
-        cursor.execute("SELECT id FROM customers WHERE email = ?", (customer_email,))
-        customer = cursor.fetchone()
-        
-        if not customer:
-            conn.close()
-            return jsonify({'error': f'Customer not found: {customer_email}. Create customer first.'}), 404
-        
-        customer_id = customer[0]
-        
-        # Insert database record
-        database_id = str(uuid.uuid4())
-        cursor.execute('''
-            INSERT INTO customer_databases 
-            (id, customer_id, project_name, description, database_filename, uploaded_at)
-            VALUES (?, ?, ?, ?, ?, ?)
-        ''', (database_id, customer_id, project_name, description, db_filename, datetime.now()))
-        
-        conn.commit()
-        conn.close()
-        
-        logger.info(f"Database uploaded via API: {db_filename} for {customer_email}")
-        
-        return jsonify({
-            'success': True,
-            'database_id': database_id,
-            'database_filename': db_filename,
-            'message': 'Database uploaded successfully'
-        })
-        
-    except Exception as e:
-        logger.error(f"Admin upload database error: {e}")
-        return jsonify({'error': f'Upload failed: {str(e)}'}), 500
+
 
 @app.route('/admin/remove-project', methods=['DELETE'])
 @require_admin_key
