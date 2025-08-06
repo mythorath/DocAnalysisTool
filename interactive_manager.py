@@ -38,7 +38,11 @@ def safe_print(text):
                    .replace('❓', '[QUESTION]')
                    .replace('🎉', '[SUCCESS]')
                    .replace('💡', '[TIP]')
-                   .replace('🔐', '[SECURE]'))
+                   .replace('🔐', '[SECURE]')
+                   .replace('📂', '[FOLDER]')
+                   .replace('📈', '[COUNT]')
+                   .replace('🧹', '[CLEANUP]')
+                   .replace('⬅️', '[BACK]'))
     try:
         print(text)
     except UnicodeEncodeError:
@@ -591,6 +595,202 @@ class InteractiveManager:
         self.run_command(command, "Cleaning up local data")
         input("\nPress Enter to continue...")
     
+    def local_project_management_menu(self):
+        """Handle local project management."""
+        while True:
+            self.clear_screen()
+            self.show_header()
+            safe_print("🗑️ LOCAL PROJECT MANAGEMENT")
+            print("=" * 60)
+            
+            # Show current local projects
+            workspace_dir = Path("workspace/customers")
+            if workspace_dir.exists():
+                project_count = 0
+                safe_print("📁 Current local projects:")
+                for customer_dir in workspace_dir.iterdir():
+                    if customer_dir.is_dir():
+                        customer_name = customer_dir.name
+                        safe_print(f"\n👤 {customer_name}")
+                        for project_dir in customer_dir.iterdir():
+                            if project_dir.is_dir():
+                                project_count += 1
+                                # Try to get project info from summary
+                                summary_file = project_dir / "output" / "summary.json"
+                                if summary_file.exists():
+                                    try:
+                                        import json
+                                        with open(summary_file, 'r', encoding='utf-8') as f:
+                                            summary = json.load(f)
+                                        project_name = summary.get('project_name', project_dir.name)
+                                        doc_count = summary.get('total_documents', 0)
+                                        safe_print(f"  📊 {project_name} ({doc_count} docs)")
+                                    except:
+                                        safe_print(f"  📁 {project_dir.name}")
+                                else:
+                                    safe_print(f"  📁 {project_dir.name}")
+                
+                if project_count == 0:
+                    safe_print("📂 No processed projects found")
+                else:
+                    safe_print(f"\n📈 Total: {project_count} projects")
+            else:
+                safe_print("📂 No workspace directory found")
+            
+            print("\nOptions:")
+            print("1. 🗑️ Delete specific project")
+            print("2. 🧹 Delete all local projects")
+            print("3. 📋 Refresh project list")
+            print("0. ⬅️ Back to main menu")
+            
+            choice = input("\nEnter choice: ").strip()
+            
+            if choice == "0":
+                break
+            elif choice == "1":
+                self.delete_specific_project()
+            elif choice == "2":
+                self.delete_all_local_projects()
+            elif choice == "3":
+                continue  # Refresh by redisplaying menu
+            else:
+                safe_print("❌ Invalid choice")
+                input("Press Enter to continue...")
+    
+    def delete_specific_project(self):
+        """Delete a specific local project."""
+        safe_print("\n🗑️ Delete Specific Project")
+        print("-" * 40)
+        
+        workspace_dir = Path("workspace/customers")
+        if not workspace_dir.exists():
+            safe_print("❌ No workspace directory found")
+            input("Press Enter to continue...")
+            return
+        
+        # Build list of all projects
+        projects = []
+        for customer_dir in workspace_dir.iterdir():
+            if customer_dir.is_dir():
+                customer_name = customer_dir.name
+                for project_dir in customer_dir.iterdir():
+                    if project_dir.is_dir():
+                        # Try to get project info
+                        summary_file = project_dir / "output" / "summary.json"
+                        if summary_file.exists():
+                            try:
+                                import json
+                                with open(summary_file, 'r', encoding='utf-8') as f:
+                                    summary = json.load(f)
+                                project_name = summary.get('project_name', project_dir.name)
+                                doc_count = summary.get('total_documents', 0)
+                                display_name = f"{customer_name} → {project_name} ({doc_count} docs)"
+                            except:
+                                display_name = f"{customer_name} → {project_dir.name}"
+                        else:
+                            display_name = f"{customer_name} → {project_dir.name}"
+                        
+                        projects.append({
+                            'path': project_dir,
+                            'customer': customer_name,
+                            'display': display_name
+                        })
+        
+        if not projects:
+            safe_print("❌ No projects found to delete")
+            input("Press Enter to continue...")
+            return
+        
+        # Show projects for selection
+        safe_print("📋 Select project to delete:")
+        for i, project in enumerate(projects, 1):
+            print(f"   {i}. {project['display']}")
+        
+        try:
+            choice = input("\nEnter project number (or 0 to cancel): ").strip()
+            if choice == "0":
+                return
+            
+            project_idx = int(choice) - 1
+            if 0 <= project_idx < len(projects):
+                selected_project = projects[project_idx]
+                
+                # Confirm deletion
+                safe_print(f"\n⚠️ Are you sure you want to delete:")
+                safe_print(f"   {selected_project['display']}")
+                safe_print(f"   Path: {selected_project['path']}")
+                
+                confirm = input("\nType 'DELETE' to confirm: ").strip()
+                if confirm == "DELETE":
+                    import shutil
+                    try:
+                        shutil.rmtree(selected_project['path'])
+                        safe_print(f"✅ Successfully deleted project")
+                        
+                        # Check if customer directory is now empty
+                        customer_dir = selected_project['path'].parent
+                        if customer_dir.exists() and not any(customer_dir.iterdir()):
+                            customer_dir.rmdir()
+                            safe_print(f"✅ Removed empty customer directory: {selected_project['customer']}")
+                        
+                    except Exception as e:
+                        safe_print(f"❌ Error deleting project: {e}")
+                else:
+                    safe_print("❌ Deletion cancelled")
+            else:
+                safe_print("❌ Invalid project number")
+        except ValueError:
+            safe_print("❌ Invalid input")
+        except Exception as e:
+            safe_print(f"❌ Error: {e}")
+        
+        input("\nPress Enter to continue...")
+    
+    def delete_all_local_projects(self):
+        """Delete all local projects."""
+        safe_print("\n🧹 Delete All Local Projects")
+        print("-" * 40)
+        
+        workspace_dir = Path("workspace/customers")
+        if not workspace_dir.exists():
+            safe_print("❌ No workspace directory found")
+            input("Press Enter to continue...")
+            return
+        
+        # Count projects
+        project_count = 0
+        for customer_dir in workspace_dir.iterdir():
+            if customer_dir.is_dir():
+                for project_dir in customer_dir.iterdir():
+                    if project_dir.is_dir():
+                        project_count += 1
+        
+        if project_count == 0:
+            safe_print("❌ No projects found to delete")
+            input("Press Enter to continue...")
+            return
+        
+        safe_print(f"⚠️ This will delete ALL {project_count} local projects!")
+        safe_print("⚠️ This action cannot be undone!")
+        
+        confirm1 = input("\nType 'DELETE ALL' to confirm: ").strip()
+        if confirm1 == "DELETE ALL":
+            confirm2 = input("Are you absolutely sure? Type 'YES' to proceed: ").strip()
+            if confirm2 == "YES":
+                try:
+                    import shutil
+                    shutil.rmtree(workspace_dir)
+                    safe_print(f"✅ Successfully deleted all {project_count} projects")
+                    safe_print("✅ Workspace directory cleaned")
+                except Exception as e:
+                    safe_print(f"❌ Error deleting projects: {e}")
+            else:
+                safe_print("❌ Deletion cancelled")
+        else:
+            safe_print("❌ Deletion cancelled")
+        
+        input("\nPress Enter to continue...")
+    
     def show_main_menu(self):
         """Show the main menu."""
         self.clear_screen()
@@ -610,9 +810,10 @@ class InteractiveManager:
         print("\nOptions:")
         print("1. 🚀 Process documents with GPU acceleration")
         print("2. 📋 List processed projects")
-        print("3. 👤 Customer Management") 
-        print("4. 🌐 Remote Site Management")
-        print("5. 📚 Quick Reference")
+        print("3. 🗑️ Manage local projects")
+        print("4. 👤 Customer Management") 
+        print("5. 🌐 Remote Site Management")
+        print("6. 📚 Quick Reference")
         print("0. 🚪 Exit")
         print("=" * 60)
     
@@ -659,10 +860,12 @@ class InteractiveManager:
                 elif choice == "2":
                     self.list_projects()
                 elif choice == "3":
-                    self.customer_management_menu()
+                    self.local_project_management_menu()
                 elif choice == "4":
-                    self.remote_management_menu()
+                    self.customer_management_menu()
                 elif choice == "5":
+                    self.remote_management_menu()
+                elif choice == "6":
                     self.show_quick_reference()
                 else:
                     safe_print("❌ Invalid choice")
