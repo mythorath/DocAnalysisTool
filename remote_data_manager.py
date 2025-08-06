@@ -256,6 +256,41 @@ class RemoteDataManager:
             safe_print(f"❌ Error removing customer: {e}")
             return False
     
+    def create_remote_customer(self, customer_email, customer_name=None, password=None):
+        """Create a new customer account directly on the deployed portal."""
+        try:
+            safe_print(f"👤 Creating customer: {customer_email}")
+            
+            url = urljoin(self.portal_url, '/admin/create-customer')
+            data = {'customer_email': customer_email}
+            
+            if customer_name:
+                data['customer_name'] = customer_name
+            if password:
+                data['password'] = password
+            
+            response = self.session.post(url, json=data, timeout=30)
+            
+            if response.status_code == 200:
+                result = response.json()
+                safe_print(f"✅ Customer created successfully")
+                safe_print(f"   Email: {result.get('customer_email')}")
+                safe_print(f"   Name: {result.get('customer_name')}")
+                safe_print(f"   Password: {result.get('password')}")
+                safe_print(f"   Customer ID: {result.get('customer_id')}")
+                return True
+            elif response.status_code == 409:
+                safe_print(f"❌ Customer already exists: {customer_email}")
+                return False
+            else:
+                safe_print(f"❌ Failed to create customer: {response.status_code}")
+                safe_print(f"   Error: {response.text}")
+                return False
+                
+        except Exception as e:
+            safe_print(f"❌ Error creating customer: {e}")
+            return False
+    
     def sync_local_to_remote(self, local_db_dir="customer_databases"):
         """Sync local databases to remote portal."""
         local_dir = Path(local_db_dir)
@@ -385,6 +420,12 @@ def main():
     remove_customer_parser = subparsers.add_parser('remove-customer', help='Remove customer from portal')
     remove_customer_parser.add_argument('customer_email', help='Customer email')
     
+    # Create customer command
+    create_customer_parser = subparsers.add_parser('create-customer', help='Create customer account on portal')
+    create_customer_parser.add_argument('customer_email', help='Customer email')
+    create_customer_parser.add_argument('--name', help='Customer name (optional)')
+    create_customer_parser.add_argument('--password', help='Customer password (optional, defaults to welcome123)')
+    
     # Sync command
     sync_parser = subparsers.add_parser('sync', help='Sync local databases to portal')
     sync_parser.add_argument('--local-dir', default='customer_databases', help='Local database directory')
@@ -420,6 +461,8 @@ def main():
         manager.remove_remote_project(args.customer_email, args.project_name)
     elif args.command == 'remove-customer':
         manager.remove_remote_customer(args.customer_email)
+    elif args.command == 'create-customer':
+        manager.create_remote_customer(args.customer_email, args.name, args.password)
     elif args.command == 'sync':
         manager.sync_local_to_remote(args.local_dir)
 

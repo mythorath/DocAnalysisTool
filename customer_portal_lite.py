@@ -957,6 +957,64 @@ def admin_upload_database():
         return jsonify({'error': f'Upload failed: {str(e)}'}), 500
 
 
+@app.route('/admin/create-customer', methods=['POST'])
+@require_admin_key
+def admin_create_customer():
+    """Create a new customer account directly via API."""
+    try:
+        data = request.get_json()
+        customer_email = data.get('customer_email')
+        customer_name = data.get('customer_name', '')
+        password = data.get('password', 'welcome123')
+        
+        if not customer_email:
+            return jsonify({'error': 'Missing required field: customer_email'}), 400
+        
+        customer_email = customer_email.strip().lower()
+        
+        # Auto-generate name if not provided
+        if not customer_name:
+            customer_name = customer_email.split('@')[0].replace('.', ' ').title()
+        
+        # Connect to database
+        db_path = ADMIN_DATA_DIR / 'customers.db'
+        conn = sqlite3.connect(db_path)
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+        
+        # Check if customer already exists
+        cursor.execute('SELECT * FROM customers WHERE email = ?', (customer_email,))
+        existing_customer = cursor.fetchone()
+        
+        if existing_customer:
+            conn.close()
+            return jsonify({'error': f'Customer already exists: {customer_email}'}), 409
+        
+        # Create new customer
+        password_hash = generate_password_hash(password)
+        cursor.execute('''
+            INSERT INTO customers (email, name, password_hash, created_at)
+            VALUES (?, ?, ?, CURRENT_TIMESTAMP)
+        ''', (customer_email, customer_name, password_hash))
+        
+        customer_id = cursor.lastrowid
+        conn.commit()
+        conn.close()
+        
+        logger.info(f"Created customer via API: {customer_email}")
+        return jsonify({
+            'success': True,
+            'customer_id': customer_id,
+            'customer_email': customer_email,
+            'customer_name': customer_name,
+            'password': password,
+            'message': f'Customer {customer_email} created successfully'
+        })
+        
+    except Exception as e:
+        logger.error(f"Admin create customer error: {e}")
+        return jsonify({'error': f'Customer creation failed: {str(e)}'}), 500
+
 
 if __name__ == '__main__':
     # Initialize database
