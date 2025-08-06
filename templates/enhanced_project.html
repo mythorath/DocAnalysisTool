@@ -453,7 +453,7 @@
             
             data.results.forEach((result, index) => {
                 html += `
-                    <div class="card result-card mb-3" onclick="viewDocument('${result.document_id}')" 
+                    <div class="card result-card mb-3" onclick="viewDocumentWithSearch('${result.document_id}', \`${result.query || query}\`)" 
                          data-document-id="${result.document_id}">
                         <div class="card-body p-4">
                             <div class="row align-items-center">
@@ -492,7 +492,7 @@
                                         <small class="text-muted d-block">Content Size</small>
                                         <span class="fw-bold">${result.character_count ? result.character_count.toLocaleString() : 'N/A'} chars</span>
                                     </div>
-                                    <button class="btn view-btn btn-sm px-3" onclick="event.stopPropagation(); viewDocument('${result.document_id}')">
+                                    <button class="btn view-btn btn-sm px-3" onclick="event.stopPropagation(); viewDocumentWithSearch('${result.document_id}', \`${result.query || query}\`)">
                                         <i class="bi bi-eye me-1"></i>View Document
                                     </button>
                                 </div>
@@ -519,6 +519,14 @@
         let currentSearchQuery = '';
         
         // Document viewing functionality
+        // Updated function that explicitly accepts search query
+        async function viewDocumentWithSearch(documentId, searchQuery = '') {
+            // Update the current search query to ensure highlighting works
+            currentSearchQuery = searchQuery || currentSearchQuery || '';
+            console.log('viewDocumentWithSearch called:', documentId, 'query:', currentSearchQuery);
+            return viewDocument(documentId);
+        }
+        
         async function viewDocument(documentId) {
             // Add click animation
             const card = document.querySelector(`[data-document-id="${documentId}"]`);
@@ -547,6 +555,8 @@
             try {
                 // Include search query in API call for highlighting
                 const searchParam = currentSearchQuery ? `?q=${encodeURIComponent(currentSearchQuery)}` : '';
+                console.log('Current search query:', currentSearchQuery);
+                console.log('Search param:', searchParam);
                 const response = await fetch(`{{ url_for('api_get_document', project_id=project.id, document_id='DOCUMENT_ID') }}`.replace('DOCUMENT_ID', documentId) + searchParam);
                 const data = await response.json();
                 
@@ -559,6 +569,34 @@
             } catch (error) {
                 displayDocumentError('Network error: ' + error.message);
             }
+        }
+        
+        // Button handlers for different document views
+        function showTextView(documentId) {
+            // The text view is already displayed by default
+            // This button just confirms we're in text view mode
+            const textBtn = document.querySelector(`button[onclick="showTextView('${documentId}')"]`);
+            if (textBtn) {
+                textBtn.innerHTML = '<i class="bi bi-file-text me-1"></i>Text Version (Current)';
+                textBtn.className = 'btn btn-success me-2';
+            }
+            
+            // Make sure original button shows as secondary
+            const originalBtn = document.querySelector(`button[onclick="showOriginalScan('${documentId}')"]`);
+            if (originalBtn) {
+                originalBtn.innerHTML = '<i class="bi bi-file-image me-1"></i>View Original Scan';
+                originalBtn.className = 'btn btn-warning me-2';
+            }
+        }
+        
+        function showOriginalScan(documentId) {
+            // Open the original scan in a new tab
+            window.open(`{{ url_for('api_get_original_document', project_id=project.id, document_id='DOCUMENT_ID') }}`.replace('DOCUMENT_ID', documentId), '_blank');
+        }
+        
+        function showOriginalDocument(documentId) {
+            // Open the original document in a new tab
+            window.open(`{{ url_for('api_get_original_document', project_id=project.id, document_id='DOCUMENT_ID') }}`.replace('DOCUMENT_ID', documentId), '_blank');
         }
         
         function displayDocumentContent(data, documentId) {
@@ -574,22 +612,40 @@
                 <i class="bi bi-file-text me-2"></i>${data.document.filename || data.document.document_id}${ocrBadge}
             `;
             
-            // Show/hide original button with appropriate text
-            if (data.has_original) {
-                viewOriginalBtn.style.display = 'inline-block';
-                if (data.is_ocr_document) {
-                    viewOriginalBtn.innerHTML = '<i class="bi bi-file-image me-1"></i>View Original Scan/Image';
-                    viewOriginalBtn.className = 'btn btn-warning';
+            // Show/hide buttons based on document type
+            const modalFooter = document.querySelector('#documentModal .modal-footer');
+            
+            // Clear existing buttons
+            modalFooter.innerHTML = '';
+            
+            // Always add close button
+            modalFooter.innerHTML += '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>';
+            
+            // Add appropriate buttons based on document type
+            if (data.is_ocr_document) {
+                // For OCR documents, add both text view (default) and original scan buttons
+                const textViewBtn = `<button type="button" class="btn btn-success me-2" onclick="showTextView('${documentId}')">
+                    <i class="bi bi-file-text me-1"></i>Text Version (Current)
+                </button>`;
+                
+                if (data.has_original) {
+                    const originalBtn = `<button type="button" class="btn btn-warning me-2" onclick="showOriginalScan('${documentId}')">
+                        <i class="bi bi-file-image me-1"></i>View Original Scan
+                    </button>`;
+                    modalFooter.innerHTML = textViewBtn + originalBtn + modalFooter.innerHTML;
                 } else {
-                    viewOriginalBtn.innerHTML = '<i class="bi bi-box-arrow-up-right me-1"></i>View Original Document';
-                    viewOriginalBtn.className = 'btn btn-primary';
+                    modalFooter.innerHTML = textViewBtn + modalFooter.innerHTML;
                 }
-                viewOriginalBtn.onclick = () => {
-                    window.open(`{{ url_for('api_get_original_document', project_id=project.id, document_id='DOCUMENT_ID') }}`.replace('DOCUMENT_ID', documentId), '_blank');
-                };
-            } else {
-                viewOriginalBtn.style.display = 'none';
+            } else if (data.has_original) {
+                // For regular documents with originals
+                const originalBtn = `<button type="button" class="btn btn-primary me-2" onclick="showOriginalDocument('${documentId}')">
+                    <i class="bi bi-box-arrow-up-right me-1"></i>View Original Document
+                </button>`;
+                modalFooter.innerHTML = originalBtn + modalFooter.innerHTML;
             }
+            
+            // Hide the old view original button since we're using the footer buttons
+            viewOriginalBtn.style.display = 'none';
             
             // Create document viewer content
             let contentHtml = `
@@ -650,6 +706,10 @@
             `;
             
             // Add highlighted snippets if available
+            console.log('Snippets data:', data.highlighted_snippets);
+            console.log('Search query:', data.search_query);
+            console.log('Current search query:', currentSearchQuery);
+            
             if (data.highlighted_snippets && data.highlighted_snippets.length > 0) {
                 contentHtml += `
                     <div class="row mb-4">
@@ -683,16 +743,29 @@
                         </div>
                     </div>
                 `;
+            } else if (data.search_query && data.search_query.trim()) {
+                // Show message when search was performed but no snippets found
+                contentHtml += `
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="alert alert-info" style="border-radius: 12px;">
+                                <i class="bi bi-info-circle me-2"></i>
+                                <strong>Search performed:</strong> "${data.search_query}"<br>
+                                <small>The full document content below has been highlighted with your search terms.</small>
+                            </div>
+                        </div>
+                    </div>
+                `;
             }
             
             // Add extracted text content with OCR-specific messaging
             if (data.extracted_text) {
                 const contentTitle = data.is_ocr_document ? 
-                    '<i class="bi bi-robot me-2"></i>OCR Extracted Text Content' : 
+                    '<i class="bi bi-robot me-2"></i>📄 Searchable Text Content (OCR Extracted)' : 
                     '<i class="bi bi-file-text me-2"></i>Document Text Content';
                 
                 const contentSubtitle = data.is_ocr_document ? 
-                    '<small class="text-muted ms-2 fw-normal">(Text extracted from scanned document using OCR technology)</small>' :
+                    '<small class="text-success ms-2 fw-normal">✅ Text has been successfully extracted and is searchable</small>' :
                     (data.has_original ? '<small class="text-muted ms-2 fw-normal">(Click button below to view original document)</small>' : '');
                 
                 contentHtml += `
@@ -709,15 +782,22 @@
                                 }
                             </div>
                             ${data.is_ocr_document ? `
-                            <div class="alert alert-info mb-3" style="border-radius: 12px;">
-                                <i class="bi bi-info-circle me-2"></i>
-                                <strong>OCR-Extracted Document</strong><br>
-                                This text was automatically extracted from a scanned document or image. 
-                                The original scan/image can be viewed using the button below if available.
+                            <div class="alert alert-success mb-3" style="border-radius: 12px; border-left: 4px solid #28a745;">
+                                <i class="bi bi-check-circle me-2"></i>
+                                <strong>✅ OCR Text Extraction Complete</strong><br>
+                                This text was automatically extracted from a scanned document/image and is now fully searchable and copyable. 
+                                ${data.has_original ? 'Use the "View Original Scan" button below to see the source image.' : ''}
                             </div>
                             ` : ''}
-                            <div class="document-content p-4">
-                                ${data.search_query ? highlightTextInContent(data.extracted_text, data.search_query) : escapeHtml(data.extracted_text)}
+                            <div class="document-content p-4" style="background: #f8f9fa; border-radius: 12px; border: 1px solid #e9ecef;">
+                                <div class="mb-2">
+                                    <small class="text-muted">
+                                        <i class="bi bi-copy me-1"></i>Tip: You can select and copy any text below
+                                    </small>
+                                </div>
+                                <div style="max-height: 600px; overflow-y: auto;">
+                                    ${data.search_query ? highlightTextInContent(data.extracted_text, data.search_query) : escapeHtml(data.extracted_text)}
+                                </div>
                             </div>
                         </div>
                     </div>

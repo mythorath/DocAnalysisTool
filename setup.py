@@ -284,21 +284,24 @@ def deploy_to_railway():
     }
     
     for key, value in env_vars.items():
-        run_command(f'railway env set {key}="{value}"', check=False)
+        run_command(f'railway variables --set "{key}={value}"', check=False)
     
     # Deploy
     print("🚀 Deploying to Railway...")
-    success, output = run_command("railway deploy")
+    success, output = run_command("railway up --detach")
     if not success:
         print("❌ Deployment failed")
         return False
     
     # Get URL
-    success, url = run_command("railway url", check=False)
+    success, url = run_command("railway domain", check=False)
     if success and url:
+        # Extract just the URL from the output
+        url_line = next((line for line in url.split('\n') if 'https://' in line), url)
+        clean_url = url_line.strip().replace('🚀 ', '')
         print(f"✅ Deployed successfully!")
-        print(f"🌐 Your portal URL: {url}")
-        return url
+        print(f"🌐 Your portal URL: {clean_url}")
+        return clean_url
     else:
         print("✅ Deployment successful! Check Railway dashboard for URL.")
         return True
@@ -392,27 +395,10 @@ def create_vercel_files():
     print("✅ Vercel files created")
 
 def create_test_customer():
-    """Create a test customer account."""
-    print("\n👤 Creating test customer account...")
-    
-    if platform.system() == "Windows":
-        python_path = "venv\\Scripts\\python"
-    else:
-        python_path = "venv/bin/python"
-    
-    # Create test customer
-    success, _ = run_command(
-        f'{python_path} upload_customer_data.py create-customer '
-        f'test@example.com "Test Customer" "password123" --organization "Test Company"',
-        check=False
-    )
-    
-    if success:
-        print("✅ Test customer created:")
-        print("   Email: test@example.com")
-        print("   Password: password123")
-    else:
-        print("⚠️ Could not create test customer (database may not be ready)")
+    """Skip test customer creation to keep clean state."""
+    print("\n👤 Skipping test customer creation (keeping clean state)")
+    print("   Create customers manually when needed using:")
+    print("   python upload_customer_data.py create-customer email@domain.com 'Name' 'password'")
 
 def show_next_steps(deployment_url=None, has_pandas=False):
     """Show what to do next."""
@@ -426,23 +412,24 @@ def show_next_steps(deployment_url=None, has_pandas=False):
     print(f"1. Activate virtual environment:")
     print(f"   {activation_cmd}")
     
-    print(f"\n2. Test local processing:")
+    print(f"\n2. Process customer documents:")
     if has_pandas:
-        print(f"   python local_processor.py process input/sample_comment_links.csv --customer \"Test Customer\" --project \"Sample Project\"")
+        print(f"   python local_processor.py process input/sample.csv --customer \"Customer Name\" --project \"Project Name\"")
     else:
-        print(f"   python local_processor_lite.py process input/sample_comment_links.csv --customer \"Test Customer\" --project \"Sample Project\"")
+        print(f"   python local_processor_lite.py process input/sample.csv --customer \"Customer Name\" --project \"Project Name\"")
     
-    print(f"\n3. Upload test data:")
-    print(f"   python upload_customer_data.py upload [database_path] test@example.com \"Sample Project\"")
+    print(f"\n3. Create customer and upload data:")
+    print(f"   python upload_customer_data.py create-customer customer@email.com \"Customer Name\" \"password\"")
+    print(f"   python upload_customer_data.py upload [database_path] customer@email.com \"Project Name\"")
     
     if not has_pandas:
         print(f"\n   ⚠️ Using lite processor (pandas not available)")
         print(f"   For enhanced processing, install pandas: pip install pandas")
     
     if deployment_url:
-        print(f"\n4. Test customer portal:")
+        print(f"\n4. Access customer portal:")
         print(f"   🌐 URL: {deployment_url}")
-        print(f"   👤 Login: test@example.com / password123")
+        print(f"   👤 Login with customers you create using step 3")
         
         portal_type = "full" if has_pandas else "lite"
         print(f"   🚀 Running: customer_portal_{'' if has_pandas else 'lite.py'} ({portal_type} version)")

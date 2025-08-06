@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Remote Database Management Tool
 Push customer databases to deployed portal and manage them remotely via API.
@@ -13,6 +14,26 @@ import base64
 from pathlib import Path
 from datetime import datetime
 import argparse
+
+# Windows console emoji compatibility
+def safe_print(text):
+    """Print text with emoji fallbacks for Windows console."""
+    if os.name == 'nt':
+        # Replace problematic emojis with ASCII equivalents
+        text = (text.replace('✅', '[OK]')
+                   .replace('❌', '[ERROR]')
+                   .replace('📤', '[UPLOAD]')
+                   .replace('📋', '[LIST]')
+                   .replace('👤', '[USER]')
+                   .replace('📊', '[DATA]')
+                   .replace('🗑️', '[DELETE]')
+                   .replace('⚠️', '[WARNING]')
+                   .replace('🌐', '[REMOTE]'))
+    try:
+        print(text)
+    except UnicodeEncodeError:
+        # Final fallback - remove all non-ASCII characters
+        print(text.encode('ascii', 'ignore').decode('ascii'))
 from urllib.parse import urljoin
 
 class RemoteDataManager:
@@ -31,11 +52,11 @@ class RemoteDataManager:
         self.admin_key = admin_key or os.getenv('ADMIN_API_KEY')
         
         if not self.portal_url:
-            print("❌ Portal URL not set. Use --url or set PORTAL_URL environment variable")
+            safe_safe_print("❌ Portal URL not set. Use --url or set PORTAL_URL environment variable")
             sys.exit(1)
         
         if not self.admin_key:
-            print("❌ Admin API key not set. Use --key or set ADMIN_API_KEY environment variable")
+            safe_print("❌ Admin API key not set. Use --key or set ADMIN_API_KEY environment variable")
             sys.exit(1)
         
         # Ensure URL format
@@ -84,7 +105,7 @@ class RemoteDataManager:
             print(f"❌ Database file not found: {db_path}")
             return False
         
-        print(f"📤 Uploading database: {db_path.name}")
+        safe_print(f"📤 Uploading database: {db_path.name}")
         print(f"   Customer: {customer_email}")
         print(f"   Project: {project_name}")
         
@@ -150,7 +171,7 @@ class RemoteDataManager:
             total_size = 0
             
             for customer in customers:
-                print(f"\n👤 {customer['name']} ({customer['email']})")
+                safe_print(f"\n👤 {customer['name']} ({customer['email']})")
                 print(f"   Organization: {customer.get('organization', 'N/A')}")
                 print(f"   Created: {customer.get('created_at', 'Unknown')[:10]}")
                 
@@ -161,12 +182,12 @@ class RemoteDataManager:
                     size = project.get('file_size', 0)
                     total_size += size
                     
-                    print(f"     📊 {project['project_name']}")
+                    safe_print(f"     📊 {project['project_name']}")
                     print(f"        Documents: {project.get('document_count', 'Unknown')}")
                     print(f"        Size: {self._format_size(size)}")
                     print(f"        Uploaded: {project.get('uploaded_at', 'Unknown')[:10]}")
             
-            print(f"\n📊 Summary:")
+            safe_print(f"\n📊 Summary:")
             print(f"   Total Customers: {len(customers)}")
             print(f"   Total Projects: {total_projects}")
             print(f"   Total Data Size: {self._format_size(total_size)}")
@@ -177,7 +198,7 @@ class RemoteDataManager:
     def remove_remote_project(self, customer_email, project_name):
         """Remove a project from the deployed portal."""
         try:
-            print(f"🗑️ Removing project: {project_name}")
+            safe_print(f"🗑️ Removing project: {project_name}")
             print(f"   Customer: {customer_email}")
             
             url = urljoin(self.portal_url, '/admin/remove-project')
@@ -206,12 +227,12 @@ class RemoteDataManager:
     def remove_remote_customer(self, customer_email):
         """Remove a customer and all their data from the deployed portal."""
         try:
-            print(f"🗑️ Removing customer: {customer_email}")
-            print("   ⚠️ This will remove ALL projects for this customer!")
+            safe_print(f"🗑️ Removing customer: {customer_email}")
+            safe_print("   ⚠️ This will remove ALL projects for this customer!")
             
             confirm = input("   Type 'DELETE' to confirm: ")
             if confirm != 'DELETE':
-                print("❌ Deletion cancelled")
+                safe_print("❌ Deletion cancelled")
                 return False
             
             url = urljoin(self.portal_url, '/admin/remove-customer')
@@ -246,10 +267,10 @@ class RemoteDataManager:
         # Get local databases
         local_dbs = list(local_dir.glob("*.db"))
         if not local_dbs:
-            print(f"📋 No local databases found in {local_dir}")
+            safe_print(f"📋 No local databases found in {local_dir}")
             return
         
-        print(f"📤 Found {len(local_dbs)} local databases")
+        safe_print(f"📤 Found {len(local_dbs)} local databases")
         
         # Get remote data for comparison
         try:
@@ -270,16 +291,16 @@ class RemoteDataManager:
                     to_upload.append(db_file)
             
             if not to_upload:
-                print("✅ All local databases are already uploaded")
+                safe_print("✅ All local databases are already uploaded")
                 return
             
-            print(f"📤 {len(to_upload)} databases need uploading:")
+            safe_print(f"📤 {len(to_upload)} databases need uploading:")
             for db_file in to_upload:
                 print(f"   📁 {db_file.name}")
             
             proceed = input(f"\nUpload {len(to_upload)} databases? (y/N): ")
             if proceed.lower() != 'y':
-                print("❌ Sync cancelled")
+                safe_print("❌ Sync cancelled")
                 return
             
             # Upload missing databases
@@ -386,7 +407,7 @@ def main():
     # Initialize manager
     manager = RemoteDataManager(args.url, args.key)
     
-    print("🌐 Remote Database Manager")
+    safe_print("🌐 Remote Database Manager")
     print("=" * 50)
     
     if args.command == 'test':

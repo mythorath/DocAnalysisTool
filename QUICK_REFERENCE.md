@@ -226,11 +226,33 @@ Upwork/
 
 ---
 
+## 🎯 Interactive Manager (EASIEST WAY)
+
+### 🚀 One-Click Start
+```bash
+# Windows
+start.bat
+
+# Linux/Mac  
+./start.sh
+
+# Or manually
+python interactive_manager.py
+```
+
+**Features:**
+- ✅ **All commands in one place** - no need to remember syntax
+- ✅ **File selection menus** - choose from available files
+- ✅ **Step-by-step guidance** - prompts for all required info
+- ✅ **Real-time feedback** - see command results immediately
+- ✅ **Safe operations** - confirmation prompts for destructive actions
+
 ## ⚡ Quick Commands Cheat Sheet
 
-| Task | Command |
-|------|---------|
-| **Start processing** | `venv\Scripts\activate` |
+| Task | Interactive Manager | Command |
+|------|---------------------|---------|
+| **Start interactive UI** | *Just run start.bat* | `python interactive_manager.py` |
+| **Start processing** | *Document Processing menu* | `venv\Scripts\activate` |
 | **Process documents** | `python local_processor_lite.py process input/sample.csv --customer "Name" --project "Project"` |
 | **With GPU** | `...same command... --gpu` |
 | **Upload to portal** | `python upload_customer_data.py upload "db_path" email@domain.com "Project"` |

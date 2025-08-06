@@ -68,3 +68,73 @@
 2025-08-06 11:11:30,590 - INFO - Downloaded: CMS-2025-0028-0110.pdf
 2025-08-06 11:11:30,920 - INFO - Downloaded: CMS-2025-0028-0110_attachment_2.pdf
 2025-08-06 11:11:31,259 - INFO - Downloaded: CMS-2025-0028-0486.pdf
+2025-08-06 12:01:47,996 - INFO - Downloaded: CMS-2025-0028-0227.pdf
+2025-08-06 12:01:48,317 - INFO - Downloaded: CMS-2025-0028-0578.pdf
+2025-08-06 12:01:48,618 - INFO - Downloaded: CMS-2025-0028-0631.pdf
+2025-08-06 12:01:48,709 - INFO - Downloaded: CMS-2025-0028-0480.pdf
+2025-08-06 12:01:48,829 - INFO - Downloaded: CMS-2025-0028-0460.pdf
+2025-08-06 12:01:48,918 - INFO - Downloaded: CMS-2025-0028-0286.pdf
+2025-08-06 12:01:49,064 - INFO - Downloaded: CMS-2025-0028-0191.pdf
+2025-08-06 12:01:49,221 - INFO - Downloaded: CMS-2025-0028-0527.pdf
+2025-08-06 12:01:49,315 - INFO - Downloaded: CMS-2025-0028-0611.pdf
+2025-08-06 12:01:49,401 - INFO - Downloaded: CMS-2025-0028-0457.pdf
+2025-08-06 12:01:49,483 - INFO - Downloaded: CMS-2025-0028-0560.pdf
+2025-08-06 12:01:49,579 - INFO - Downloaded: CMS-2025-0028-0110.pdf
+2025-08-06 12:01:49,649 - INFO - Downloaded: CMS-2025-0028-0110_attachment_2.pdf
+2025-08-06 12:01:49,765 - INFO - Downloaded: CMS-2025-0028-0486.pdf
+2025-08-06 12:01:49,769 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:01:49,769 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:01:49,770 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:01:49,770 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:01:49,771 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:01:49,771 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:01:49,772 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:01:49,772 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:01:49,772 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:01:49,773 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:01:49,773 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:01:49,774 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:01:49,774 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:01:49,774 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:12:41,941 - INFO - Downloaded: CMS-2025-0028-0227.pdf
+2025-08-06 12:12:42,038 - INFO - Downloaded: CMS-2025-0028-0578.pdf
+2025-08-06 12:12:42,118 - INFO - Downloaded: CMS-2025-0028-0631.pdf
+2025-08-06 12:12:42,218 - INFO - Downloaded: CMS-2025-0028-0480.pdf
+2025-08-06 12:12:42,332 - INFO - Downloaded: CMS-2025-0028-0460.pdf
+2025-08-06 12:12:42,410 - INFO - Downloaded: CMS-2025-0028-0286.pdf
+2025-08-06 12:12:42,489 - INFO - Downloaded: CMS-2025-0028-0191.pdf
+2025-08-06 12:12:42,591 - INFO - Downloaded: CMS-2025-0028-0527.pdf
+2025-08-06 12:12:42,687 - INFO - Downloaded: CMS-2025-0028-0611.pdf
+2025-08-06 12:12:42,789 - INFO - Downloaded: CMS-2025-0028-0457.pdf
+2025-08-06 12:12:42,869 - INFO - Downloaded: CMS-2025-0028-0560.pdf
+2025-08-06 12:12:42,976 - INFO - Downloaded: CMS-2025-0028-0110.pdf
+2025-08-06 12:12:43,035 - INFO - Downloaded: CMS-2025-0028-0110_attachment_2.pdf
+2025-08-06 12:12:43,158 - INFO - Downloaded: CMS-2025-0028-0486.pdf
+2025-08-06 12:12:46,437 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0110.pdf
+2025-08-06 12:12:46,437 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:12:46,437 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0110_attachment_2.pdf
+2025-08-06 12:12:46,437 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:12:46,438 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0191.pdf
+2025-08-06 12:12:46,438 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:12:46,438 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0227.pdf
+2025-08-06 12:12:46,438 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:12:46,439 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0286.pdf
+2025-08-06 12:12:46,439 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:12:46,440 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0457.pdf
+2025-08-06 12:12:46,440 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:12:46,440 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0460.pdf
+2025-08-06 12:12:46,440 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:12:46,441 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0480.pdf
+2025-08-06 12:12:46,441 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:12:46,442 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0486.pdf
+2025-08-06 12:12:46,442 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:12:46,442 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0527.pdf
+2025-08-06 12:12:46,442 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:12:46,444 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0560.pdf
+2025-08-06 12:12:46,444 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:12:46,444 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0578.pdf
+2025-08-06 12:12:46,444 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:12:46,445 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0611.pdf
+2025-08-06 12:12:46,445 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 12:12:46,445 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0631.pdf
+2025-08-06 12:12:46,445 - WARNING - PyMuPDF not available - cannot extract PDF text

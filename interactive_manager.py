@@ -1,0 +1,668 @@
+#!/usr/bin/env python3
+"""
+Interactive Document Analysis Platform Manager
+A simple UI to manage all operations without remembering commands.
+"""
+
+import os
+import sys
+import subprocess
+import json
+from pathlib import Path
+from datetime import datetime
+
+# Windows console emoji compatibility
+def safe_print(text):
+    """Print text with emoji fallbacks for Windows console."""
+    if os.name == 'nt':
+        # Replace problematic emojis with ASCII equivalents
+        text = (text.replace('🚀', '[START]')
+                   .replace('📍', '[LOCATION]')
+                   .replace('🕒', '[TIME]')
+                   .replace('📄', '[DOCS]')
+                   .replace('👤', '[USER]')
+                   .replace('🌐', '[WEB]')
+                   .replace('⚙️', '[SYSTEM]')
+                   .replace('📚', '[HELP]')
+                   .replace('🚪', '[EXIT]')
+                   .replace('✅', '[OK]')
+                   .replace('❌', '[ERROR]')
+                   .replace('⚠️', '[WARNING]')
+                   .replace('📁', '[FILES]')
+                   .replace('📊', '[DATA]')
+                   .replace('🔧', '[TOOL]')
+                   .replace('💻', '[CMD]')
+                   .replace('📤', '[UPLOAD]')
+                   .replace('📋', '[LIST]')
+                   .replace('🗑️', '[DELETE]')
+                   .replace('❓', '[QUESTION]')
+                   .replace('🎉', '[SUCCESS]')
+                   .replace('💡', '[TIP]')
+                   .replace('🔐', '[SECURE]'))
+    try:
+        print(text)
+    except UnicodeEncodeError:
+        # Final fallback - remove all non-ASCII characters
+        print(text.encode('ascii', 'ignore').decode('ascii'))
+
+class InteractiveManager:
+    def __init__(self):
+        self.portal_url = "https://narrow-clocks-production.up.railway.app"
+        self.admin_key = "secure_admin_key_2024_changeme"
+        
+    def clear_screen(self):
+        """Clear the terminal screen."""
+        os.system('cls' if os.name == 'nt' else 'clear')
+        
+    def show_header(self):
+        """Show the main header."""
+        safe_print("🚀 Document Analysis Platform Manager")
+        print("=" * 60)
+        safe_print(f"📍 Portal: {self.portal_url}")
+        safe_print(f"🕒 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        print("=" * 60)
+        
+    def run_command(self, command, description=None):
+        """Run a command and show results."""
+        if description:
+            safe_print(f"\n🔧 {description}")
+            safe_print(f"💻 Running: {command}")
+            print("-" * 40)
+        
+        try:
+            if os.name == 'nt':  # Windows
+                result = subprocess.run(command, shell=True, capture_output=True, text=True, cwd=os.getcwd())
+            else:  # Unix/Linux
+                result = subprocess.run(command, shell=True, capture_output=True, text=True, cwd=os.getcwd())
+            
+            if result.stdout:
+                print(result.stdout)
+            if result.stderr and result.returncode != 0:
+                safe_print(f"❌ Error: {result.stderr}")
+                
+            return result.returncode == 0
+            
+        except Exception as e:
+            safe_print(f"❌ Error running command: {e}")
+            return False
+    
+    def get_input(self, prompt, default=None):
+        """Get user input with optional default."""
+        if default:
+            full_prompt = f"{prompt} [{default}]: "
+        else:
+            full_prompt = f"{prompt}: "
+            
+        value = input(full_prompt).strip()
+        return value if value else default
+    
+    def list_csv_files(self):
+        """List available CSV files."""
+        input_dir = Path("input")
+        if not input_dir.exists():
+            return []
+        return [f.name for f in input_dir.glob("*.csv")]
+    
+    def list_databases(self):
+        """List available database files."""
+        workspace_dir = Path("workspace")
+        databases = []
+        
+        if workspace_dir.exists():
+            for db_file in workspace_dir.rglob("*.db"):
+                relative_path = str(db_file.relative_to(Path(".")))
+                databases.append(relative_path)
+        
+        return databases
+    
+    def document_processing_menu(self):
+        """Handle document processing operations."""
+        while True:
+            self.clear_screen()
+            self.show_header()
+            safe_print("📄 DOCUMENT PROCESSING")
+            print("=" * 60)
+            
+            # Show available CSV files
+            csv_files = self.list_csv_files()
+            if csv_files:
+                print("📁 Available CSV files:")
+                for i, file in enumerate(csv_files, 1):
+                    print(f"   {i}. {file}")
+            else:
+                safe_print("❌ No CSV files found in input/ directory")
+            
+            print("\nOptions:")
+            print("1. Process documents from CSV")
+            print("2. Process with GPU acceleration")
+            print("3. List processed projects")
+            print("0. Back to main menu")
+            
+            choice = input("\nEnter choice: ").strip()
+            
+            if choice == "0":
+                break
+            elif choice == "1":
+                self.process_documents(gpu=False)
+            elif choice == "2":
+                self.process_documents(gpu=True)
+            elif choice == "3":
+                self.list_projects()
+            else:
+                safe_print("❌ Invalid choice")
+                input("Press Enter to continue...")
+    
+    def process_documents(self, gpu=False):
+        """Process documents from CSV."""
+        print(f"\n📄 Process Documents {'(GPU)' if gpu else '(CPU)'}")
+        print("-" * 40)
+        
+        # Select CSV file
+        csv_files = self.list_csv_files()
+        if not csv_files:
+            print("❌ No CSV files found in input/ directory")
+            input("Press Enter to continue...")
+            return
+        
+        if len(csv_files) == 1:
+            csv_file = csv_files[0]
+            print(f"📁 Using: {csv_file}")
+        else:
+            print("📁 Select CSV file:")
+            for i, file in enumerate(csv_files, 1):
+                print(f"   {i}. {file}")
+            
+            try:
+                choice = int(input("Enter number: ")) - 1
+                csv_file = csv_files[choice]
+            except (ValueError, IndexError):
+                print("❌ Invalid selection")
+                input("Press Enter to continue...")
+                return
+        
+        # Get customer and project info
+        customer = self.get_input("Customer name", "Customer")
+        project = self.get_input("Project name", "Project")
+        
+        # Build command
+        gpu_flag = " --gpu" if gpu else ""
+        command = f'python local_processor_lite.py process "input/{csv_file}" --customer "{customer}" --project "{project}"{gpu_flag}'
+        
+        # Run processing
+        success = self.run_command(command, f"Processing {csv_file}")
+        
+        if success:
+            print(f"\n✅ Processing complete!")
+            print(f"📊 Customer: {customer}")
+            print(f"📁 Project: {project}")
+        
+        input("\nPress Enter to continue...")
+    
+    def list_projects(self):
+        """List processed projects."""
+        command = "python local_processor_lite.py list"
+        self.run_command(command, "Listing processed projects")
+        input("\nPress Enter to continue...")
+    
+    def customer_management_menu(self):
+        """Handle customer management operations."""
+        while True:
+            self.clear_screen()
+            self.show_header()
+            print("👤 CUSTOMER MANAGEMENT")
+            print("=" * 60)
+            print("Options:")
+            print("1. Create new customer")
+            print("2. List customers")
+            print("3. List customer projects")
+            print("4. Upload database to portal")
+            print("0. Back to main menu")
+            
+            choice = input("\nEnter choice: ").strip()
+            
+            if choice == "0":
+                break
+            elif choice == "1":
+                self.create_customer()
+            elif choice == "2":
+                self.list_customers()
+            elif choice == "3":
+                self.list_customer_projects()
+            elif choice == "4":
+                self.upload_database()
+            else:
+                safe_print("❌ Invalid choice")
+                input("Press Enter to continue...")
+    
+    def create_customer(self):
+        """Create a new customer."""
+        print("\n👤 Create New Customer")
+        print("-" * 40)
+        
+        email = self.get_input("Customer email")
+        name = self.get_input("Customer name")
+        password = self.get_input("Customer password", "password123")
+        organization = self.get_input("Organization", "")
+        
+        if not email or not name:
+            print("❌ Email and name are required")
+            input("Press Enter to continue...")
+            return
+        
+        # Build command
+        org_flag = f' --organization "{organization}"' if organization else ""
+        command = f'python upload_customer_data.py create-customer "{email}" "{name}" "{password}"{org_flag}'
+        
+        success = self.run_command(command, "Creating customer")
+        
+        if success:
+            print(f"\n✅ Customer created successfully!")
+            print(f"📧 Email: {email}")
+            print(f"🔑 Password: {password}")
+        
+        input("\nPress Enter to continue...")
+    
+    def list_customers(self):
+        """List all customers."""
+        command = "python upload_customer_data.py list-customers"
+        self.run_command(command, "Listing customers")
+        input("\nPress Enter to continue...")
+    
+    def list_customer_projects(self):
+        """List customer projects."""
+        command = "python upload_customer_data.py list-projects"
+        self.run_command(command, "Listing customer projects")
+        input("\nPress Enter to continue...")
+    
+    def upload_database(self):
+        """Upload database to portal."""
+        print("\n📤 Upload Database to Portal")
+        print("-" * 40)
+        
+        # Show available databases
+        databases = self.list_databases()
+        if not databases:
+            print("❌ No database files found in workspace/")
+            input("Press Enter to continue...")
+            return
+        
+        print("📁 Available databases:")
+        for i, db in enumerate(databases, 1):
+            print(f"   {i}. {db}")
+        
+        try:
+            choice = int(input("Select database: ")) - 1
+            database = databases[choice]
+        except (ValueError, IndexError):
+            print("❌ Invalid selection")
+            input("Press Enter to continue...")
+            return
+        
+        email = self.get_input("Customer email")
+        project = self.get_input("Project name")
+        description = self.get_input("Description (optional)", "")
+        
+        if not email or not project:
+            print("❌ Email and project name are required")
+            input("Press Enter to continue...")
+            return
+        
+        # Build command
+        desc_flag = f' --description "{description}"' if description else ""
+        command = f'python upload_customer_data.py upload "{database}" "{email}" "{project}"{desc_flag}'
+        
+        success = self.run_command(command, "Uploading database")
+        
+        if success:
+            print(f"\n✅ Database uploaded successfully!")
+            print(f"📊 Project: {project}")
+            print(f"👤 Customer: {email}")
+        
+        input("\nPress Enter to continue...")
+    
+    def remote_management_menu(self):
+        """Handle remote site management."""
+        while True:
+            self.clear_screen()
+            self.show_header()
+            print("🌐 REMOTE SITE MANAGEMENT")
+            print("=" * 60)
+            print("Options:")
+            print("1. Test connection to portal")
+            print("2. List data on portal")
+            print("3. Push database to portal")
+            print("4. Remove project from portal")
+            print("5. Remove customer from portal")
+            print("6. Sync all local data to portal")
+            print("0. Back to main menu")
+            
+            choice = input("\nEnter choice: ").strip()
+            
+            if choice == "0":
+                break
+            elif choice == "1":
+                self.test_portal_connection()
+            elif choice == "2":
+                self.list_remote_data()
+            elif choice == "3":
+                self.push_to_portal()
+            elif choice == "4":
+                self.remove_remote_project()
+            elif choice == "5":
+                self.remove_remote_customer()
+            elif choice == "6":
+                self.sync_to_portal()
+            else:
+                safe_print("❌ Invalid choice")
+                input("Press Enter to continue...")
+    
+    def test_portal_connection(self):
+        """Test connection to the portal."""
+        command = f'python remote_data_manager.py --url {self.portal_url} --key {self.admin_key} test'
+        self.run_command(command, "Testing portal connection")
+        input("\nPress Enter to continue...")
+    
+    def list_remote_data(self):
+        """List data on the remote portal."""
+        command = f'python remote_data_manager.py --url {self.portal_url} --key {self.admin_key} list'
+        self.run_command(command, "Listing remote portal data")
+        input("\nPress Enter to continue...")
+    
+    def push_to_portal(self):
+        """Push database to portal."""
+        print("\n📤 Push Database to Portal")
+        print("-" * 40)
+        
+        databases = self.list_databases()
+        if not databases:
+            print("❌ No database files found")
+            input("Press Enter to continue...")
+            return
+        
+        print("📁 Available databases:")
+        for i, db in enumerate(databases, 1):
+            print(f"   {i}. {db}")
+        
+        try:
+            choice = int(input("Select database: ")) - 1
+            database = databases[choice]
+        except (ValueError, IndexError):
+            print("❌ Invalid selection")
+            input("Press Enter to continue...")
+            return
+        
+        email = self.get_input("Customer email")
+        project = self.get_input("Project name")
+        
+        if not email or not project:
+            print("❌ Email and project name are required")
+            input("Press Enter to continue...")
+            return
+        
+        command = f'python remote_data_manager.py --url {self.portal_url} --key {self.admin_key} upload "{database}" "{email}" "{project}"'
+        
+        success = self.run_command(command, "Pushing to portal")
+        
+        if success:
+            print(f"\n✅ Database pushed to portal successfully!")
+        
+        input("\nPress Enter to continue...")
+    
+    def remove_remote_project(self):
+        """Remove project from portal."""
+        print("\n🗑️ Remove Project from Portal")
+        print("-" * 40)
+        
+        email = self.get_input("Customer email")
+        project = self.get_input("Project name")
+        
+        if not email or not project:
+            print("❌ Email and project name are required")
+            input("Press Enter to continue...")
+            return
+        
+        confirm = input(f"❓ Remove project '{project}' for {email}? (y/N): ").strip().lower()
+        if confirm != 'y':
+            print("❌ Cancelled")
+            input("Press Enter to continue...")
+            return
+        
+        command = f'python remote_data_manager.py --url {self.portal_url} --key {self.admin_key} remove-project "{email}" "{project}"'
+        
+        success = self.run_command(command, "Removing project from portal")
+        
+        if success:
+            print(f"\n✅ Project removed successfully!")
+        
+        input("\nPress Enter to continue...")
+    
+    def remove_remote_customer(self):
+        """Remove customer from portal."""
+        print("\n🗑️ Remove Customer from Portal")
+        print("-" * 40)
+        print("⚠️ This will remove ALL projects for this customer!")
+        
+        email = self.get_input("Customer email")
+        
+        if not email:
+            print("❌ Email is required")
+            input("Press Enter to continue...")
+            return
+        
+        confirm = input(f"❓ Remove customer {email} and ALL their data? (y/N): ").strip().lower()
+        if confirm != 'y':
+            print("❌ Cancelled")
+            input("Press Enter to continue...")
+            return
+        
+        confirm2 = input("❓ Are you absolutely sure? Type 'DELETE': ").strip()
+        if confirm2 != 'DELETE':
+            print("❌ Cancelled")
+            input("Press Enter to continue...")
+            return
+        
+        command = f'python remote_data_manager.py --url {self.portal_url} --key {self.admin_key} remove-customer "{email}"'
+        
+        success = self.run_command(command, "Removing customer from portal")
+        
+        if success:
+            print(f"\n✅ Customer removed successfully!")
+        
+        input("\nPress Enter to continue...")
+    
+    def sync_to_portal(self):
+        """Sync all local data to portal."""
+        command = f'python remote_data_manager.py --url {self.portal_url} --key {self.admin_key} sync'
+        self.run_command(command, "Syncing local data to portal")
+        input("\nPress Enter to continue...")
+    
+    def system_management_menu(self):
+        """Handle system management operations."""
+        while True:
+            self.clear_screen()
+            self.show_header()
+            print("⚙️ SYSTEM MANAGEMENT")
+            print("=" * 60)
+            print("Options:")
+            print("1. Run customer portal locally")
+            print("2. Install GPU support")
+            print("3. Deploy to Railway")
+            print("4. Check system status")
+            print("5. Clean up local data")
+            print("0. Back to main menu")
+            
+            choice = input("\nEnter choice: ").strip()
+            
+            if choice == "0":
+                break
+            elif choice == "1":
+                self.run_local_portal()
+            elif choice == "2":
+                self.install_gpu_support()
+            elif choice == "3":
+                self.deploy_to_railway()
+            elif choice == "4":
+                self.check_system_status()
+            elif choice == "5":
+                self.cleanup_local_data()
+            else:
+                safe_print("❌ Invalid choice")
+                input("Press Enter to continue...")
+    
+    def run_local_portal(self):
+        """Run the customer portal locally."""
+        print("\n🌐 Starting Local Customer Portal")
+        print("-" * 40)
+        print("💡 Portal will run at http://127.0.0.1:5000")
+        print("🔐 Use customers you've created to log in")
+        print("⏹️ Press Ctrl+C to stop the portal")
+        input("\nPress Enter to start (Ctrl+C to stop)...")
+        
+        command = "python customer_portal_lite.py"
+        self.run_command(command, "Starting customer portal")
+    
+    def install_gpu_support(self):
+        """Install GPU support."""
+        command = "python install_gpu_support.py"
+        self.run_command(command, "Installing GPU support")
+        input("\nPress Enter to continue...")
+    
+    def deploy_to_railway(self):
+        """Deploy to Railway."""
+        print("\n🚂 Deploy to Railway")
+        print("-" * 40)
+        
+        confirm = input("❓ Deploy current version to Railway? (y/N): ").strip().lower()
+        if confirm != 'y':
+            print("❌ Cancelled")
+            input("Press Enter to continue...")
+            return
+        
+        command = "railway up --detach"
+        success = self.run_command(command, "Deploying to Railway")
+        
+        if success:
+            print(f"\n✅ Deployment started!")
+            print(f"🌐 Portal URL: {self.portal_url}")
+        
+        input("\nPress Enter to continue...")
+    
+    def check_system_status(self):
+        """Check system status."""
+        print("\n⚙️ System Status")
+        print("-" * 40)
+        
+        # Check Python
+        print(f"🐍 Python: {sys.version}")
+        
+        # Check virtual environment
+        if hasattr(sys, 'real_prefix') or (hasattr(sys, 'base_prefix') and sys.base_prefix != sys.prefix):
+            print("✅ Virtual environment: Active")
+        else:
+            print("⚠️ Virtual environment: Not active")
+        
+        # Check key files
+        key_files = [
+            "local_processor_lite.py",
+            "customer_portal_lite.py", 
+            "remote_data_manager.py",
+            "upload_customer_data.py"
+        ]
+        
+        for file in key_files:
+            if Path(file).exists():
+                print(f"✅ {file}: Found")
+            else:
+                print(f"❌ {file}: Missing")
+        
+        # Check directories
+        key_dirs = ["input", "workspace", "templates"]
+        for dir_name in key_dirs:
+            if Path(dir_name).exists():
+                print(f"✅ {dir_name}/: Found")
+            else:
+                print(f"❌ {dir_name}/: Missing")
+        
+        input("\nPress Enter to continue...")
+    
+    def cleanup_local_data(self):
+        """Clean up local data."""
+        command = "python data_manager.py cleanup"
+        self.run_command(command, "Cleaning up local data")
+        input("\nPress Enter to continue...")
+    
+    def show_main_menu(self):
+        """Show the main menu."""
+        self.clear_screen()
+        self.show_header()
+        print("📋 MAIN MENU")
+        print("=" * 60)
+        print("1. 📄 Document Processing")
+        print("2. 👤 Customer Management") 
+        print("3. 🌐 Remote Site Management")
+        print("4. ⚙️ System Management")
+        print("5. 📚 Quick Reference")
+        print("0. 🚪 Exit")
+        print("=" * 60)
+    
+    def show_quick_reference(self):
+        """Show quick reference."""
+        self.clear_screen()
+        self.show_header()
+        print("📚 QUICK REFERENCE")
+        print("=" * 60)
+        print("🔄 Typical Workflow:")
+        print("   1. Process documents → Document Processing → Process documents")
+        print("   2. Create customer → Customer Management → Create new customer")
+        print("   3. Upload to portal → Customer Management → Upload database")
+        print("   4. Push to live site → Remote Management → Push database")
+        print("")
+        print("🌐 Portal Access:")
+        print(f"   Live Site: {self.portal_url}")
+        print("   Local: http://127.0.0.1:5000 (when running locally)")
+        print("")
+        print("📁 Important Directories:")
+        print("   input/ - Place CSV files here")
+        print("   workspace/ - Processed data and databases")
+        print("   templates/ - Web interface templates")
+        print("")
+        print("🔧 Key Commands (if needed manually):")
+        print("   Process: python local_processor_lite.py process input/file.csv")
+        print("   Upload: python upload_customer_data.py upload db.db email project")
+        print("   Remote: python remote_data_manager.py --url URL --key KEY command")
+        
+        input("\nPress Enter to continue...")
+    
+    def run(self):
+        """Run the interactive manager."""
+        try:
+            while True:
+                self.show_main_menu()
+                choice = input("\nEnter choice: ").strip()
+                
+                if choice == "0":
+                    print("\n👋 Goodbye!")
+                    break
+                elif choice == "1":
+                    self.document_processing_menu()
+                elif choice == "2":
+                    self.customer_management_menu()
+                elif choice == "3":
+                    self.remote_management_menu()
+                elif choice == "4":
+                    self.system_management_menu()
+                elif choice == "5":
+                    self.show_quick_reference()
+                else:
+                    safe_print("❌ Invalid choice")
+                    input("Press Enter to continue...")
+                    
+        except KeyboardInterrupt:
+            print("\n\n👋 Goodbye!")
+        except Exception as e:
+            print(f"\n❌ Unexpected error: {e}")
+            input("Press Enter to exit...")
+
+if __name__ == "__main__":
+    manager = InteractiveManager()
+    manager.run()

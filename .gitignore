@@ -105,6 +105,15 @@ output/*.db
 output/*.csv
 output/*.json
 
+# Test and customer data (prevent accidental deployment)
+admin_data/
+portal_data/
+customer_databases/
+workspace/customers/test*/
+workspace/customers/*/
+test_*.py
+*_temp.py
+
 # Keep directory structure but ignore contents
 downloads/.gitkeep
 text/.gitkeep
