@@ -354,3 +354,18 @@
 2025-08-06 13:15:57,030 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0611.pdf
 2025-08-06 13:15:57,031 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0631.pdf
 2025-08-06 13:15:57,055 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0631.pdf
+2025-08-06 13:17:42,323 - INFO - Downloaded: CMS-2025-0028-0227.pdf
+2025-08-06 13:17:42,812 - INFO - Downloaded: CMS-2025-0028-0578.pdf
+2025-08-06 13:17:43,165 - INFO - Downloaded: CMS-2025-0028-0631.pdf
+2025-08-06 13:17:43,642 - INFO - Downloaded: CMS-2025-0028-0480.pdf
+2025-08-06 13:17:44,106 - INFO - Downloaded: CMS-2025-0028-0460.pdf
+2025-08-06 13:17:44,507 - INFO - Downloaded: CMS-2025-0028-0286.pdf
+2025-08-06 13:17:44,881 - INFO - Downloaded: CMS-2025-0028-0191.pdf
+2025-08-06 13:17:45,266 - INFO - Downloaded: CMS-2025-0028-0527.pdf
+2025-08-06 13:17:45,657 - INFO - Downloaded: CMS-2025-0028-0611.pdf
+2025-08-06 13:17:46,048 - INFO - Downloaded: CMS-2025-0028-0457.pdf
+2025-08-06 13:17:46,426 - INFO - Downloaded: CMS-2025-0028-0560.pdf
+2025-08-06 13:17:46,804 - INFO - Downloaded: CMS-2025-0028-0110.pdf
+2025-08-06 13:17:47,152 - INFO - Downloaded: CMS-2025-0028-0110_attachment_2.pdf
+2025-08-06 13:17:47,555 - INFO - Downloaded: CMS-2025-0028-0486.pdf
+2025-08-06 13:17:49,776 - WARNING - [WARNING] GPU extraction failed to initialize: 'charmap' codec can't encode character '\U0001f680' in position 0: character maps to <undefined>
