@@ -458,15 +458,33 @@
                         <div class="card-body p-4">
                             <div class="row align-items-center">
                                 <div class="col-md-8">
-                                    <h6 class="card-title mb-2 fw-bold" style="color: #1e293b;">
-                                        <i class="bi bi-file-text me-2 text-primary"></i>
-                                        ${result.filename || result.document_id}
-                                        <i class="bi bi-cursor-fill ms-2 text-success" title="Click to view document"></i>
-                                        ${result.extraction_method && result.extraction_method.toLowerCase().includes('ocr') ? 
-                                            '<span class="badge bg-success ms-2 small"><i class="bi bi-robot me-1"></i>OCR</span>' : 
-                                            ''
+                                    <div class="d-flex align-items-start mb-2">
+                                        <h6 class="card-title mb-0 fw-bold flex-grow-1" style="color: #1e293b;">
+                                            <i class="bi bi-file-text me-2 text-primary"></i>
+                                            ${result.display_title || result.filename || result.document_id}
+                                            <i class="bi bi-cursor-fill ms-2 text-success" title="Click to view document"></i>
+                                        </h6>
+                                        <div class="ms-2">
+                                            ${result.ai_enhanced ? 
+                                                '<span class="badge bg-success bg-opacity-10 text-success"><i class="bi bi-stars me-1"></i>AI Enhanced</span>' : 
+                                                ''
+                                            }
+                                            ${result.extraction_method && result.extraction_method.toLowerCase().includes('ocr') ? 
+                                                '<span class="badge bg-info bg-opacity-10 text-info ms-1"><i class="bi bi-robot me-1"></i>OCR</span>' : 
+                                                ''
+                                            }
+                                        </div>
+                                    </div>
+                                    ${result.document_type && result.document_type !== 'Document' ? `
+                                    <div class="mb-2">
+                                        <span class="badge bg-primary bg-opacity-15 text-primary">
+                                            <i class="bi bi-tag me-1"></i>${result.document_type}
+                                        </span>
+                                        ${result.subject_area && result.subject_area !== 'General' ? 
+                                            `<span class="badge bg-info bg-opacity-15 text-info ms-1">${result.subject_area}</span>` : ''
                                         }
-                                    </h6>
+                                    </div>
+                                    ` : ''}
                                     ${result.organization ? `
                                     <p class="text-muted mb-2">
                                         <i class="bi bi-building me-2"></i>
@@ -477,11 +495,18 @@
                                         <i class="bi bi-tag me-2"></i>
                                         <strong>Category:</strong> ${result.category}
                                     </p>` : ''}
-                                    ${result.snippet ? `
+                                    ${result.ai_summary ? `
+                                    <div class="mt-3 p-3 rounded" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-left: 4px solid #0ea5e9;">
+                                        <small class="text-primary fw-semibold">
+                                            <i class="bi bi-robot me-1"></i>AI Summary:
+                                        </small>
+                                        <p class="mb-0 mt-1" style="color: #0f172a; line-height: 1.5;">${result.ai_summary}</p>
+                                    </div>
+                                    ` : (result.snippet ? `
                                     <div class="mt-3 p-3 bg-light rounded" style="border-left: 4px solid #667eea;">
                                         <small class="text-muted">Content Preview:</small>
                                         <p class="mb-0 mt-1">${result.snippet}</p>
-                                    </div>` : ''}
+                                    </div>` : '')}
                                 </div>
                                 <div class="col-md-4 text-md-end">
                                     <div class="mb-3">
@@ -823,8 +848,8 @@
                                         <i class="bi bi-copy me-1"></i>Tip: You can select and copy any text below
                                     </small>
                                 </div>
-                                <div style="max-height: 600px; overflow-y: auto;">
-                                    ${data.search_query ? highlightTextInContent(data.extracted_text, data.search_query) : escapeHtml(data.extracted_text)}
+                                <div style="max-height: 600px; overflow-y: auto; font-family: 'Courier New', monospace; white-space: pre-wrap; line-height: 1.6;">
+                                    ${data.search_query ? highlightTextInContent(data.extracted_text, data.search_query) : formatDocumentContent(data.extracted_text)}
                                 </div>
                             </div>
                         </div>
@@ -865,6 +890,31 @@
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
+        }
+        
+        function formatDocumentContent(text) {
+            if (!text) return '';
+            
+            // Escape HTML first
+            let formatted = escapeHtml(text);
+            
+            // Preserve paragraph breaks and improve formatting
+            formatted = formatted
+                // Convert multiple line breaks to paragraph breaks
+                .replace(/\n\s*\n\s*\n+/g, '\n\n')
+                // Preserve indentation by converting tabs to spaces
+                .replace(/\t/g, '    ')
+                // Add subtle highlighting for headers (lines that are all caps or start with numbers)
+                .replace(/^([A-Z][A-Z\s]{10,})$/gm, '<strong style="color: #2563eb;">$1</strong>')
+                // Highlight numbered sections
+                .replace(/^(\d+\.\s+[^\n]+)/gm, '<strong style="color: #059669;">$1</strong>')
+                // Highlight bullet points
+                .replace(/^(\s*[•·-]\s+)/gm, '<span style="color: #7c3aed;">$1</span>')
+                // Add subtle emphasis for dates and dollar amounts
+                .replace(/\$[\d,]+(\.\d{2})?/g, '<span style="background: #fef3c7; padding: 1px 3px; border-radius: 3px;">$&</span>')
+                .replace(/\b\d{1,2}\/\d{1,2}\/\d{2,4}\b/g, '<span style="background: #dbeafe; padding: 1px 3px; border-radius: 3px;">$&</span>');
+            
+            return formatted;
         }
         
         function highlightTextInContent(text, query) {

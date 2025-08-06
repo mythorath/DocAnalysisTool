@@ -287,7 +287,7 @@ def api_search(project_id):
         if not cursor.fetchone():
             return jsonify({'error': 'Search index not available'}), 404
         
-        # Search query
+        # Search query with AI enhanced fields
         cursor.execute('''
             SELECT m.*, 
                    snippet(document_fts, 2, '<mark>', '</mark>', '...', 32) as snippet,
@@ -301,14 +301,36 @@ def api_search(project_id):
         
         results = []
         for row in cursor.fetchall():
+            # Use AI-enhanced title if available, fallback to filename
+            display_title = row['filename']
+            if row.get('ai_enhanced') and row.get('document_type'):
+                # Create a better display title from AI data
+                title_parts = []
+                if row.get('document_type') and row['document_type'] != 'Document':
+                    title_parts.append(row['document_type'])
+                if row.get('subject_area') and row['subject_area'] != 'General':
+                    title_parts.append(row['subject_area'])
+                if title_parts:
+                    display_title = f"{' - '.join(title_parts)} ({row['document_id']})"
+            
+            # Use AI summary if available, fallback to snippet
+            display_summary = row.get('ai_summary', '') or row['snippet'] or ''
+            if display_summary and len(display_summary) > 200:
+                display_summary = display_summary[:200] + "..."
+            
             results.append({
                 'filename': row['filename'],
+                'display_title': display_title,
                 'document_id': row['document_id'],
                 'organization': row['organization'],
                 'category': row['category'],
                 'file_type': row['file_type'],
                 'character_count': row['character_count'],
                 'snippet': row['snippet'],
+                'ai_summary': display_summary,
+                'document_type': row.get('document_type', ''),
+                'subject_area': row.get('subject_area', ''),
+                'ai_enhanced': bool(row.get('ai_enhanced', 0)),
                 'rank': row['rank']
             })
         

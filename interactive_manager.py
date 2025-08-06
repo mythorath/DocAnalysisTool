@@ -58,7 +58,7 @@ def safe_print(text):
 
 class InteractiveManager:
     def __init__(self):
-        self.portal_url = "https://narrow-clocks-staging.up.railway.app"
+        self.portal_url = "https://narrow-clocks-production.up.railway.app"
         self.admin_key = "secure_admin_key_2024_changeme"
         
     def clear_screen(self):

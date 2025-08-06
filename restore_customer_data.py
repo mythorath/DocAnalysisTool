@@ -61,9 +61,9 @@ def main():
     customer_name = "Kathy B"
     customer_password = "CommentReview"
     
-    # Project details
-    database_path = "workspace/customers/kathyb@upwork.com/kathyb@upwork.com_20250806_151400/output/kathyb@upwork.com_20250806_151400.db"
-    project_name = "First50CommentReview"
+    # Project details - Use the latest processed database with fixed content
+    database_path = "workspace/customers/kathyb@upwork.com/kathyb@upwork.com_20250806_160005/output/kathyb@upwork.com_20250806_160005.db"
+    project_name = "First50CommentReview - Production"
     
     safe_print("🚀 RAILWAY POST-DEPLOY DATA RESTORATION")
     safe_print("=" * 50)
