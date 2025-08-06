@@ -77,16 +77,16 @@ class RemoteDataManager:
             
             if response.status_code == 200:
                 data = response.json()
-                print(f"✅ Connected to portal: {data.get('service', 'Unknown')}")
+                safe_print(f"✅ Connected to portal: {data.get('service', 'Unknown')}")
                 print(f"   URL: {self.portal_url}")
                 print(f"   Version: {data.get('version', 'Unknown')}")
                 return True
             else:
-                print(f"❌ Connection failed: HTTP {response.status_code}")
+                safe_print(f"❌ Connection failed: HTTP {response.status_code}")
                 return False
                 
         except requests.exceptions.RequestException as e:
-            print(f"❌ Connection error: {e}")
+            safe_print(f"❌ Connection error: {e}")
             return False
     
     def upload_database(self, db_path, customer_email, project_name, description=None):
@@ -102,7 +102,7 @@ class RemoteDataManager:
         db_path = Path(db_path)
         
         if not db_path.exists():
-            print(f"❌ Database file not found: {db_path}")
+            safe_print(f"❌ Database file not found: {db_path}")
             return False
         
         safe_print(f"📤 Uploading database: {db_path.name}")
@@ -133,18 +133,18 @@ class RemoteDataManager:
             
             if response.status_code == 200:
                 result = response.json()
-                print(f"✅ Upload successful!")
+                safe_print(f"✅ Upload successful!")
                 print(f"   Database ID: {result.get('database_id')}")
                 print(f"   File size: {self._format_size(db_path.stat().st_size)}")
                 print(f"   Documents: {db_info.get('document_count', 'Unknown')}")
                 return True
             else:
                 error_data = response.json() if response.headers.get('content-type', '').startswith('application/json') else {}
-                print(f"❌ Upload failed: {error_data.get('error', 'Unknown error')}")
+                safe_print(f"❌ Upload failed: {error_data.get('error', 'Unknown error')}")
                 return False
                 
         except Exception as e:
-            print(f"❌ Upload error: {e}")
+            safe_print(f"❌ Upload error: {e}")
             return False
     
     def list_remote_data(self):
@@ -154,17 +154,17 @@ class RemoteDataManager:
             response = self.session.get(url, timeout=30)
             
             if response.status_code != 200:
-                print(f"❌ Failed to fetch data: HTTP {response.status_code}")
+                safe_print(f"❌ Failed to fetch data: HTTP {response.status_code}")
                 return
             
             data = response.json()
             customers = data.get('customers', [])
             
             if not customers:
-                print("📋 No customers found on the portal")
+                safe_print("📋 No customers found on the portal")
                 return
             
-            print(f"\n📋 Remote Portal Data ({len(customers)} customers)")
+            safe_print(f"\n📋 Remote Portal Data ({len(customers)} customers)")
             print("=" * 80)
             
             total_projects = 0
@@ -193,7 +193,7 @@ class RemoteDataManager:
             print(f"   Total Data Size: {self._format_size(total_size)}")
             
         except Exception as e:
-            print(f"❌ Error listing data: {e}")
+            safe_print(f"❌ Error listing data: {e}")
     
     def remove_remote_project(self, customer_email, project_name):
         """Remove a project from the deployed portal."""
@@ -211,17 +211,17 @@ class RemoteDataManager:
             
             if response.status_code == 200:
                 result = response.json()
-                print(f"✅ Project removed successfully")
+                safe_print(f"✅ Project removed successfully")
                 if 'freed_space' in result:
                     print(f"   Freed space: {self._format_size(result['freed_space'])}")
                 return True
             else:
                 error_data = response.json() if response.headers.get('content-type', '').startswith('application/json') else {}
-                print(f"❌ Removal failed: {error_data.get('error', 'Unknown error')}")
+                safe_print(f"❌ Removal failed: {error_data.get('error', 'Unknown error')}")
                 return False
                 
         except Exception as e:
-            print(f"❌ Error removing project: {e}")
+            safe_print(f"❌ Error removing project: {e}")
             return False
     
     def remove_remote_customer(self, customer_email):
@@ -242,18 +242,18 @@ class RemoteDataManager:
             
             if response.status_code == 200:
                 result = response.json()
-                print(f"✅ Customer removed successfully")
+                safe_print(f"✅ Customer removed successfully")
                 print(f"   Projects removed: {result.get('projects_removed', 'Unknown')}")
                 if 'freed_space' in result:
                     print(f"   Freed space: {self._format_size(result['freed_space'])}")
                 return True
             else:
                 error_data = response.json() if response.headers.get('content-type', '').startswith('application/json') else {}
-                print(f"❌ Removal failed: {error_data.get('error', 'Unknown error')}")
+                safe_print(f"❌ Removal failed: {error_data.get('error', 'Unknown error')}")
                 return False
                 
         except Exception as e:
-            print(f"❌ Error removing customer: {e}")
+            safe_print(f"❌ Error removing customer: {e}")
             return False
     
     def sync_local_to_remote(self, local_db_dir="customer_databases"):
@@ -261,7 +261,7 @@ class RemoteDataManager:
         local_dir = Path(local_db_dir)
         
         if not local_dir.exists():
-            print(f"❌ Local database directory not found: {local_dir}")
+            safe_print(f"❌ Local database directory not found: {local_dir}")
             return
         
         # Get local databases
@@ -313,10 +313,10 @@ class RemoteDataManager:
                 if self.upload_database(db_file, customer_email, project_name):
                     success_count += 1
             
-            print(f"\n✅ Sync complete: {success_count}/{len(to_upload)} databases uploaded")
+            safe_print(f"\n✅ Sync complete: {success_count}/{len(to_upload)} databases uploaded")
             
         except Exception as e:
-            print(f"❌ Sync error: {e}")
+            safe_print(f"❌ Sync error: {e}")
     
     def _get_db_info(self, db_path):
         """Get information about a database file."""
