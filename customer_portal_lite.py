@@ -7,6 +7,7 @@ Minimal dependencies version that works even if pandas/numpy installation fails.
 import os
 import secrets
 import sqlite3
+import uuid
 from datetime import datetime, timedelta
 from pathlib import Path
 from functools import wraps
@@ -1015,6 +1016,42 @@ def admin_create_customer():
     except Exception as e:
         logger.error(f"Admin create customer error: {e}")
         return jsonify({'error': f'Customer creation failed: {str(e)}'}), 500
+
+
+@app.route('/admin/repair-database', methods=['POST'])
+@require_admin_key
+def admin_repair_database():
+    """Repair NULL project IDs in the database."""
+    try:
+        db_path = ADMIN_DATA_DIR / 'customers.db'
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        
+        # Find all customer_databases records with NULL id
+        cursor.execute('SELECT rowid, customer_id, project_name FROM customer_databases WHERE id IS NULL')
+        null_records = cursor.fetchall()
+        
+        repaired_count = 0
+        for record in null_records:
+            rowid, customer_id, project_name = record
+            new_id = str(uuid.uuid4())
+            
+            cursor.execute('UPDATE customer_databases SET id = ? WHERE rowid = ?', (new_id, rowid))
+            repaired_count += 1
+            logger.info(f"Repaired project ID: {project_name} -> {new_id}")
+        
+        conn.commit()
+        conn.close()
+        
+        return jsonify({
+            'success': True,
+            'repaired_count': repaired_count,
+            'message': f'Repaired {repaired_count} NULL project IDs'
+        })
+        
+    except Exception as e:
+        logger.error(f"Database repair error: {e}")
+        return jsonify({'error': f'Repair failed: {str(e)}'}), 500
 
 
 if __name__ == '__main__':
