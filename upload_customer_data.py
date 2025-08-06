@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Customer Data Upload Utility
 Tool for uploading processed customer databases to the online portal.
@@ -13,6 +14,27 @@ from datetime import datetime
 from pathlib import Path
 import argparse
 from werkzeug.security import generate_password_hash
+
+# Windows console emoji compatibility
+def safe_print(text):
+    """Print text with emoji fallbacks for Windows console."""
+    if os.name == 'nt':
+        # Replace problematic emojis with ASCII equivalents
+        text = (text.replace('✅', '[OK]')
+                   .replace('❌', '[ERROR]')
+                   .replace('⚠️', '[WARNING]')
+                   .replace('📊', '[DATA]')
+                   .replace('👤', '[USER]')
+                   .replace('📄', '[DOCS]')
+                   .replace('💾', '[DB]')
+                   .replace('🔐', '[SECURE]')
+                   .replace('📋', '[LIST]')
+                   .replace('🗑️', '[DELETE]'))
+    try:
+        print(text)
+    except UnicodeEncodeError:
+        # Final fallback - remove all non-ASCII characters
+        print(text.encode('ascii', 'ignore').decode('ascii'))
 
 class CustomerDataUploader:
     """Handles uploading customer databases to the portal."""
@@ -85,15 +107,15 @@ class CustomerDataUploader:
             conn.commit()
             conn.close()
             
-            print(f"✅ Created customer: {email}")
-            print(f"🔐 Password: {password}")
+            safe_print(f"✅ Created customer: {email}")
+            safe_print(f"🔐 Password: {password}")
             print(f"🆔 Customer ID: {customer_id}")
             
             return customer_id
             
         except sqlite3.IntegrityError:
             conn.close()
-            print(f"❌ Customer with email {email} already exists")
+            safe_print(f"❌ Customer with email {email} already exists")
             return None
     
     def list_customers(self):
@@ -132,7 +154,7 @@ class CustomerDataUploader:
         
         # Verify database exists
         if not os.path.exists(database_path):
-            print(f"❌ Database not found: {database_path}")
+            safe_print(f"❌ Database not found: {database_path}")
             return False
         
         # Get customer info
@@ -146,7 +168,7 @@ class CustomerDataUploader:
         
         if not customer:
             conn.close()
-            print(f"❌ Customer not found: {customer_email}")
+            safe_print(f"❌ Customer not found: {customer_email}")
             print("   Use 'create-customer' command to create them first")
             return False
         
@@ -160,7 +182,7 @@ class CustomerDataUploader:
             document_count = db_cursor.fetchone()[0]
             db_conn.close()
         except Exception as e:
-            print(f"⚠️ Could not count documents: {e}")
+            safe_print(f"⚠️ Could not count documents: {e}")
             document_count = 0
         
         # Generate unique filename
@@ -184,11 +206,11 @@ class CustomerDataUploader:
         conn.commit()
         conn.close()
         
-        print(f"✅ Database uploaded successfully!")
-        print(f"👤 Customer: {customer['name']} ({customer_email})")
-        print(f"📊 Project: {project_name}")
-        print(f"📄 Documents: {document_count}")
-        print(f"💾 Database: {database_filename}")
+        safe_print(f"✅ Database uploaded successfully!")
+        safe_print(f"👤 Customer: {customer['name']} ({customer_email})")
+        safe_print(f"📊 Project: {project_name}")
+        safe_print(f"📄 Documents: {document_count}")
+        safe_print(f"💾 Database: {database_filename}")
         print(f"🆔 Project ID: {project_id}")
         
         return True
@@ -223,7 +245,7 @@ class CustomerDataUploader:
             print("📭 No projects found")
             return
         
-        print("\n📊 Customer Projects:")
+        safe_print("\n📊 Customer Projects:")
         print("=" * 80)
         
         for project in projects:

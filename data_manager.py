@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Data Management Tool for Customer Portal
 Allows easy management of customer data, projects, and databases.
@@ -12,6 +13,30 @@ import argparse
 from pathlib import Path
 from datetime import datetime
 import json
+
+# Windows console emoji compatibility
+def safe_print(text):
+    """Print text with emoji fallbacks for Windows console."""
+    if os.name == 'nt':
+        # Replace problematic emojis with ASCII equivalents
+        text = (text.replace('✅', '[OK]')
+                   .replace('❌', '[ERROR]')
+                   .replace('⚠️', '[WARNING]')
+                   .replace('📊', '[DATA]')
+                   .replace('👤', '[USER]')
+                   .replace('📄', '[DOCS]')
+                   .replace('💾', '[DB]')
+                   .replace('🔐', '[SECURE]')
+                   .replace('📋', '[LIST]')
+                   .replace('🗑️', '[DELETE]')
+                   .replace('📁', '[FILES]')
+                   .replace('🗂️', '[FOLDER]')
+                   .replace('💡', '[TIP]'))
+    try:
+        print(text)
+    except UnicodeEncodeError:
+        # Final fallback - remove all non-ASCII characters
+        print(text.encode('ascii', 'ignore').decode('ascii'))
 
 # Configuration
 ADMIN_DATA_DIR = Path("admin_data")
@@ -73,7 +98,7 @@ def list_customers():
     
     db_path = ADMIN_DATA_DIR / "customers.db"
     if not db_path.exists():
-        print("❌ No customer database found. Run the portal first to initialize.")
+        safe_print("❌ No customer database found. Run the portal first to initialize.")
         return
     
     try:
@@ -93,10 +118,10 @@ def list_customers():
         customers = cursor.fetchall()
         
         if not customers:
-            print("📋 No customers found.")
+            safe_print("📋 No customers found.")
             return
         
-        print("\n📋 Customer Overview")
+        safe_print("\n📋 Customer Overview")
         print("=" * 80)
         
         total_customers = len(customers)
@@ -104,7 +129,7 @@ def list_customers():
         total_size = 0
         
         for customer in customers:
-            print(f"\n👤 {customer['name']} ({customer['email']})")
+            safe_print(f"\n👤 {customer['name']} ({customer['email']})")
             print(f"   Organization: {customer['organization'] or 'N/A'}")
             print(f"   Projects: {customer['project_count']}")
             print(f"   Created: {customer['created_at'][:10] if customer['created_at'] else 'Unknown'}")
@@ -133,9 +158,9 @@ def list_customers():
                     status = "❌ Database file missing"
                 
                 upload_date = project['uploaded_at'][:10] if project['uploaded_at'] else 'Unknown'
-                print(f"     📊 {project['project_name']} - {status} - {upload_date}")
+                safe_print(f"     📊 {project['project_name']} - {status} - {upload_date}")
         
-        print(f"\n📊 Summary")
+        safe_print(f"\n📊 Summary")
         print(f"   Total Customers: {total_customers}")
         print(f"   Total Projects: {total_projects}")
         print(f"   Total Data Size: {format_size(total_size)}")
@@ -143,7 +168,7 @@ def list_customers():
         conn.close()
         
     except Exception as e:
-        print(f"❌ Error listing customers: {e}")
+        safe_print(f"❌ Error listing customers: {e}")
 
 def remove_customer(customer_email):
     """Remove a customer and all their data."""
@@ -151,7 +176,7 @@ def remove_customer(customer_email):
     
     db_path = ADMIN_DATA_DIR / "customers.db"
     if not db_path.exists():
-        print("❌ No customer database found.")
+        safe_print("❌ No customer database found.")
         return
     
     try:
@@ -164,11 +189,11 @@ def remove_customer(customer_email):
         customer = cursor.fetchone()
         
         if not customer:
-            print(f"❌ Customer not found: {customer_email}")
+            safe_print(f"❌ Customer not found: {customer_email}")
             conn.close()
             return
         
-        print(f"🗑️ Removing customer: {customer['name']} ({customer['email']})")
+        safe_print(f"🗑️ Removing customer: {customer['name']} ({customer['email']})")
         
         # Get all projects for this customer
         cursor.execute("SELECT * FROM customer_databases WHERE customer_id = ?", (customer['id'],))
@@ -183,15 +208,15 @@ def remove_customer(customer_email):
                 if db_file.exists():
                     try:
                         db_file.unlink()
-                        print(f"   ✅ Removed database: {project['database_filename']}")
+                        safe_print(f"   ✅ Removed database: {project['database_filename']}")
                     except Exception as e:
-                        print(f"   ❌ Failed to remove {project['database_filename']}: {e}")
+                        safe_print(f"   ❌ Failed to remove {project['database_filename']}: {e}")
                 else:
-                    print(f"   ⚠️ Database file not found: {project['database_filename']}")
+                    safe_print(f"   ⚠️ Database file not found: {project['database_filename']}")
             
             # Remove database records
             cursor.execute("DELETE FROM customer_databases WHERE customer_id = ?", (customer['id'],))
-            print(f"   ✅ Removed {len(projects)} project records")
+            safe_print(f"   ✅ Removed {len(projects)} project records")
         
         # Remove customer record
         cursor.execute("DELETE FROM customers WHERE id = ?", (customer['id'],))
@@ -199,10 +224,10 @@ def remove_customer(customer_email):
         conn.commit()
         conn.close()
         
-        print(f"✅ Customer {customer['email']} completely removed")
+        safe_print(f"✅ Customer {customer['email']} completely removed")
         
     except Exception as e:
-        print(f"❌ Error removing customer: {e}")
+        safe_print(f"❌ Error removing customer: {e}")
 
 def remove_project(customer_email, project_name):
     """Remove a specific project from a customer."""
@@ -210,7 +235,7 @@ def remove_project(customer_email, project_name):
     
     db_path = ADMIN_DATA_DIR / "customers.db"
     if not db_path.exists():
-        print("❌ No customer database found.")
+        safe_print("❌ No customer database found.")
         return
     
     try:
@@ -229,22 +254,22 @@ def remove_project(customer_email, project_name):
         project = cursor.fetchone()
         
         if not project:
-            print(f"❌ Project not found: {project_name} for {customer_email}")
+            safe_print(f"❌ Project not found: {project_name} for {customer_email}")
             conn.close()
             return
         
-        print(f"🗑️ Removing project: {project_name} from {project['customer_name']}")
+        safe_print(f"🗑️ Removing project: {project_name} from {project['customer_name']}")
         
         # Remove database file
         db_file = CUSTOMER_DATABASES_DIR / project['database_filename']
         if db_file.exists():
             try:
                 db_file.unlink()
-                print(f"   ✅ Removed database: {project['database_filename']}")
+                safe_print(f"   ✅ Removed database: {project['database_filename']}")
             except Exception as e:
-                print(f"   ❌ Failed to remove database: {e}")
+                safe_print(f"   ❌ Failed to remove database: {e}")
         else:
-            print(f"   ⚠️ Database file not found: {project['database_filename']}")
+            safe_print(f"   ⚠️ Database file not found: {project['database_filename']}")
         
         # Remove database record
         cursor.execute("DELETE FROM customer_databases WHERE id = ?", (project['id'],))
@@ -252,10 +277,10 @@ def remove_project(customer_email, project_name):
         conn.commit()
         conn.close()
         
-        print(f"✅ Project {project_name} removed from {customer_email}")
+        safe_print(f"✅ Project {project_name} removed from {customer_email}")
         
     except Exception as e:
-        print(f"❌ Error removing project: {e}")
+        safe_print(f"❌ Error removing project: {e}")
 
 def cleanup_orphaned_files():
     """Remove database files that don't have corresponding records."""
@@ -263,7 +288,7 @@ def cleanup_orphaned_files():
     
     db_path = ADMIN_DATA_DIR / "customers.db"
     if not db_path.exists():
-        print("❌ No customer database found.")
+        safe_print("❌ No customer database found.")
         return
     
     try:
@@ -287,15 +312,15 @@ def cleanup_orphaned_files():
                 total_size += size
         
         if not orphaned_files:
-            print("✅ No orphaned database files found.")
+            safe_print("✅ No orphaned database files found.")
             return
         
-        print(f"🗑️ Found {len(orphaned_files)} orphaned database files:")
+        safe_print(f"🗑️ Found {len(orphaned_files)} orphaned database files:")
         
         for db_file, size in orphaned_files:
-            print(f"   📁 {db_file.name} - {format_size(size)}")
+            safe_print(f"   📁 {db_file.name} - {format_size(size)}")
         
-        print(f"\n💾 Total size: {format_size(total_size)}")
+        safe_print(f"\n💾 Total size: {format_size(total_size)}")
         
         response = input(f"\nRemove all {len(orphaned_files)} orphaned files? (y/N): ")
         if response.lower() == 'y':
@@ -304,17 +329,17 @@ def cleanup_orphaned_files():
                 try:
                     db_file.unlink()
                     removed_count += 1
-                    print(f"   ✅ Removed: {db_file.name}")
+                    safe_print(f"   ✅ Removed: {db_file.name}")
                 except Exception as e:
-                    print(f"   ❌ Failed to remove {db_file.name}: {e}")
+                    safe_print(f"   ❌ Failed to remove {db_file.name}: {e}")
             
-            print(f"\n✅ Removed {removed_count}/{len(orphaned_files)} orphaned files")
-            print(f"💾 Freed {format_size(total_size)} of disk space")
+            safe_print(f"\n✅ Removed {removed_count}/{len(orphaned_files)} orphaned files")
+            safe_print(f"💾 Freed {format_size(total_size)} of disk space")
         else:
-            print("❌ Cleanup cancelled.")
+            safe_print("❌ Cleanup cancelled.")
         
     except Exception as e:
-        print(f"❌ Error during cleanup: {e}")
+        safe_print(f"❌ Error during cleanup: {e}")
 
 def export_customer_list():
     """Export customer and project information to JSON."""
@@ -322,7 +347,7 @@ def export_customer_list():
     
     db_path = ADMIN_DATA_DIR / "customers.db"
     if not db_path.exists():
-        print("❌ No customer database found.")
+        safe_print("❌ No customer database found.")
         return
     
     try:
@@ -368,11 +393,11 @@ def export_customer_list():
         with open(export_file, 'w', encoding='utf-8') as f:
             json.dump(export_data, f, indent=2, ensure_ascii=False)
         
-        print(f"✅ Customer data exported to: {export_file}")
-        print(f"📊 {export_data['total_customers']} customers exported")
+        safe_print(f"✅ Customer data exported to: {export_file}")
+        safe_print(f"📊 {export_data['total_customers']} customers exported")
         
     except Exception as e:
-        print(f"❌ Error exporting data: {e}")
+        safe_print(f"❌ Error exporting data: {e}")
 
 def main():
     """Main CLI interface."""
@@ -401,7 +426,7 @@ def main():
     
     if not args.command:
         parser.print_help()
-        print("\n💡 Examples:")
+        safe_print("\n💡 Examples:")
         print("   python data_manager.py list")
         print("   python data_manager.py remove-customer customer@example.com")
         print("   python data_manager.py remove-project customer@example.com \"Project Name\"")
@@ -409,7 +434,7 @@ def main():
         print("   python data_manager.py export")
         return
     
-    print("🗂️ Customer Portal Data Manager")
+    safe_print("🗂️ Customer Portal Data Manager")
     print("=" * 50)
     
     if args.command == 'list':

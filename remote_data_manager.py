@@ -52,7 +52,7 @@ class RemoteDataManager:
         self.admin_key = admin_key or os.getenv('ADMIN_API_KEY')
         
         if not self.portal_url:
-            safe_safe_print("❌ Portal URL not set. Use --url or set PORTAL_URL environment variable")
+            safe_print("❌ Portal URL not set. Use --url or set PORTAL_URL environment variable")
             sys.exit(1)
         
         if not self.admin_key:

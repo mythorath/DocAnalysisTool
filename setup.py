@@ -4,6 +4,53 @@ One-Click Setup Script for Document Analysis Platform
 Creates venv, installs dependencies, and deploys to Railway or Vercel
 """
 
+# Windows console emoji compatibility
+def safe_print(text):
+    """Print text with emoji fallbacks for Windows console."""
+    if os.name == 'nt':
+        # Replace problematic emojis with ASCII equivalents
+        text = (text.replace('✅', '[OK]')
+                   .replace('❌', '[ERROR]')
+                   .replace('⚠️', '[WARNING]')
+                   .replace('📊', '[DATA]')
+                   .replace('👤', '[USER]')
+                   .replace('📄', '[DOCS]')
+                   .replace('💾', '[DB]')
+                   .replace('🔐', '[SECURE]')
+                   .replace('📋', '[LIST]')
+                   .replace('🗑️', '[DELETE]')
+                   .replace('📁', '[FILES]')
+                   .replace('🗂️', '[FOLDER]')
+                   .replace('💡', '[TIP]')
+                   .replace('🚀', '[START]')
+                   .replace('📍', '[LOCATION]')
+                   .replace('🕒', '[TIME]')
+                   .replace('🌐', '[WEB]')
+                   .replace('⚙️', '[SYSTEM]')
+                   .replace('📚', '[HELP]')
+                   .replace('🚪', '[EXIT]')
+                   .replace('🔧', '[TOOL]')
+                   .replace('💻', '[CMD]')
+                   .replace('📤', '[UPLOAD]')
+                   .replace('❓', '[QUESTION]')
+                   .replace('🎉', '[SUCCESS]')
+                   .replace('📂', '[FOLDER]')
+                   .replace('📈', '[COUNT]')
+                   .replace('🧹', '[CLEANUP]')
+                   .replace('⬅️', '[BACK]')
+                   .replace('🔥', '[PROCESS]')
+                   .replace('🔍', '[SEARCH]')
+                   .replace('📎', '[LINK]')
+                   .replace('📥', '[DOWNLOAD]')
+                   .replace('📝', '[EXTRACT]'))
+    try:
+        print(text)
+    except UnicodeEncodeError:
+        # Final fallback - remove all non-ASCII characters
+        print(text.encode('ascii', 'ignore').decode('ascii'))
+
+
+
 import os
 import sys
 import subprocess
@@ -14,10 +61,10 @@ from pathlib import Path
 
 def run_command(cmd, shell=True, check=True):
     """Run command and return result."""
-    print(f"🔧 {cmd}")
+    safe_print(f"🔧 {cmd}")
     result = subprocess.run(cmd, shell=shell, capture_output=True, text=True)
     if check and result.returncode != 0:
-        print(f"❌ Error: {result.stderr}")
+        safe_print(f"❌ Error: {result.stderr}")
         return False, result.stderr
     return True, result.stdout.strip()
 
@@ -25,16 +72,16 @@ def check_python_version():
     """Check if Python version is compatible."""
     version = sys.version_info
     if version.major < 3 or (version.major == 3 and version.minor < 8):
-        print("❌ Python 3.8+ is required")
+        safe_print("❌ Python 3.8+ is required")
         print(f"   Current version: {version.major}.{version.minor}.{version.micro}")
         return False
     
-    print(f"✅ Python {version.major}.{version.minor}.{version.micro} detected")
+    safe_print(f"✅ Python {version.major}.{version.minor}.{version.micro} detected")
     return True
 
 def create_virtual_environment():
     """Create and activate virtual environment."""
-    print("\n📦 Creating virtual environment...")
+    safe_print("\n📦 Creating virtual environment...")
     
     venv_path = Path("venv")
     if venv_path.exists():
@@ -46,7 +93,7 @@ def create_virtual_environment():
     if not success:
         return False
     
-    print("✅ Virtual environment created")
+    safe_print("✅ Virtual environment created")
     return True
 
 def get_activation_command():
@@ -58,7 +105,7 @@ def get_activation_command():
 
 def install_dependencies():
     """Install Python dependencies with Windows compatibility."""
-    print("\n📥 Installing dependencies...")
+    safe_print("\n📥 Installing dependencies...")
     
     # Get pip path
     if platform.system() == "Windows":
@@ -69,7 +116,7 @@ def install_dependencies():
         python_path = "venv/bin/python"
     
     # Upgrade pip first
-    print("🔧 Upgrading pip...")
+    safe_print("🔧 Upgrading pip...")
     success, _ = run_command(f"{python_path} -m pip install --upgrade pip")
     if not success:
         return False
@@ -82,16 +129,16 @@ def install_dependencies():
         "python-dotenv==1.0.0"
     ]
     
-    print("📦 Installing core dependencies...")
+    safe_print("📦 Installing core dependencies...")
     for package in core_requirements:
         print(f"   Installing {package}...")
         success, output = run_command(f"{pip_path} install {package}", check=False)
         if not success:
-            print(f"⚠️ Failed to install {package}, trying without version pin...")
+            safe_print(f"⚠️ Failed to install {package}, trying without version pin...")
             package_name = package.split("==")[0]
             success, _ = run_command(f"{pip_path} install {package_name}", check=False)
             if not success:
-                print(f"❌ Could not install {package_name}")
+                safe_print(f"❌ Could not install {package_name}")
                 return False
     
     # Install data processing dependencies (with fallbacks for Windows)
@@ -109,12 +156,12 @@ def install_dependencies():
             "numpy==1.24.3"
         ]
     
-    print("📊 Installing data processing dependencies...")
+    safe_print("📊 Installing data processing dependencies...")
     for package in data_requirements:
         print(f"   Installing {package}...")
         success, _ = run_command(f"{pip_path} install {package}", check=False)
         if not success:
-            print(f"⚠️ Failed to install {package}")
+            safe_print(f"⚠️ Failed to install {package}")
             # Continue anyway - the portal can work without heavy data processing
     
     # Optional dependencies (nice to have but not critical)
@@ -128,22 +175,22 @@ def install_dependencies():
         "nltk>=3.8"
     ]
     
-    print("🔧 Installing optional dependencies (for document processing)...")
+    safe_print("🔧 Installing optional dependencies (for document processing)...")
     for package in optional_requirements:
         print(f"   Installing {package}...")
         success, _ = run_command(f"{pip_path} install {package}", check=False)
         if not success:
-            print(f"⚠️ Skipping {package} (optional)")
+            safe_print(f"⚠️ Skipping {package} (optional)")
     
     # Skip heavy ML dependencies for now to avoid compilation issues
-    print("⏭️ Skipping heavy ML dependencies (sentence-transformers) for faster setup")
+    safe_print("⏭️ Skipping heavy ML dependencies (sentence-transformers) for faster setup")
     print("   You can install them later if needed for advanced clustering")
     
     # Create a working requirements.txt with what we actually installed
     create_working_requirements_file()
     
-    print("✅ Core dependencies installed successfully")
-    print("⚠️ Some optional dependencies may have been skipped")
+    safe_print("✅ Core dependencies installed successfully")
+    safe_print("⚠️ Some optional dependencies may have been skipped")
     print("   The customer portal will work fine for basic functionality")
     return True
 
@@ -175,11 +222,11 @@ numpy>=1.21.0
     with open('requirements_minimal.txt', 'w') as f:
         f.write(minimal_requirements)
     
-    print("📄 Created requirements_minimal.txt with working dependencies")
+    safe_print("📄 Created requirements_minimal.txt with working dependencies")
 
 def setup_directories():
     """Create necessary directories."""
-    print("\n📁 Setting up directories...")
+    safe_print("\n📁 Setting up directories...")
     
     directories = [
         "workspace",
@@ -207,7 +254,7 @@ TEST-002,https://example.com/doc2.pdf,Another Org,Sample Category
         with open(sample_csv, 'w') as f:
             f.write(sample_data)
     
-    print("✅ Directories created")
+    safe_print("✅ Directories created")
     return True
 
 def check_pandas_installed():
@@ -226,20 +273,20 @@ def check_pandas_installed():
 
 def check_system_dependencies():
     """Check for system dependencies (Tesseract, Poppler)."""
-    print("\n🔍 Checking system dependencies...")
+    safe_print("\n🔍 Checking system dependencies...")
     
     # Check Tesseract
     tesseract_ok, _ = run_command("tesseract --version", check=False)
     if tesseract_ok:
-        print("✅ Tesseract OCR found")
+        safe_print("✅ Tesseract OCR found")
     else:
-        print("⚠️ Tesseract OCR not found")
+        safe_print("⚠️ Tesseract OCR not found")
         print("   Install with: conda install tesseract -c conda-forge")
         print("   Or download from: https://github.com/UB-Mannheim/tesseract/wiki")
     
     # Check Poppler (for pdf2image)
     poppler_ok = True  # We'll test this during actual processing
-    print("⚠️ Poppler may be needed for PDF processing")
+    safe_print("⚠️ Poppler may be needed for PDF processing")
     print("   Install with: conda install poppler -c conda-forge")
     
     return tesseract_ok
@@ -251,7 +298,7 @@ def deploy_to_railway():
     # Check if Railway CLI is installed
     success, _ = run_command("railway --version", check=False)
     if not success:
-        print("📦 Railway CLI not found")
+        safe_print("📦 Railway CLI not found")
         print("   Install with: npm install -g @railway/cli")
         print("   Or visit: https://railway.app/cli")
         return False
@@ -267,13 +314,13 @@ def deploy_to_railway():
         if not success:
             return False
         
-        print("📦 Creating Railway project...")
+        safe_print("📦 Creating Railway project...")
         success, _ = run_command("railway create document-analysis-portal")
         if not success:
             return False
     
     # Set environment variables
-    print("⚙️ Setting environment variables...")
+    safe_print("⚙️ Setting environment variables...")
     secret_key = secrets.token_hex(32)
     
     env_vars = {
@@ -287,10 +334,10 @@ def deploy_to_railway():
         run_command(f'railway variables --set "{key}={value}"', check=False)
     
     # Deploy
-    print("🚀 Deploying to Railway...")
+    safe_print("🚀 Deploying to Railway...")
     success, output = run_command("railway up --detach")
     if not success:
-        print("❌ Deployment failed")
+        safe_print("❌ Deployment failed")
         return False
     
     # Get URL
@@ -299,11 +346,11 @@ def deploy_to_railway():
         # Extract just the URL from the output
         url_line = next((line for line in url.split('\n') if 'https://' in line), url)
         clean_url = url_line.strip().replace('🚀 ', '')
-        print(f"✅ Deployed successfully!")
-        print(f"🌐 Your portal URL: {clean_url}")
+        safe_print(f"✅ Deployed successfully!")
+        safe_print(f"🌐 Your portal URL: {clean_url}")
         return clean_url
     else:
-        print("✅ Deployment successful! Check Railway dashboard for URL.")
+        safe_print("✅ Deployment successful! Check Railway dashboard for URL.")
         return True
 
 def deploy_to_vercel():
@@ -313,7 +360,7 @@ def deploy_to_vercel():
     # Check if Vercel CLI is installed
     success, _ = run_command("vercel --version", check=False)
     if not success:
-        print("📦 Vercel CLI not found")
+        safe_print("📦 Vercel CLI not found")
         print("   Install with: npm install -g vercel")
         return False
     
@@ -321,15 +368,15 @@ def deploy_to_vercel():
     create_vercel_files()
     
     # Deploy
-    print("🚀 Deploying to Vercel...")
+    safe_print("🚀 Deploying to Vercel...")
     success, output = run_command("vercel --prod")
     if not success:
-        print("❌ Deployment failed")
+        safe_print("❌ Deployment failed")
         return False
     
-    print("✅ Deployed to Vercel!")
-    print("🌐 Check your Vercel dashboard for the URL")
-    print("⚠️ Remember to set SECRET_KEY in Vercel environment variables")
+    safe_print("✅ Deployed to Vercel!")
+    safe_print("🌐 Check your Vercel dashboard for the URL")
+    safe_print("⚠️ Remember to set SECRET_KEY in Vercel environment variables")
     return True
 
 def create_railway_files():
@@ -340,9 +387,9 @@ def create_railway_files():
     # Check if we should use full version
     if os.path.exists('venv') and check_pandas_installed():
         procfile_content = "web: python customer_portal.py"
-        print("📊 Using full customer portal with pandas support")
+        safe_print("📊 Using full customer portal with pandas support")
     else:
-        print("🚀 Using lite customer portal (no pandas required)")
+        safe_print("🚀 Using lite customer portal (no pandas required)")
     
     # Procfile
     with open('Procfile', 'w') as f:
@@ -352,7 +399,7 @@ def create_railway_files():
     with open('runtime.txt', 'w') as f:
         f.write("python-3.11.0")
     
-    print("✅ Railway files created")
+    safe_print("✅ Railway files created")
 
 def create_vercel_files():
     """Create Vercel deployment files."""
@@ -361,9 +408,9 @@ def create_vercel_files():
     
     if os.path.exists('venv') and check_pandas_installed():
         portal_file = "customer_portal.py"
-        print("📊 Using full customer portal for Vercel")
+        safe_print("📊 Using full customer portal for Vercel")
     else:
-        print("🚀 Using lite customer portal for Vercel")
+        safe_print("🚀 Using lite customer portal for Vercel")
     
     vercel_config = {
         "version": 2,
@@ -392,23 +439,23 @@ def create_vercel_files():
     with open('vercel.json', 'w') as f:
         json.dump(vercel_config, f, indent=2)
     
-    print("✅ Vercel files created")
+    safe_print("✅ Vercel files created")
 
 def create_test_customer():
     """Skip test customer creation to keep clean state."""
-    print("\n👤 Skipping test customer creation (keeping clean state)")
+    safe_print("\n👤 Skipping test customer creation (keeping clean state)")
     print("   Create customers manually when needed using:")
     print("   python upload_customer_data.py create-customer email@domain.com 'Name' 'password'")
 
 def show_next_steps(deployment_url=None, has_pandas=False):
     """Show what to do next."""
     print("\n" + "="*60)
-    print("🎉 SETUP COMPLETE!")
+    safe_print("🎉 SETUP COMPLETE!")
     print("="*60)
     
     activation_cmd = get_activation_command()
     
-    print(f"\n📋 Next Steps:")
+    safe_print(f"\n📋 Next Steps:")
     print(f"1. Activate virtual environment:")
     print(f"   {activation_cmd}")
     
@@ -423,30 +470,30 @@ def show_next_steps(deployment_url=None, has_pandas=False):
     print(f"   python upload_customer_data.py upload [database_path] customer@email.com \"Project Name\"")
     
     if not has_pandas:
-        print(f"\n   ⚠️ Using lite processor (pandas not available)")
+        safe_print(f"\n   ⚠️ Using lite processor (pandas not available)")
         print(f"   For enhanced processing, install pandas: pip install pandas")
     
     if deployment_url:
         print(f"\n4. Access customer portal:")
-        print(f"   🌐 URL: {deployment_url}")
-        print(f"   👤 Login with customers you create using step 3")
+        safe_print(f"   🌐 URL: {deployment_url}")
+        safe_print(f"   👤 Login with customers you create using step 3")
         
         portal_type = "full" if has_pandas else "lite"
-        print(f"   🚀 Running: customer_portal_{'' if has_pandas else 'lite.py'} ({portal_type} version)")
+        safe_print(f"   🚀 Running: customer_portal_{'' if has_pandas else 'lite.py'} ({portal_type} version)")
     
-    print(f"\n🛠️ Useful Commands:")
+    safe_print(f"\n🛠️ Useful Commands:")
     print(f"   List customers: python upload_customer_data.py list-customers")
     print(f"   List projects: python upload_customer_data.py list-projects")
     processor_cmd = "local_processor.py" if has_pandas else "local_processor_lite.py"
     print(f"   Local projects: python {processor_cmd} list")
     
-    print(f"\n📚 Documentation:")
+    safe_print(f"\n📚 Documentation:")
     print(f"   Workflow Guide: WORKFLOW_GUIDE.md")
     print(f"   Quick Start: QUICK_START.md")
     print(f"   Manual Setup: MANUAL_SETUP.md")
     
     if not has_pandas:
-        print(f"\n⚠️ IMPORTANT NOTES:")
+        safe_print(f"\n⚠️ IMPORTANT NOTES:")
         print(f"   • Using lite portal (no pandas dependency)")
         print(f"   • For full document processing, install missing dependencies")
         print(f"   • See MANUAL_SETUP.md for detailed instructions")
@@ -454,7 +501,7 @@ def show_next_steps(deployment_url=None, has_pandas=False):
 
 def main():
     """Main setup function."""
-    print("🚀 Document Analysis Platform Setup")
+    safe_print("🚀 Document Analysis Platform Setup")
     print("="*50)
     print("This script will:")
     print("1. Create virtual environment")
@@ -469,7 +516,7 @@ def main():
         return
     
     # Ask for deployment choice
-    print("🌐 Choose deployment platform:")
+    safe_print("🌐 Choose deployment platform:")
     print("1. Railway (Recommended for production)")
     print("2. Vercel (Good for demos)")
     print("3. Skip deployment (local only)")
@@ -482,15 +529,15 @@ def main():
     
     # Setup steps
     if not create_virtual_environment():
-        print("❌ Failed to create virtual environment")
+        safe_print("❌ Failed to create virtual environment")
         return
     
     if not install_dependencies():
-        print("❌ Failed to install dependencies")
+        safe_print("❌ Failed to install dependencies")
         return
     
     if not setup_directories():
-        print("❌ Failed to set up directories")
+        safe_print("❌ Failed to set up directories")
         return
     
     # Check system dependencies
@@ -503,7 +550,7 @@ def main():
     elif choice == '2':
         deployment_url = deploy_to_vercel()
     else:
-        print("\n⏭️ Skipping deployment")
+        safe_print("\n⏭️ Skipping deployment")
         print("   You can deploy later with:")
         print("   python railway_deploy.py  # or")
         print("   python vercel_deploy.py")
