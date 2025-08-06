@@ -30,7 +30,12 @@ def safe_print(text):
                    .replace('💡', '[TIP]')
                    .replace('📁', '[FILES]')
                    .replace('🗂️', '[FOLDER]')
-                   .replace('📋', '[LIST]'))
+                   .replace('📋', '[LIST]')
+                   .replace('📦', '[DEPS]')
+                   .replace('🔥', '[PROCESS]')
+                   .replace('💾', '[DB]')
+                   .replace('🎉', '[COMPLETE]')
+                   .replace('🔍', '[SEARCH]'))
     try:
         print(text)
     except UnicodeEncodeError:
@@ -402,24 +407,37 @@ class LocalProcessorLite:
         for directory in [self.downloads_dir, self.text_dir, self.output_dir, self.logs_dir]:
             directory.mkdir(exist_ok=True)
         
-        # Setup logging
+        # Setup logging with emoji handling for Windows console
+        class SafeFormatter(logging.Formatter):
+            def format(self, record):
+                # Apply emoji replacement to log messages on Windows
+                if os.name == 'nt':
+                    record.msg = str(record.msg).replace('🚀', '[GPU]').replace('✅', '[OK]').replace('❌', '[ERROR]').replace('⚠️', '[WARNING]').replace('🔧', '[TOOL]').replace('💡', '[TIP]').replace('📄', '[DOCS]').replace('📊', '[DATA]').replace('📁', '[FILES]').replace('🗂️', '[FOLDER]').replace('📋', '[LIST]').replace('📦', '[DEPS]').replace('🔥', '[PROCESS]').replace('💾', '[DB]').replace('🎉', '[COMPLETE]').replace('🔍', '[SEARCH]')
+                return super().format(record)
+        
+        formatter = SafeFormatter('%(asctime)s - %(levelname)s - %(message)s')
+        
+        # File handler with UTF-8 encoding
+        file_handler = logging.FileHandler(self.logs_dir / 'processor.log', encoding='utf-8')
+        file_handler.setFormatter(formatter)
+        
+        # Console handler with safe formatter
+        console_handler = logging.StreamHandler()
+        console_handler.setFormatter(formatter)
+        
         logging.basicConfig(
             level=logging.INFO,
-            format='%(asctime)s - %(levelname)s - %(message)s',
-            handlers=[
-                logging.FileHandler(self.logs_dir / 'processor.log'),
-                logging.StreamHandler()
-            ]
+            handlers=[file_handler, console_handler]
         )
         self.logger = logging.getLogger(__name__)
         
         safe_print(f"📁 Workspace: {self.workspace.absolute()}")
-        print(f"📦 Dependencies: pandas={HAS_PANDAS}, requests={HAS_REQUESTS}")
+        safe_print(f"📦 Dependencies: pandas={HAS_PANDAS}, requests={HAS_REQUESTS}")
     
     def process_customer_batch(self, csv_file, customer_name, project_name):
         """Process a complete customer batch from CSV to searchable database."""
         
-        print(f"\n🔥 Processing batch for {customer_name}")
+        safe_print(f"\n🔥 Processing batch for {customer_name}")
         safe_print(f"📊 Project: {project_name}")
         safe_print(f"📄 CSV: {csv_file}")
         print("=" * 60)
@@ -618,10 +636,10 @@ class LocalProcessorLite:
             json.dump(summary, f, indent=2)
         
         print("\n" + "=" * 60)
-        print(f"🎉 Processing Complete!")
+        safe_print(f"🎉 Processing Complete!")
         safe_print(f"📊 Summary: {indexed_count}/{total_docs} documents processed")
-        print(f"💾 Database: {db_path}")
-        print(f"📋 Summary: {summary_path}")
+        safe_print(f"💾 Database: {db_path}")
+        safe_print(f"📋 Summary: {summary_path}")
         safe_print(f"📁 All files: {project_dir}")
         
         return {
@@ -668,8 +686,8 @@ class LocalProcessorLite:
             safe_print(f"❌ Database not found: {database_path}")
             return
         
-        print(f"\n🔍 Testing search: '{query}'")
-        print(f"💾 Database: {database_path}")
+        safe_print(f"\n🔍 Testing search: '{query}'")
+        safe_print(f"💾 Database: {database_path}")
         
         try:
             indexer = SimpleIndexer(database_path)
