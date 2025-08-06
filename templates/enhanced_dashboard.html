@@ -440,10 +440,16 @@
                             </div>
                             
                             <div class="project-footer">
+                                {% if database.id %}
                                 <a href="{{ url_for('view_project', project_id=database.id) }}" 
                                    class="btn btn-search w-100">
                                     <i class="bi bi-search me-2"></i>Search & Browse
                                 </a>
+                                {% else %}
+                                <div class="btn btn-secondary w-100 disabled">
+                                    <i class="bi bi-exclamation-triangle me-2"></i>Project ID Missing
+                                </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
