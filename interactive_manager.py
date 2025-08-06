@@ -372,18 +372,49 @@ class InteractiveManager:
         self.run_command(command, "Listing remote portal data")
         input("\nPress Enter to continue...")
     
+    def get_portal_customers(self):
+        """Get list of customers from the portal."""
+        try:
+            import subprocess
+            
+            # Run remote data manager to get customer list
+            result = subprocess.run([
+                'python', 'remote_data_manager.py', 
+                '--url', self.portal_url, 
+                '--key', self.admin_key,
+                'list'
+            ], capture_output=True, text=True, timeout=30)
+            
+            if result.returncode == 0:
+                # Parse the output to extract customer emails
+                output = result.stdout
+                
+                # Look for email patterns in the output
+                import re
+                email_pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+                found_emails = re.findall(email_pattern, output, re.IGNORECASE)
+                
+                # Remove duplicates and return unique emails
+                unique_emails = list(set(found_emails))
+                return sorted(unique_emails)
+            else:
+                return []
+        except Exception as e:
+            safe_print(f"⚠️ Could not fetch customers: {e}")
+            return []
+    
     def push_to_portal(self):
         """Push database to portal."""
-        print("\n📤 Push Database to Portal")
+        safe_print("\n📤 Push Database to Portal")
         print("-" * 40)
         
         databases = self.list_databases()
         if not databases:
-            print("❌ No database files found")
+            safe_print("❌ No database files found")
             input("Press Enter to continue...")
             return
         
-        print("📁 Available databases:")
+        safe_print("📁 Available databases:")
         for i, db in enumerate(databases, 1):
             print(f"   {i}. {db}")
         
@@ -391,15 +422,42 @@ class InteractiveManager:
             choice = int(input("Select database: ")) - 1
             database = databases[choice]
         except (ValueError, IndexError):
-            print("❌ Invalid selection")
+            safe_print("❌ Invalid selection")
             input("Press Enter to continue...")
             return
         
-        email = self.get_input("Customer email")
+        # Get customers from portal
+        safe_print("\n👥 Fetching customers from portal...")
+        customers = self.get_portal_customers()
+        
+        if customers:
+            safe_print("📋 Available customers:")
+            for i, customer in enumerate(customers, 1):
+                print(f"   {i}. {customer}")
+            print(f"   {len(customers) + 1}. Enter custom email")
+            
+            try:
+                customer_choice = int(input("Select customer: ")) - 1
+                if 0 <= customer_choice < len(customers):
+                    email = customers[customer_choice]
+                elif customer_choice == len(customers):
+                    email = self.get_input("Customer email")
+                else:
+                    safe_print("❌ Invalid selection")
+                    input("Press Enter to continue...")
+                    return
+            except (ValueError, IndexError):
+                safe_print("❌ Invalid selection")
+                input("Press Enter to continue...")
+                return
+        else:
+            safe_print("⚠️ Could not fetch customers from portal")
+            email = self.get_input("Customer email")
+        
         project = self.get_input("Project name")
         
         if not email or not project:
-            print("❌ Email and project name are required")
+            safe_print("❌ Email and project name are required")
             input("Press Enter to continue...")
             return
         
@@ -408,7 +466,7 @@ class InteractiveManager:
         success = self.run_command(command, "Pushing to portal")
         
         if success:
-            print(f"\n✅ Database pushed to portal successfully!")
+            safe_print(f"\n✅ Database pushed to portal successfully!")
         
         input("\nPress Enter to continue...")
     
