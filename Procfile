@@ -1,1 +1,1 @@
-web: python customer_portal.py
+web: HOST=0.0.0.0 PORT=$PORT python customer_portal_lite.py

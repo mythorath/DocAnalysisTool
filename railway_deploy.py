@@ -32,7 +32,7 @@ def create_railway_files():
     """Create necessary files for Railway deployment."""
     
     # Create Procfile for Railway
-    procfile = "web: python customer_portal.py"
+    procfile = "web: HOST=0.0.0.0 PORT=$PORT python customer_portal_lite.py"
     with open('Procfile', 'w') as f:
         f.write(procfile)
     
@@ -82,6 +82,7 @@ def deploy_to_railway():
     env_vars = {
         'FLASK_ENV': 'production',
         'SECRET_KEY': secret_key,
+        'ADMIN_API_KEY': 'secure_admin_key_2024_changeme',
         'PORT': '8080',
         'HOST': '0.0.0.0'
     }

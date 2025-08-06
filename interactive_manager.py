@@ -46,7 +46,8 @@ def safe_print(text):
                    .replace('🆕', '[NEW]')
                    .replace('🧪', '[TEST]')
                    .replace('👥', '[USERS]')
-                   .replace('📧', '[EMAIL]'))
+                   .replace('📧', '[EMAIL]')
+                   .replace('🚂', '[RAILWAY]'))
     try:
         print(text)
     except UnicodeEncodeError:
@@ -382,6 +383,217 @@ class InteractiveManager:
         
         input("\nPress Enter to continue...")
     
+    def customer_management_menu(self):
+        """Handle customer management operations (remote portal control)."""
+        while True:
+            self.clear_screen()
+            self.show_header()
+            safe_print("👤 CUSTOMER MANAGEMENT")
+            print("=" * 60)
+            safe_print("💡 Manages customers directly on the remote portal")
+            print()
+            print("Options:")
+            print("1. List customers on portal")
+            print("2. Create customer account")
+            print("3. Remove customer from portal")
+            print("4. List customer projects")
+            print("5. Remove customer project")
+            print("6. Upload database to customer")
+            print("0. Back to main menu")
+            
+            choice = input("\nEnter choice: ").strip()
+            
+            if choice == "0":
+                break
+            elif choice == "1":
+                self.list_portal_customers()
+            elif choice == "2":
+                self.create_portal_customer()
+            elif choice == "3":
+                self.remove_portal_customer()
+            elif choice == "4":
+                self.list_customer_projects()
+            elif choice == "5":
+                self.remove_customer_project()
+            elif choice == "6":
+                self.upload_database_to_customer()
+            else:
+                safe_print("❌ Invalid choice")
+                input("Press Enter to continue...")
+    
+    def list_portal_customers(self):
+        """List all customers on the portal."""
+        safe_print("\n📋 Portal Customers")
+        print("-" * 30)
+        
+        command = f'python remote_data_manager.py --url {self.portal_url} --key {self.admin_key} list'
+        self.run_command(command, "Listing portal customers")
+        input("\nPress Enter to continue...")
+    
+    def create_portal_customer(self):
+        """Create a new customer account on the portal."""
+        safe_print("\n🆕 Create Customer Account")
+        print("-" * 30)
+        
+        email = self.get_input("Customer email")
+        password = self.get_input("Customer password", "password123")
+        
+        if not email:
+            safe_print("❌ Email is required")
+            input("Press Enter to continue...")
+            return
+        
+        safe_print(f"\n📧 Creating customer: {email}")
+        safe_print("⚠️ Note: Customer creation requires direct portal API access")
+        safe_print("💡 For now, customers will be created when first database is uploaded")
+        
+        input("\nPress Enter to continue...")
+    
+    def remove_portal_customer(self):
+        """Remove a customer from the portal."""
+        safe_print("\n🗑️ Remove Customer from Portal")
+        print("-" * 30)
+        safe_print("⚠️ This will remove ALL projects for this customer!")
+        
+        # Get customers from portal first
+        customers = self.get_portal_customers()
+        if customers:
+            safe_print("📋 Available customers:")
+            for i, customer in enumerate(customers, 1):
+                print(f"   {i}. {customer}")
+            print(f"   {len(customers) + 1}. Enter custom email")
+            
+            try:
+                customer_choice = int(input("Select customer to remove: ")) - 1
+                if 0 <= customer_choice < len(customers):
+                    email = customers[customer_choice]
+                elif customer_choice == len(customers):
+                    email = self.get_input("Customer email")
+                else:
+                    safe_print("❌ Invalid selection")
+                    input("Press Enter to continue...")
+                    return
+            except (ValueError, IndexError):
+                safe_print("❌ Invalid selection")
+                input("Press Enter to continue...")
+                return
+        else:
+            email = self.get_input("Customer email")
+        
+        if not email:
+            safe_print("❌ Email is required")
+            input("Press Enter to continue...")
+            return
+        
+        confirm = input(f"❓ Remove customer {email} and ALL their data? (y/N): ").strip().lower()
+        if confirm != 'y':
+            safe_print("❌ Cancelled")
+            input("Press Enter to continue...")
+            return
+        
+        command = f'python remote_data_manager.py --url {self.portal_url} --key {self.admin_key} remove-customer "{email}"'
+        success = self.run_command(command, f"Removing customer {email}")
+        
+        if success:
+            safe_print(f"\n✅ Customer {email} removed successfully!")
+        
+        input("\nPress Enter to continue...")
+    
+    def list_customer_projects(self):
+        """List projects for a specific customer."""
+        safe_print("\n📄 Customer Projects")
+        print("-" * 30)
+        
+        # Get customers from portal first
+        customers = self.get_portal_customers()
+        if customers:
+            safe_print("📋 Available customers:")
+            for i, customer in enumerate(customers, 1):
+                print(f"   {i}. {customer}")
+            
+            try:
+                customer_choice = int(input("Select customer: ")) - 1
+                if 0 <= customer_choice < len(customers):
+                    email = customers[customer_choice]
+                else:
+                    safe_print("❌ Invalid selection")
+                    input("Press Enter to continue...")
+                    return
+            except (ValueError, IndexError):
+                safe_print("❌ Invalid selection")
+                input("Press Enter to continue...")
+                return
+        else:
+            email = self.get_input("Customer email")
+        
+        if not email:
+            safe_print("❌ Email is required")
+            input("Press Enter to continue...")
+            return
+        
+        safe_print(f"\n📊 Projects for {email}:")
+        command = f'python remote_data_manager.py --url {self.portal_url} --key {self.admin_key} list'
+        self.run_command(command, f"Listing projects for {email}")
+        
+        input("\nPress Enter to continue...")
+    
+    def remove_customer_project(self):
+        """Remove a specific project from a customer."""
+        safe_print("\n🗑️ Remove Customer Project")
+        print("-" * 30)
+        
+        # Get customers from portal first
+        customers = self.get_portal_customers()
+        if customers:
+            safe_print("📋 Available customers:")
+            for i, customer in enumerate(customers, 1):
+                print(f"   {i}. {customer}")
+            
+            try:
+                customer_choice = int(input("Select customer: ")) - 1
+                if 0 <= customer_choice < len(customers):
+                    email = customers[customer_choice]
+                else:
+                    safe_print("❌ Invalid selection")
+                    input("Press Enter to continue...")
+                    return
+            except (ValueError, IndexError):
+                safe_print("❌ Invalid selection")
+                input("Press Enter to continue...")
+                return
+        else:
+            email = self.get_input("Customer email")
+        
+        project = self.get_input("Project name")
+        
+        if not email or not project:
+            safe_print("❌ Email and project name are required")
+            input("Press Enter to continue...")
+            return
+        
+        confirm = input(f"❓ Remove project '{project}' from {email}? (y/N): ").strip().lower()
+        if confirm != 'y':
+            safe_print("❌ Cancelled")
+            input("Press Enter to continue...")
+            return
+        
+        command = f'python remote_data_manager.py --url {self.portal_url} --key {self.admin_key} remove-project "{email}" "{project}"'
+        success = self.run_command(command, f"Removing project {project}")
+        
+        if success:
+            safe_print(f"\n✅ Project '{project}' removed successfully!")
+        
+        input("\nPress Enter to continue...")
+    
+    def upload_database_to_customer(self):
+        """Upload a database to a specific customer (same as push to portal)."""
+        safe_print("\n📤 Upload Database to Customer")
+        print("-" * 30)
+        safe_print("💡 This uploads processed data to the customer's portal account")
+        
+        # Reuse the existing push to portal functionality
+        self.push_to_portal()
+    
     def remote_management_menu(self):
         """Handle remote site management."""
         while True:
@@ -396,6 +608,7 @@ class InteractiveManager:
             print("4. Remove project from portal")
             print("5. Remove customer from portal")
             print("6. Sync all local data to portal")
+            print("7. Deploy/Update Railway site")
             print("0. Back to main menu")
             
             choice = input("\nEnter choice: ").strip()
@@ -414,6 +627,8 @@ class InteractiveManager:
                 self.remove_remote_customer()
             elif choice == "6":
                 self.sync_to_portal()
+            elif choice == "7":
+                self.deploy_update_railway()
             else:
                 safe_print("❌ Invalid choice")
                 input("Press Enter to continue...")
@@ -614,6 +829,148 @@ class InteractiveManager:
         """Sync all local data to portal."""
         command = f'python remote_data_manager.py --url {self.portal_url} --key {self.admin_key} sync'
         self.run_command(command, "Syncing local data to portal")
+        input("\nPress Enter to continue...")
+    
+    def deploy_update_railway(self):
+        """Deploy or update the Railway site."""
+        safe_print("\n🚂 Railway Deployment/Update")
+        print("-" * 40)
+        
+        # Check Railway CLI
+        try:
+            import subprocess
+            result = subprocess.run(['railway', '--version'], capture_output=True, text=True, timeout=10)
+            if result.returncode != 0:
+                safe_print("❌ Railway CLI not found!")
+                safe_print("💡 Install with: npm install -g @railway/cli")
+                safe_print("🌐 Or visit: https://railway.app/cli")
+                input("Press Enter to continue...")
+                return
+        except Exception as e:
+            safe_print(f"❌ Error checking Railway CLI: {e}")
+            input("Press Enter to continue...")
+            return
+        
+        safe_print("✅ Railway CLI found")
+        
+        # Show deployment options
+        safe_print("\n📋 Deployment Options:")
+        print("   1. Quick Deploy (current code)")
+        print("   2. Full Setup (create new project)")
+        print("   3. Update existing deployment")
+        print("   0. Cancel")
+        
+        try:
+            deploy_choice = int(input("\nSelect option: "))
+        except ValueError:
+            safe_print("❌ Invalid selection")
+            input("Press Enter to continue...")
+            return
+        
+        if deploy_choice == 0:
+            safe_print("❌ Deployment cancelled")
+            input("Press Enter to continue...")
+            return
+        elif deploy_choice == 1:
+            self.quick_railway_deploy()
+        elif deploy_choice == 2:
+            self.full_railway_setup()
+        elif deploy_choice == 3:
+            self.update_railway_deployment()
+        else:
+            safe_print("❌ Invalid selection")
+            input("Press Enter to continue...")
+    
+    def quick_railway_deploy(self):
+        """Quick deployment to existing Railway project."""
+        safe_print("\n🚀 Quick Railway Deploy")
+        print("-" * 30)
+        
+        # Deploy current code
+        safe_print("📤 Deploying current code to Railway...")
+        success = self.run_command("railway up --detach", "Railway deployment")
+        
+        if success:
+            safe_print("\n✅ Deployment initiated!")
+            safe_print("🔍 Getting deployment URL...")
+            
+            # Try to get the URL
+            try:
+                import subprocess
+                result = subprocess.run(['railway', 'domain'], capture_output=True, text=True, timeout=30)
+                if result.returncode == 0 and result.stdout.strip():
+                    url = result.stdout.strip()
+                    safe_print(f"🌐 Site URL: {url}")
+                    
+                    # Update the portal URL in the manager
+                    if url.startswith('http'):
+                        self.portal_url = url
+                        safe_print(f"📍 Portal URL updated: {self.portal_url}")
+                else:
+                    safe_print("⚠️ Could not get URL automatically")
+                    safe_print("🔍 Check Railway dashboard for deployment URL")
+            except Exception as e:
+                safe_print(f"⚠️ Error getting URL: {e}")
+        
+        input("\nPress Enter to continue...")
+    
+    def full_railway_setup(self):
+        """Full Railway setup with new project."""
+        safe_print("\n🚂 Full Railway Setup")
+        print("-" * 30)
+        
+        safe_print("🔧 Running complete Railway setup...")
+        success = self.run_command("python railway_deploy.py", "Railway setup")
+        
+        if success:
+            safe_print("\n✅ Setup complete!")
+            safe_print("📋 Next steps:")
+            safe_print("   1. Check Railway dashboard for URL")
+            safe_print("   2. Update portal URL in this manager")
+            safe_print("   3. Test the deployed site")
+        
+        input("\nPress Enter to continue...")
+    
+    def update_railway_deployment(self):
+        """Update existing Railway deployment."""
+        safe_print("\n🔄 Update Railway Deployment")
+        print("-" * 30)
+        
+        # Check if we're in a Railway project
+        try:
+            import subprocess
+            result = subprocess.run(['railway', 'status'], capture_output=True, text=True, timeout=10)
+            if result.returncode != 0:
+                safe_print("❌ Not in a Railway project!")
+                safe_print("💡 Use 'Full Setup' option to create a new project")
+                input("Press Enter to continue...")
+                return
+        except Exception as e:
+            safe_print(f"❌ Error checking Railway status: {e}")
+            input("Press Enter to continue...")
+            return
+        
+        safe_print("✅ Railway project detected")
+        
+        # Update environment variables
+        safe_print("⚙️ Updating environment variables...")
+        env_commands = [
+            'railway variables --set ADMIN_API_KEY="secure_admin_key_2024_changeme"',
+            'railway variables --set HOST="0.0.0.0"',
+            'railway variables --set PORT="8080"'
+        ]
+        
+        for cmd in env_commands:
+            self.run_command(cmd, "Setting environment variable")
+        
+        # Deploy
+        safe_print("📤 Deploying updated code...")
+        success = self.run_command("railway up --detach", "Railway deployment")
+        
+        if success:
+            safe_print("\n✅ Update deployment initiated!")
+            safe_print("⏱️ Check Railway dashboard for deployment progress")
+        
         input("\nPress Enter to continue...")
     
     def system_management_menu(self):
