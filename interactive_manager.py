@@ -42,7 +42,11 @@ def safe_print(text):
                    .replace('📂', '[FOLDER]')
                    .replace('📈', '[COUNT]')
                    .replace('🧹', '[CLEANUP]')
-                   .replace('⬅️', '[BACK]'))
+                   .replace('⬅️', '[BACK]')
+                   .replace('🆕', '[NEW]')
+                   .replace('🧪', '[TEST]')
+                   .replace('👥', '[USERS]')
+                   .replace('📧', '[EMAIL]'))
     try:
         print(text)
     except UnicodeEncodeError:
@@ -158,21 +162,21 @@ class InteractiveManager:
     
     def process_documents(self, gpu=False):
         """Process documents from CSV."""
-        print(f"\n📄 Process Documents {'(GPU)' if gpu else '(CPU)'}")
+        safe_print(f"\n📄 Process Documents {'(GPU)' if gpu else '(CPU)'}")
         print("-" * 40)
         
         # Select CSV file
         csv_files = self.list_csv_files()
         if not csv_files:
-            print("❌ No CSV files found in input/ directory")
+            safe_print("❌ No CSV files found in input/ directory")
             input("Press Enter to continue...")
             return
         
         if len(csv_files) == 1:
             csv_file = csv_files[0]
-            print(f"📁 Using: {csv_file}")
+            safe_print(f"📁 Using: {csv_file}")
         else:
-            print("📁 Select CSV file:")
+            safe_print("📁 Select CSV file:")
             for i, file in enumerate(csv_files, 1):
                 print(f"   {i}. {file}")
             
@@ -180,12 +184,58 @@ class InteractiveManager:
                 choice = int(input("Enter number: ")) - 1
                 csv_file = csv_files[choice]
             except (ValueError, IndexError):
-                print("❌ Invalid selection")
+                safe_print("❌ Invalid selection")
                 input("Press Enter to continue...")
                 return
         
-        # Get customer and project info
-        customer = self.get_input("Customer name", "Customer")
+        # Get customer selection
+        safe_print("\n👤 Customer Selection")
+        print("-" * 40)
+        
+        # Get local customers from workspace
+        local_customers = self.get_local_customers()
+        
+        customer_options = []
+        if local_customers:
+            customer_options.extend(local_customers)
+        
+        # Add special options
+        customer_options.extend(["[New Customer]", "[Test Run - No Customer]"])
+        
+        safe_print("📋 Available options:")
+        for i, option in enumerate(customer_options, 1):
+            if option == "[New Customer]":
+                safe_print(f"   {i}. 🆕 {option}")
+            elif option == "[Test Run - No Customer]":
+                safe_print(f"   {i}. 🧪 {option}")
+            else:
+                safe_print(f"   {i}. 👤 {option}")
+        
+        try:
+            customer_choice = int(input("Select customer option: ")) - 1
+            if 0 <= customer_choice < len(customer_options):
+                selected_option = customer_options[customer_choice]
+                
+                if selected_option == "[New Customer]":
+                    customer = self.get_input("New customer name", "Customer")
+                elif selected_option == "[Test Run - No Customer]":
+                    customer = "test"
+                else:
+                    customer = selected_option
+            else:
+                safe_print("❌ Invalid selection")
+                input("Press Enter to continue...")
+                return
+        except (ValueError, IndexError):
+            safe_print("❌ Invalid selection")
+            input("Press Enter to continue...")
+            return
+        
+        if not customer:
+            safe_print("❌ Customer name is required")
+            input("Press Enter to continue...")
+            return
+        
         project = self.get_input("Project name", "Project")
         
         # Build command
@@ -196,9 +246,17 @@ class InteractiveManager:
         success = self.run_command(command, f"Processing {csv_file}")
         
         if success:
-            print(f"\n✅ Processing complete!")
-            print(f"📊 Customer: {customer}")
-            print(f"📁 Project: {project}")
+            safe_print(f"\n✅ Processing complete!")
+            safe_print(f"📊 Customer: {customer}")
+            safe_print(f"📁 Project: {project}")
+            
+            # Show next steps based on customer type
+            if customer == "test":
+                safe_print("\n💡 Test run completed - data stored locally only")
+            else:
+                safe_print(f"\n💡 Next steps:")
+                safe_print(f"   📤 Upload to portal: Remote Management → Push database")
+                safe_print(f"   🔍 View locally: Option 2 → List projects")
         
         input("\nPress Enter to continue...")
     
@@ -371,6 +429,26 @@ class InteractiveManager:
         command = f'python remote_data_manager.py --url {self.portal_url} --key {self.admin_key} list'
         self.run_command(command, "Listing remote portal data")
         input("\nPress Enter to continue...")
+    
+    def get_local_customers(self):
+        """Get list of local customers from workspace."""
+        try:
+            import os
+            from pathlib import Path
+            
+            workspace_dir = Path("workspace/customers")
+            if not workspace_dir.exists():
+                return []
+            
+            customers = []
+            for customer_dir in workspace_dir.iterdir():
+                if customer_dir.is_dir() and not customer_dir.name.startswith('.'):
+                    customers.append(customer_dir.name)
+            
+            return sorted(customers)
+        except Exception as e:
+            safe_print(f"⚠️ Could not fetch local customers: {e}")
+            return []
     
     def get_portal_customers(self):
         """Get list of customers from the portal."""
