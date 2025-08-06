@@ -29,7 +29,11 @@ def safe_print(text):
                    .replace('💾', '[DB]')
                    .replace('🔐', '[SECURE]')
                    .replace('📋', '[LIST]')
-                   .replace('🗑️', '[DELETE]'))
+                   .replace('🗑️', '[DELETE]')
+                   .replace('👥', '[USERS]')
+                   .replace('📧', '[EMAIL]')
+                   .replace('📭', '[EMPTY]')
+                   .replace('🆔', '[ID]'))
     try:
         print(text)
     except UnicodeEncodeError:
@@ -109,7 +113,7 @@ class CustomerDataUploader:
             
             safe_print(f"✅ Created customer: {email}")
             safe_print(f"🔐 Password: {password}")
-            print(f"🆔 Customer ID: {customer_id}")
+            safe_print(f"🆔 Customer ID: {customer_id}")
             
             return customer_id
             
@@ -130,15 +134,15 @@ class CustomerDataUploader:
         conn.close()
         
         if not customers:
-            print("📭 No customers found")
+            safe_print("📭 No customers found")
             return []
         
-        print("\n👥 Customers:")
+        safe_print("\n👥 Customers:")
         print("=" * 80)
         
         customer_list = []
         for customer in customers:
-            print(f"📧 {customer['email']}")
+            safe_print(f"📧 {customer['email']}")
             print(f"   Name: {customer['name']}")
             print(f"   Organization: {customer['organization'] or 'None'}")
             print(f"   Created: {customer['created_at'][:10]}")
@@ -211,7 +215,7 @@ class CustomerDataUploader:
         safe_print(f"📊 Project: {project_name}")
         safe_print(f"📄 Documents: {document_count}")
         safe_print(f"💾 Database: {database_filename}")
-        print(f"🆔 Project ID: {project_id}")
+        safe_print(f"🆔 Project ID: {project_id}")
         
         return True
     
@@ -242,14 +246,14 @@ class CustomerDataUploader:
         conn.close()
         
         if not projects:
-            print("📭 No projects found")
+            safe_print("📭 No projects found")
             return
         
         safe_print("\n📊 Customer Projects:")
         print("=" * 80)
         
         for project in projects:
-            print(f"📧 {project['email']} - {project['name']}")
+            safe_print(f"📧 {project['email']} - {project['name']}")
             print(f"   Project: {project['project_name']}")
             print(f"   Documents: {project['document_count']}")
             print(f"   Uploaded: {project['uploaded_at'][:19]}")
