@@ -839,8 +839,22 @@ class InteractiveManager:
         # Check Railway CLI
         try:
             import subprocess
-            result = subprocess.run(['railway', '--version'], capture_output=True, text=True, timeout=10)
-            if result.returncode != 0:
+            # Try different ways to find Railway CLI
+            railway_commands = ['railway', 'railway.exe', 'npx railway']
+            railway_found = False
+            
+            for cmd in railway_commands:
+                try:
+                    cmd_list = cmd.split() + ['--version']
+                    result = subprocess.run(cmd_list, capture_output=True, text=True, timeout=10, shell=True)
+                    if result.returncode == 0:
+                        railway_found = True
+                        self.railway_cmd = cmd.split()[0]  # Store the working command
+                        break
+                except:
+                    continue
+            
+            if not railway_found:
                 safe_print("❌ Railway CLI not found!")
                 safe_print("💡 Install with: npm install -g @railway/cli")
                 safe_print("🌐 Or visit: https://railway.app/cli")
@@ -858,6 +872,7 @@ class InteractiveManager:
         print("   1. Quick Deploy (current code)")
         print("   2. Full Setup (create new project)")
         print("   3. Update existing deployment")
+        print("   4. Manual deployment (step-by-step instructions)")
         print("   0. Cancel")
         
         try:
@@ -877,6 +892,8 @@ class InteractiveManager:
             self.full_railway_setup()
         elif deploy_choice == 3:
             self.update_railway_deployment()
+        elif deploy_choice == 4:
+            self.show_manual_deployment()
         else:
             safe_print("❌ Invalid selection")
             input("Press Enter to continue...")
@@ -888,7 +905,7 @@ class InteractiveManager:
         
         # Deploy current code
         safe_print("📤 Deploying current code to Railway...")
-        success = self.run_command("railway up --detach", "Railway deployment")
+        success = self.run_command(f"{getattr(self, 'railway_cmd', 'railway')} up --detach", "Railway deployment")
         
         if success:
             safe_print("\n✅ Deployment initiated!")
@@ -897,7 +914,8 @@ class InteractiveManager:
             # Try to get the URL
             try:
                 import subprocess
-                result = subprocess.run(['railway', 'domain'], capture_output=True, text=True, timeout=30)
+                railway_cmd = getattr(self, 'railway_cmd', 'railway')
+                result = subprocess.run([railway_cmd, 'domain'], capture_output=True, text=True, timeout=30, shell=True)
                 if result.returncode == 0 and result.stdout.strip():
                     url = result.stdout.strip()
                     safe_print(f"🌐 Site URL: {url}")
@@ -939,7 +957,8 @@ class InteractiveManager:
         # Check if we're in a Railway project
         try:
             import subprocess
-            result = subprocess.run(['railway', 'status'], capture_output=True, text=True, timeout=10)
+            railway_cmd = getattr(self, 'railway_cmd', 'railway')
+            result = subprocess.run([railway_cmd, 'status'], capture_output=True, text=True, timeout=10, shell=True)
             if result.returncode != 0:
                 safe_print("❌ Not in a Railway project!")
                 safe_print("💡 Use 'Full Setup' option to create a new project")
@@ -954,10 +973,11 @@ class InteractiveManager:
         
         # Update environment variables
         safe_print("⚙️ Updating environment variables...")
+        railway_cmd = getattr(self, 'railway_cmd', 'railway')
         env_commands = [
-            'railway variables --set ADMIN_API_KEY="secure_admin_key_2024_changeme"',
-            'railway variables --set HOST="0.0.0.0"',
-            'railway variables --set PORT="8080"'
+            f'{railway_cmd} variables --set ADMIN_API_KEY="secure_admin_key_2024_changeme"',
+            f'{railway_cmd} variables --set HOST="0.0.0.0"',
+            f'{railway_cmd} variables --set PORT="8080"'
         ]
         
         for cmd in env_commands:
@@ -965,11 +985,41 @@ class InteractiveManager:
         
         # Deploy
         safe_print("📤 Deploying updated code...")
-        success = self.run_command("railway up --detach", "Railway deployment")
+        success = self.run_command(f"{railway_cmd} up --detach", "Railway deployment")
         
         if success:
             safe_print("\n✅ Update deployment initiated!")
             safe_print("⏱️ Check Railway dashboard for deployment progress")
+        
+        input("\nPress Enter to continue...")
+    
+    def show_manual_deployment(self):
+        """Show manual deployment instructions."""
+        safe_print("\n📋 Manual Railway Deployment")
+        print("-" * 40)
+        
+        safe_print("🔧 Follow these steps in your terminal:")
+        print()
+        safe_print("1. 📤 Deploy Current Code:")
+        print("   railway up --detach")
+        print()
+        safe_print("2. ⚙️ Set Environment Variables:")
+        print('   railway variables --set ADMIN_API_KEY="secure_admin_key_2024_changeme"')
+        print('   railway variables --set HOST="0.0.0.0"')
+        print('   railway variables --set PORT="8080"')
+        print()
+        safe_print("3. 🌐 Get Site URL:")
+        print("   railway domain")
+        print()
+        safe_print("4. 📊 Check Status:")
+        print("   railway status")
+        print("   railway logs")
+        print()
+        safe_print("💡 Tips:")
+        print("   - Each command should be run separately")
+        print("   - Wait for deployment to complete before checking status")
+        print("   - Use 'railway logs' to debug any issues")
+        print(f"   - Current portal URL: {self.portal_url}")
         
         input("\nPress Enter to continue...")
     
