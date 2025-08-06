@@ -595,12 +595,23 @@ class InteractiveManager:
         """Show the main menu."""
         self.clear_screen()
         self.show_header()
-        print("📋 MAIN MENU")
+        safe_print("📄 GPU DOCUMENT PROCESSING")
         print("=" * 60)
-        print("1. 📄 Document Processing")
-        print("2. 👤 Customer Management") 
-        print("3. 🌐 Remote Site Management")
-        print("4. ⚙️ System Management")
+        
+        # Show available CSV files
+        csv_files = self.list_csv_files()
+        if csv_files:
+            safe_print("📁 Available CSV files:")
+            for i, file in enumerate(csv_files, 1):
+                print(f"   {i}. {file}")
+        else:
+            safe_print("❌ No CSV files found in input/ directory")
+        
+        print("\nOptions:")
+        print("1. 🚀 Process documents with GPU acceleration")
+        print("2. 📋 List processed projects")
+        print("3. 👤 Customer Management") 
+        print("4. 🌐 Remote Site Management")
         print("5. 📚 Quick Reference")
         print("0. 🚪 Exit")
         print("=" * 60)
@@ -611,9 +622,9 @@ class InteractiveManager:
         self.show_header()
         print("📚 QUICK REFERENCE")
         print("=" * 60)
-        print("🔄 Typical Workflow:")
-        print("   1. Process documents → Document Processing → Process documents")
-        print("   2. Create customer → Customer Management → Create new customer")
+        print("🔄 Simplified Workflow:")
+        print("   1. Process documents → Main Menu → Option 1 (GPU Processing)")
+        print("   2. Create customer → Customer Management → Create new customer")  
         print("   3. Upload to portal → Customer Management → Upload database")
         print("   4. Push to live site → Remote Management → Push database")
         print("")
@@ -644,13 +655,13 @@ class InteractiveManager:
                     print("\n👋 Goodbye!")
                     break
                 elif choice == "1":
-                    self.document_processing_menu()
+                    self.process_documents(gpu=True)
                 elif choice == "2":
-                    self.customer_management_menu()
+                    self.list_projects()
                 elif choice == "3":
-                    self.remote_management_menu()
+                    self.customer_management_menu()
                 elif choice == "4":
-                    self.system_management_menu()
+                    self.remote_management_menu()
                 elif choice == "5":
                     self.show_quick_reference()
                 else:

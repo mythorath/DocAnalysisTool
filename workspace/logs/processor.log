@@ -138,3 +138,219 @@
 2025-08-06 12:12:46,445 - WARNING - PyMuPDF not available - cannot extract PDF text
 2025-08-06 12:12:46,445 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0631.pdf
 2025-08-06 12:12:46,445 - WARNING - PyMuPDF not available - cannot extract PDF text
+2025-08-06 13:08:32,256 - INFO - Downloaded: CMS-2025-0028-0227.pdf
+2025-08-06 13:08:32,329 - INFO - Downloaded: CMS-2025-0028-0578.pdf
+2025-08-06 13:08:32,394 - INFO - Downloaded: CMS-2025-0028-0631.pdf
+2025-08-06 13:08:32,481 - INFO - Downloaded: CMS-2025-0028-0480.pdf
+2025-08-06 13:08:32,594 - INFO - Downloaded: CMS-2025-0028-0460.pdf
+2025-08-06 13:08:32,662 - INFO - Downloaded: CMS-2025-0028-0286.pdf
+2025-08-06 13:08:32,760 - INFO - Downloaded: CMS-2025-0028-0191.pdf
+2025-08-06 13:08:32,845 - INFO - Downloaded: CMS-2025-0028-0527.pdf
+2025-08-06 13:08:32,925 - INFO - Downloaded: CMS-2025-0028-0611.pdf
+2025-08-06 13:08:33,018 - INFO - Downloaded: CMS-2025-0028-0457.pdf
+2025-08-06 13:08:33,107 - INFO - Downloaded: CMS-2025-0028-0560.pdf
+2025-08-06 13:08:33,194 - INFO - Downloaded: CMS-2025-0028-0110.pdf
+2025-08-06 13:08:33,279 - INFO - Downloaded: CMS-2025-0028-0110_attachment_2.pdf
+2025-08-06 13:08:33,387 - INFO - Downloaded: CMS-2025-0028-0486.pdf
+2025-08-06 13:08:39,180 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0110.pdf
+2025-08-06 13:08:39,225 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0110_attachment_2.pdf
+2025-08-06 13:08:39,254 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0191.pdf
+2025-08-06 13:08:39,274 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0227.pdf
+2025-08-06 13:08:39,284 - INFO - [IMAGE] Page 1 appears to be image-based, using OCR...
+2025-08-06 13:08:40,637 - INFO - [IMAGE] Page 2 appears to be image-based, using OCR...
+2025-08-06 13:08:41,969 - INFO - [IMAGE] Page 3 appears to be image-based, using OCR...
+2025-08-06 13:08:43,175 - INFO - [IMAGE] Page 4 appears to be image-based, using OCR...
+2025-08-06 13:08:44,403 - INFO - [IMAGE] Page 5 appears to be image-based, using OCR...
+2025-08-06 13:08:45,663 - INFO - [IMAGE] Page 6 appears to be image-based, using OCR...
+2025-08-06 13:08:46,175 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0286.pdf
+2025-08-06 13:08:46,192 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0457.pdf
+2025-08-06 13:08:46,215 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0460.pdf
+2025-08-06 13:08:46,237 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0480.pdf
+2025-08-06 13:08:46,275 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0486.pdf
+2025-08-06 13:08:46,285 - INFO - [IMAGE] Page 1 appears to be image-based, using OCR...
+2025-08-06 13:08:47,662 - INFO - [IMAGE] Page 2 appears to be image-based, using OCR...
+2025-08-06 13:08:49,152 - INFO - [IMAGE] Page 3 appears to be image-based, using OCR...
+2025-08-06 13:08:50,774 - INFO - [IMAGE] Page 4 appears to be image-based, using OCR...
+2025-08-06 13:08:52,247 - INFO - [IMAGE] Page 5 appears to be image-based, using OCR...
+2025-08-06 13:08:53,164 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0527.pdf
+2025-08-06 13:08:53,234 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0560.pdf
+2025-08-06 13:08:53,257 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0578.pdf
+2025-08-06 13:08:53,277 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0611.pdf
+2025-08-06 13:08:53,336 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0631.pdf
+2025-08-06 13:09:40,696 - INFO - Downloaded: CMS-2025-0028-0227.pdf
+2025-08-06 13:09:40,768 - INFO - Downloaded: CMS-2025-0028-0578.pdf
+2025-08-06 13:09:40,838 - INFO - Downloaded: CMS-2025-0028-0631.pdf
+2025-08-06 13:09:40,924 - INFO - Downloaded: CMS-2025-0028-0480.pdf
+2025-08-06 13:09:41,021 - INFO - Downloaded: CMS-2025-0028-0460.pdf
+2025-08-06 13:09:41,095 - INFO - Downloaded: CMS-2025-0028-0286.pdf
+2025-08-06 13:09:41,166 - INFO - Downloaded: CMS-2025-0028-0191.pdf
+2025-08-06 13:09:41,262 - INFO - Downloaded: CMS-2025-0028-0527.pdf
+2025-08-06 13:09:41,338 - INFO - Downloaded: CMS-2025-0028-0611.pdf
+2025-08-06 13:09:41,415 - INFO - Downloaded: CMS-2025-0028-0457.pdf
+2025-08-06 13:09:41,485 - INFO - Downloaded: CMS-2025-0028-0560.pdf
+2025-08-06 13:09:41,623 - INFO - Downloaded: CMS-2025-0028-0110.pdf
+2025-08-06 13:09:41,703 - INFO - Downloaded: CMS-2025-0028-0110_attachment_2.pdf
+2025-08-06 13:09:41,796 - INFO - Downloaded: CMS-2025-0028-0486.pdf
+2025-08-06 13:09:46,516 - INFO - [TOOL] GPU Processing: [ERROR] Disabled
+2025-08-06 13:09:46,516 - INFO - [TOOL] EasyOCR (GPU): [ERROR] Not available
+2025-08-06 13:09:46,516 - INFO - [TOOL] Tesseract (CPU): [OK] Available
+2025-08-06 13:09:46,517 - INFO - [TOOL] PyMuPDF: [OK] Available
+2025-08-06 13:09:46,517 - INFO - [TOOL] PDF2Image: [OK] Available
+2025-08-06 13:09:46,517 - INFO - [GPU] GPU-enhanced extraction initialized
+2025-08-06 13:09:46,518 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0110.pdf
+2025-08-06 13:09:46,538 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0110.pdf
+2025-08-06 13:09:46,539 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0110_attachment_2.pdf
+2025-08-06 13:09:46,561 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0110_attachment_2.pdf
+2025-08-06 13:09:46,563 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0191.pdf
+2025-08-06 13:09:46,580 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0191.pdf
+2025-08-06 13:09:46,581 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0227.pdf
+2025-08-06 13:09:46,590 - INFO - [IMAGE] Page 1 appears to be image-based, using OCR...
+2025-08-06 13:09:47,686 - INFO - [IMAGE] Page 2 appears to be image-based, using OCR...
+2025-08-06 13:09:49,003 - INFO - [IMAGE] Page 3 appears to be image-based, using OCR...
+2025-08-06 13:09:50,318 - INFO - [IMAGE] Page 4 appears to be image-based, using OCR...
+2025-08-06 13:09:51,628 - INFO - [IMAGE] Page 5 appears to be image-based, using OCR...
+2025-08-06 13:09:52,964 - INFO - [IMAGE] Page 6 appears to be image-based, using OCR...
+2025-08-06 13:09:53,496 - INFO - [OK] GPU extraction successful (cpu_ocr): CMS-2025-0028-0227.pdf
+2025-08-06 13:09:53,498 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0286.pdf
+2025-08-06 13:09:53,513 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0286.pdf
+2025-08-06 13:09:53,514 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0457.pdf
+2025-08-06 13:09:53,535 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0457.pdf
+2025-08-06 13:09:53,536 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0460.pdf
+2025-08-06 13:09:53,558 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0460.pdf
+2025-08-06 13:09:53,560 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0480.pdf
+2025-08-06 13:09:53,605 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0480.pdf
+2025-08-06 13:09:53,607 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0486.pdf
+2025-08-06 13:09:53,618 - INFO - [IMAGE] Page 1 appears to be image-based, using OCR...
+2025-08-06 13:09:55,048 - INFO - [IMAGE] Page 2 appears to be image-based, using OCR...
+2025-08-06 13:09:56,560 - INFO - [IMAGE] Page 3 appears to be image-based, using OCR...
+2025-08-06 13:09:58,194 - INFO - [IMAGE] Page 4 appears to be image-based, using OCR...
+2025-08-06 13:09:59,647 - INFO - [IMAGE] Page 5 appears to be image-based, using OCR...
+2025-08-06 13:10:00,578 - INFO - [OK] GPU extraction successful (cpu_ocr): CMS-2025-0028-0486.pdf
+2025-08-06 13:10:00,580 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0527.pdf
+2025-08-06 13:10:00,651 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0527.pdf
+2025-08-06 13:10:00,653 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0560.pdf
+2025-08-06 13:10:00,677 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0560.pdf
+2025-08-06 13:10:00,678 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0578.pdf
+2025-08-06 13:10:00,696 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0578.pdf
+2025-08-06 13:10:00,697 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0611.pdf
+2025-08-06 13:10:00,755 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0611.pdf
+2025-08-06 13:10:00,757 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0631.pdf
+2025-08-06 13:10:00,779 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0631.pdf
+2025-08-06 13:13:34,546 - INFO - Downloaded: CMS-2025-0028-0227.pdf
+2025-08-06 13:13:34,608 - INFO - Downloaded: CMS-2025-0028-0578.pdf
+2025-08-06 13:13:34,670 - INFO - Downloaded: CMS-2025-0028-0631.pdf
+2025-08-06 13:13:34,758 - INFO - Downloaded: CMS-2025-0028-0480.pdf
+2025-08-06 13:13:34,872 - INFO - Downloaded: CMS-2025-0028-0460.pdf
+2025-08-06 13:13:34,978 - INFO - Downloaded: CMS-2025-0028-0286.pdf
+2025-08-06 13:13:35,050 - INFO - Downloaded: CMS-2025-0028-0191.pdf
+2025-08-06 13:13:35,136 - INFO - Downloaded: CMS-2025-0028-0527.pdf
+2025-08-06 13:13:35,250 - INFO - Downloaded: CMS-2025-0028-0611.pdf
+2025-08-06 13:13:35,343 - INFO - Downloaded: CMS-2025-0028-0457.pdf
+2025-08-06 13:13:35,415 - INFO - Downloaded: CMS-2025-0028-0560.pdf
+2025-08-06 13:13:35,530 - INFO - Downloaded: CMS-2025-0028-0110.pdf
+2025-08-06 13:13:35,599 - INFO - Downloaded: CMS-2025-0028-0110_attachment_2.pdf
+2025-08-06 13:13:35,709 - INFO - Downloaded: CMS-2025-0028-0486.pdf
+2025-08-06 13:13:40,329 - INFO - [TOOL] GPU Processing: [ERROR] Disabled
+2025-08-06 13:13:40,329 - INFO - [TOOL] EasyOCR (GPU): [ERROR] Not available
+2025-08-06 13:13:40,329 - INFO - [TOOL] Tesseract (CPU): [OK] Available
+2025-08-06 13:13:40,330 - INFO - [TOOL] PyMuPDF: [OK] Available
+2025-08-06 13:13:40,330 - INFO - [TOOL] PDF2Image: [OK] Available
+2025-08-06 13:13:40,330 - INFO - [GPU] GPU-enhanced extraction initialized
+2025-08-06 13:13:40,330 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0110.pdf
+2025-08-06 13:13:40,351 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0110.pdf
+2025-08-06 13:13:40,352 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0110_attachment_2.pdf
+2025-08-06 13:13:40,374 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0110_attachment_2.pdf
+2025-08-06 13:13:40,375 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0191.pdf
+2025-08-06 13:13:40,392 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0191.pdf
+2025-08-06 13:13:40,393 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0227.pdf
+2025-08-06 13:13:40,402 - INFO - [IMAGE] Page 1 appears to be image-based, using OCR...
+2025-08-06 13:13:41,471 - INFO - [IMAGE] Page 2 appears to be image-based, using OCR...
+2025-08-06 13:13:42,787 - INFO - [IMAGE] Page 3 appears to be image-based, using OCR...
+2025-08-06 13:13:44,034 - INFO - [IMAGE] Page 4 appears to be image-based, using OCR...
+2025-08-06 13:13:45,289 - INFO - [IMAGE] Page 5 appears to be image-based, using OCR...
+2025-08-06 13:13:46,555 - INFO - [IMAGE] Page 6 appears to be image-based, using OCR...
+2025-08-06 13:13:47,085 - INFO - [OK] GPU extraction successful (cpu_ocr): CMS-2025-0028-0227.pdf
+2025-08-06 13:13:47,086 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0286.pdf
+2025-08-06 13:13:47,100 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0286.pdf
+2025-08-06 13:13:47,102 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0457.pdf
+2025-08-06 13:13:47,121 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0457.pdf
+2025-08-06 13:13:47,123 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0460.pdf
+2025-08-06 13:13:47,145 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0460.pdf
+2025-08-06 13:13:47,146 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0480.pdf
+2025-08-06 13:13:47,195 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0480.pdf
+2025-08-06 13:13:47,196 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0486.pdf
+2025-08-06 13:13:47,208 - INFO - [IMAGE] Page 1 appears to be image-based, using OCR...
+2025-08-06 13:13:48,601 - INFO - [IMAGE] Page 2 appears to be image-based, using OCR...
+2025-08-06 13:13:50,199 - INFO - [IMAGE] Page 3 appears to be image-based, using OCR...
+2025-08-06 13:13:51,854 - INFO - [IMAGE] Page 4 appears to be image-based, using OCR...
+2025-08-06 13:13:53,351 - INFO - [IMAGE] Page 5 appears to be image-based, using OCR...
+2025-08-06 13:13:54,290 - INFO - [OK] GPU extraction successful (cpu_ocr): CMS-2025-0028-0486.pdf
+2025-08-06 13:13:54,291 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0527.pdf
+2025-08-06 13:13:54,369 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0527.pdf
+2025-08-06 13:13:54,371 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0560.pdf
+2025-08-06 13:13:54,399 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0560.pdf
+2025-08-06 13:13:54,400 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0578.pdf
+2025-08-06 13:13:54,418 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0578.pdf
+2025-08-06 13:13:54,419 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0611.pdf
+2025-08-06 13:13:54,489 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0611.pdf
+2025-08-06 13:13:54,490 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0631.pdf
+2025-08-06 13:13:54,518 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0631.pdf
+2025-08-06 13:15:37,175 - INFO - Downloaded: CMS-2025-0028-0227.pdf
+2025-08-06 13:15:37,235 - INFO - Downloaded: CMS-2025-0028-0578.pdf
+2025-08-06 13:15:37,312 - INFO - Downloaded: CMS-2025-0028-0631.pdf
+2025-08-06 13:15:37,396 - INFO - Downloaded: CMS-2025-0028-0480.pdf
+2025-08-06 13:15:37,482 - INFO - Downloaded: CMS-2025-0028-0460.pdf
+2025-08-06 13:15:37,568 - INFO - Downloaded: CMS-2025-0028-0286.pdf
+2025-08-06 13:15:37,637 - INFO - Downloaded: CMS-2025-0028-0191.pdf
+2025-08-06 13:15:37,726 - INFO - Downloaded: CMS-2025-0028-0527.pdf
+2025-08-06 13:15:37,809 - INFO - Downloaded: CMS-2025-0028-0611.pdf
+2025-08-06 13:15:37,889 - INFO - Downloaded: CMS-2025-0028-0457.pdf
+2025-08-06 13:15:37,962 - INFO - Downloaded: CMS-2025-0028-0560.pdf
+2025-08-06 13:15:38,039 - INFO - Downloaded: CMS-2025-0028-0110.pdf
+2025-08-06 13:15:38,096 - INFO - Downloaded: CMS-2025-0028-0110_attachment_2.pdf
+2025-08-06 13:15:38,190 - INFO - Downloaded: CMS-2025-0028-0486.pdf
+2025-08-06 13:15:42,854 - INFO - [TOOL] GPU Processing: [ERROR] Disabled
+2025-08-06 13:15:42,855 - INFO - [TOOL] EasyOCR (GPU): [ERROR] Not available
+2025-08-06 13:15:42,855 - INFO - [TOOL] Tesseract (CPU): [OK] Available
+2025-08-06 13:15:42,855 - INFO - [TOOL] PyMuPDF: [OK] Available
+2025-08-06 13:15:42,855 - INFO - [TOOL] PDF2Image: [OK] Available
+2025-08-06 13:15:42,855 - INFO - [GPU] GPU-enhanced extraction initialized
+2025-08-06 13:15:42,856 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0110.pdf
+2025-08-06 13:15:42,875 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0110.pdf
+2025-08-06 13:15:42,876 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0110_attachment_2.pdf
+2025-08-06 13:15:42,899 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0110_attachment_2.pdf
+2025-08-06 13:15:42,900 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0191.pdf
+2025-08-06 13:15:42,916 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0191.pdf
+2025-08-06 13:15:42,917 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0227.pdf
+2025-08-06 13:15:42,930 - INFO - [IMAGE] Page 1 appears to be image-based, using OCR...
+2025-08-06 13:15:44,016 - INFO - [IMAGE] Page 2 appears to be image-based, using OCR...
+2025-08-06 13:15:45,365 - INFO - [IMAGE] Page 3 appears to be image-based, using OCR...
+2025-08-06 13:15:46,612 - INFO - [IMAGE] Page 4 appears to be image-based, using OCR...
+2025-08-06 13:15:47,867 - INFO - [IMAGE] Page 5 appears to be image-based, using OCR...
+2025-08-06 13:15:49,152 - INFO - [IMAGE] Page 6 appears to be image-based, using OCR...
+2025-08-06 13:15:49,686 - INFO - [OK] GPU extraction successful (cpu_ocr): CMS-2025-0028-0227.pdf
+2025-08-06 13:15:49,687 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0286.pdf
+2025-08-06 13:15:49,703 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0286.pdf
+2025-08-06 13:15:49,705 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0457.pdf
+2025-08-06 13:15:49,728 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0457.pdf
+2025-08-06 13:15:49,730 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0460.pdf
+2025-08-06 13:15:49,751 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0460.pdf
+2025-08-06 13:15:49,752 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0480.pdf
+2025-08-06 13:15:49,793 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0480.pdf
+2025-08-06 13:15:49,795 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0486.pdf
+2025-08-06 13:15:49,805 - INFO - [IMAGE] Page 1 appears to be image-based, using OCR...
+2025-08-06 13:15:51,216 - INFO - [IMAGE] Page 2 appears to be image-based, using OCR...
+2025-08-06 13:15:52,742 - INFO - [IMAGE] Page 3 appears to be image-based, using OCR...
+2025-08-06 13:15:54,368 - INFO - [IMAGE] Page 4 appears to be image-based, using OCR...
+2025-08-06 13:15:55,921 - INFO - [IMAGE] Page 5 appears to be image-based, using OCR...
+2025-08-06 13:15:56,853 - INFO - [OK] GPU extraction successful (cpu_ocr): CMS-2025-0028-0486.pdf
+2025-08-06 13:15:56,854 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0527.pdf
+2025-08-06 13:15:56,921 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0527.pdf
+2025-08-06 13:15:56,923 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0560.pdf
+2025-08-06 13:15:56,950 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0560.pdf
+2025-08-06 13:15:56,952 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0578.pdf
+2025-08-06 13:15:56,968 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0578.pdf
+2025-08-06 13:15:56,970 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0611.pdf
+2025-08-06 13:15:57,030 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0611.pdf
+2025-08-06 13:15:57,031 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0631.pdf
+2025-08-06 13:15:57,055 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0631.pdf

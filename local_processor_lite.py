@@ -35,7 +35,12 @@ def safe_print(text):
                    .replace('🔥', '[PROCESS]')
                    .replace('💾', '[DB]')
                    .replace('🎉', '[COMPLETE]')
-                   .replace('🔍', '[SEARCH]'))
+                   .replace('🔍', '[SEARCH]')
+                   .replace('📎', '[LINK]')
+                   .replace('📥', '[DOWNLOAD]')
+                   .replace('📝', '[EXTRACT]')
+                   .replace('📈', '[COUNT]')
+                   .replace('👤', '[USER]'))
     try:
         print(text)
     except UnicodeEncodeError:
@@ -412,7 +417,7 @@ class LocalProcessorLite:
             def format(self, record):
                 # Apply emoji replacement to log messages on Windows
                 if os.name == 'nt':
-                    record.msg = str(record.msg).replace('🚀', '[GPU]').replace('✅', '[OK]').replace('❌', '[ERROR]').replace('⚠️', '[WARNING]').replace('🔧', '[TOOL]').replace('💡', '[TIP]').replace('📄', '[DOCS]').replace('📊', '[DATA]').replace('📁', '[FILES]').replace('🗂️', '[FOLDER]').replace('📋', '[LIST]').replace('📦', '[DEPS]').replace('🔥', '[PROCESS]').replace('💾', '[DB]').replace('🎉', '[COMPLETE]').replace('🔍', '[SEARCH]')
+                    record.msg = str(record.msg).replace('🚀', '[GPU]').replace('✅', '[OK]').replace('❌', '[ERROR]').replace('⚠️', '[WARNING]').replace('🔧', '[TOOL]').replace('💡', '[TIP]').replace('📄', '[DOCS]').replace('📊', '[DATA]').replace('📁', '[FILES]').replace('🗂️', '[FOLDER]').replace('📋', '[LIST]').replace('📦', '[DEPS]').replace('🔥', '[PROCESS]').replace('💾', '[DB]').replace('🎉', '[COMPLETE]').replace('🔍', '[SEARCH]').replace('📎', '[LINK]').replace('📥', '[DOWNLOAD]').replace('📝', '[EXTRACT]').replace('📈', '[COUNT]').replace('👤', '[USER]')
                 return super().format(record)
         
         formatter = SafeFormatter('%(asctime)s - %(levelname)s - %(message)s')
@@ -461,7 +466,7 @@ class LocalProcessorLite:
                     safe_print("❌ CSV must have a URL/Attachment column (URL, Attachment Files, etc.)")
                     return None
                 
-                print(f"📎 Using '{url_column}' column for document URLs")
+                safe_print(f"📎 Using '{url_column}' column for document URLs")
                 total_docs = len(df)
             else:
                 # Basic validation without pandas
@@ -484,7 +489,7 @@ class LocalProcessorLite:
                     
                     total_docs = sum(1 for _ in reader)
             
-            print(f"📈 Found {total_docs} documents to process")
+            safe_print(f"📈 Found {total_docs} documents to process")
             
         except Exception as e:
             safe_print(f"❌ CSV Error: {e}")
@@ -507,7 +512,7 @@ class LocalProcessorLite:
         # Step 1: Download documents (if requests available)
         download_results = {'successful': 0, 'failed': 0}
         if HAS_REQUESTS:
-            print("\n📥 Step 1: Downloading documents...")
+            safe_print("\n📥 Step 1: Downloading documents...")
             downloader = SimpleDownloader(
                 downloads_dir=str(project_downloads),
                 logs_dir=str(self.logs_dir)
@@ -523,7 +528,7 @@ class LocalProcessorLite:
             print("   Place PDF files manually in:", project_downloads)
         
         # Step 2: Extract text
-        print("\n📝 Step 2: Extracting text...")
+        safe_print("\n📝 Step 2: Extracting text...")
         extractor = SimpleTextExtractor(use_gpu=self.use_gpu)
         extracted_files = []
         
@@ -540,10 +545,10 @@ class LocalProcessorLite:
                         'metadata': metadata
                     })
         
-        print(f"✅ Extracted: {len(extracted_files)} documents")
+        safe_print(f"✅ Extracted: {len(extracted_files)} documents")
         
         # Step 3: Build searchable database
-        print("\n🔍 Step 3: Building search database...")
+        safe_print("\n🔍 Step 3: Building search database...")
         db_path = project_output / f"{project_id}.db"
         indexer = SimpleIndexer(str(db_path))
         
@@ -615,7 +620,7 @@ class LocalProcessorLite:
                 indexed_count += 1
         
         indexer.close()
-        print(f"✅ Indexed: {indexed_count} documents")
+        safe_print(f"✅ Indexed: {indexed_count} documents")
         
         # Step 4: Create summary
         summary = {
@@ -663,7 +668,7 @@ class LocalProcessorLite:
         for customer_dir in customers_dir.iterdir():
             if customer_dir.is_dir():
                 customer_name = customer_dir.name.replace("_", " ").title()
-                print(f"\n👤 {customer_name}")
+                safe_print(f"\n👤 {customer_name}")
                 
                 for project_dir in customer_dir.iterdir():
                     if project_dir.is_dir():
@@ -749,7 +754,7 @@ def main():
         )
         
         if result and result['success']:
-            print(f"\n🚀 Next step: Upload {result['database_path']} to customer's online access")
+            safe_print(f"\n🚀 Next step: Upload {result['database_path']} to customer's online access")
             print(f"   Command: python upload_customer_data.py upload \"{result['database_path']}\" customer@email.com \"Project Name\"")
     
     elif args.command == 'list':
