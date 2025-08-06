@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Local Document Processing Tool - Lite Version
 Simplified processor that works with minimal dependencies.
@@ -13,6 +14,28 @@ from datetime import datetime
 from pathlib import Path
 import argparse
 import logging
+
+# Windows console emoji compatibility
+def safe_print(text):
+    """Print text with emoji fallbacks for Windows console."""
+    if os.name == 'nt':
+        # Replace problematic emojis with ASCII equivalents
+        text = (text.replace('🚀', '[GPU]')
+                   .replace('✅', '[OK]')
+                   .replace('❌', '[ERROR]')
+                   .replace('⚠️', '[WARNING]')
+                   .replace('📄', '[DOCS]')
+                   .replace('📊', '[DATA]')
+                   .replace('🔧', '[TOOL]')
+                   .replace('💡', '[TIP]')
+                   .replace('📁', '[FILES]')
+                   .replace('🗂️', '[FOLDER]')
+                   .replace('📋', '[LIST]'))
+    try:
+        print(text)
+    except UnicodeEncodeError:
+        # Final fallback - remove all non-ASCII characters
+        print(text.encode('ascii', 'ignore').decode('ascii'))
 
 # Try to import pandas, fallback to basic CSV handling
 try:
@@ -390,15 +413,15 @@ class LocalProcessorLite:
         )
         self.logger = logging.getLogger(__name__)
         
-        print(f"📁 Workspace: {self.workspace.absolute()}")
+        safe_print(f"📁 Workspace: {self.workspace.absolute()}")
         print(f"📦 Dependencies: pandas={HAS_PANDAS}, requests={HAS_REQUESTS}")
     
     def process_customer_batch(self, csv_file, customer_name, project_name):
         """Process a complete customer batch from CSV to searchable database."""
         
         print(f"\n🔥 Processing batch for {customer_name}")
-        print(f"📊 Project: {project_name}")
-        print(f"📄 CSV: {csv_file}")
+        safe_print(f"📊 Project: {project_name}")
+        safe_print(f"📄 CSV: {csv_file}")
         print("=" * 60)
         
         # Validate CSV
@@ -406,7 +429,7 @@ class LocalProcessorLite:
             if HAS_PANDAS:
                 df = pd.read_csv(csv_file)
                 if 'Document ID' not in df.columns:
-                    print("❌ CSV must have 'Document ID' column")
+                    safe_print("❌ CSV must have 'Document ID' column")
                     return None
                 
                 # Check for URL column (flexible naming)
@@ -417,7 +440,7 @@ class LocalProcessorLite:
                         break
                 
                 if url_column is None:
-                    print("❌ CSV must have a URL/Attachment column (URL, Attachment Files, etc.)")
+                    safe_print("❌ CSV must have a URL/Attachment column (URL, Attachment Files, etc.)")
                     return None
                 
                 print(f"📎 Using '{url_column}' column for document URLs")
@@ -428,7 +451,7 @@ class LocalProcessorLite:
                     reader = csv.DictReader(f)
                     headers = reader.fieldnames
                     if 'Document ID' not in headers:
-                        print("❌ CSV must have 'Document ID' column")
+                        safe_print("❌ CSV must have 'Document ID' column")
                         return None
                     
                     url_column = None
@@ -438,7 +461,7 @@ class LocalProcessorLite:
                             break
                     
                     if url_column is None:
-                        print("❌ CSV must have a URL/Attachment column")
+                        safe_print("❌ CSV must have a URL/Attachment column")
                         return None
                     
                     total_docs = sum(1 for _ in reader)
@@ -446,7 +469,7 @@ class LocalProcessorLite:
             print(f"📈 Found {total_docs} documents to process")
             
         except Exception as e:
-            print(f"❌ CSV Error: {e}")
+            safe_print(f"❌ CSV Error: {e}")
             return None
         
         # Create customer-specific directories
@@ -461,7 +484,7 @@ class LocalProcessorLite:
         for directory in [project_dir, project_downloads, project_text, project_output]:
             directory.mkdir(parents=True, exist_ok=True)
         
-        print(f"📁 Project directory: {project_dir}")
+        safe_print(f"📁 Project directory: {project_dir}")
         
         # Step 1: Download documents (if requests available)
         download_results = {'successful': 0, 'failed': 0}
@@ -473,12 +496,12 @@ class LocalProcessorLite:
             )
             
             download_results = downloader.download_from_csv(csv_file)
-            print(f"✅ Downloaded: {download_results['successful']}/{total_docs}")
+            safe_print(f"✅ Downloaded: {download_results['successful']}/{total_docs}")
             
             if download_results['failed'] > 0:
-                print(f"⚠️ Failed: {download_results['failed']} documents")
+                safe_print(f"⚠️ Failed: {download_results['failed']} documents")
         else:
-            print("\n⚠️ Step 1: Skipping downloads (requests not available)")
+            safe_print("\n⚠️ Step 1: Skipping downloads (requests not available)")
             print("   Place PDF files manually in:", project_downloads)
         
         # Step 2: Extract text
@@ -596,10 +619,10 @@ class LocalProcessorLite:
         
         print("\n" + "=" * 60)
         print(f"🎉 Processing Complete!")
-        print(f"📊 Summary: {indexed_count}/{total_docs} documents processed")
+        safe_print(f"📊 Summary: {indexed_count}/{total_docs} documents processed")
         print(f"💾 Database: {db_path}")
         print(f"📋 Summary: {summary_path}")
-        print(f"📁 All files: {project_dir}")
+        safe_print(f"📁 All files: {project_dir}")
         
         return {
             'success': True,
@@ -616,7 +639,7 @@ class LocalProcessorLite:
             print("📭 No customer projects found")
             return
         
-        print("\n📋 Customer Projects:")
+        safe_print("\n📋 Customer Projects:")
         print("=" * 60)
         
         for customer_dir in customers_dir.iterdir():
@@ -632,17 +655,17 @@ class LocalProcessorLite:
                                 with open(summary_file, 'r') as f:
                                     summary = json.load(f)
                                 
-                                print(f"  📊 {summary['project_name']}")
+                                safe_print(f"  📊 {summary['project_name']}")
                                 print(f"      Date: {summary['processed_date'][:10]}")
                                 print(f"      Documents: {summary['indexed_documents']}")
                                 print(f"      Database: {summary['database_path']}")
                             except:
-                                print(f"  📁 {project_dir.name}")
+                                safe_print(f"  📁 {project_dir.name}")
     
     def test_search(self, database_path, query):
         """Test search functionality on a database."""
         if not os.path.exists(database_path):
-            print(f"❌ Database not found: {database_path}")
+            safe_print(f"❌ Database not found: {database_path}")
             return
         
         print(f"\n🔍 Testing search: '{query}'")
@@ -653,7 +676,7 @@ class LocalProcessorLite:
             results = indexer.search_documents(query, limit=5)
             
             if results:
-                print(f"\n✅ Found {len(results)} results:")
+                safe_print(f"\n✅ Found {len(results)} results:")
                 for i, result in enumerate(results, 1):
                     print(f"\n{i}. {result.get('filename', 'Unknown')}")
                     if result.get('organization'):
@@ -666,7 +689,7 @@ class LocalProcessorLite:
             indexer.close()
                 
         except Exception as e:
-            print(f"❌ Search error: {e}")
+            safe_print(f"❌ Search error: {e}")
 
 def main():
     """Main CLI interface."""
@@ -697,7 +720,7 @@ def main():
     # Initialize processor with GPU option if provided
     use_gpu = hasattr(args, 'gpu') and args.gpu
     if use_gpu:
-        print("🚀 GPU acceleration enabled")
+        safe_print("🚀 GPU acceleration enabled")
     processor = LocalProcessorLite(use_gpu=use_gpu)
     
     if args.command == 'process':
