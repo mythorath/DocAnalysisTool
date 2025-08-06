@@ -665,6 +665,14 @@
                                             <small class="opacity-75">Document ID</small>
                                             <div class="fw-bold">${data.document.document_id}</div>
                                         </div>
+                                        ${data.document.document_type ? `
+                                        <div class="col-md-3 mb-3">
+                                            <small class="opacity-75">Document Type</small>
+                                            <div class="fw-bold text-primary">
+                                                <i class="bi bi-stars me-1"></i>${data.document.document_type}
+                                            </div>
+                                        </div>
+                                        ` : ''}
                                         ${data.document.organization ? `
                                         <div class="col-md-3 mb-3">
                                             <small class="opacity-75">Organization</small>
@@ -700,7 +708,25 @@
                                             <small class="opacity-75">Content Length</small>
                                             <div class="fw-bold">${(data.character_count || 0).toLocaleString()} characters</div>
                                         </div>
+                                        ${data.document.subject_area ? `
+                                        <div class="col-md-6 mb-3">
+                                            <small class="opacity-75">Subject Area</small>
+                                            <div class="fw-bold text-info">${data.document.subject_area}</div>
+                                        </div>
+                                        ` : ''}
                                     </div>
+                                    ${data.document.ai_summary ? `
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="alert alert-info mb-0">
+                                                <h6 class="alert-heading mb-2">
+                                                    <i class="bi bi-robot me-2"></i>AI Summary
+                                                </h6>
+                                                <p class="mb-0 small">${data.document.ai_summary}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    ` : ''}
                                 </div>
                             </div>
                         </div>

@@ -396,8 +396,7 @@ class SimpleIndexer:
             CREATE VIRTUAL TABLE IF NOT EXISTS document_fts USING fts5(
                 filename,
                 document_id,
-                content,
-                content=''
+                content
             )
         ''')
         
@@ -440,9 +439,9 @@ class SimpleIndexer:
         
         # Insert into FTS
         self.conn.execute('''
-            INSERT INTO document_fts (rowid, filename, document_id, content)
-            VALUES (?, ?, ?, ?)
-        ''', (doc_pk, filename, document_id, content))
+            INSERT INTO document_fts (filename, document_id, content)
+            VALUES (?, ?, ?)
+        ''', (filename, document_id, content))
         
         self.conn.commit()
     
