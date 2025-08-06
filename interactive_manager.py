@@ -47,7 +47,9 @@ def safe_print(text):
                    .replace('🧪', '[TEST]')
                    .replace('👥', '[USERS]')
                    .replace('📧', '[EMAIL]')
-                   .replace('🚂', '[RAILWAY]'))
+                   .replace('🚂', '[RAILWAY]')
+                   .replace('📡', '[REMOTE]')
+                   .replace('📭', '[EMPTY]'))
     try:
         print(text)
     except UnicodeEncodeError:
@@ -193,12 +195,22 @@ class InteractiveManager:
         safe_print("\n👤 Customer Selection")
         print("-" * 40)
         
-        # Get local customers from workspace
+        # Get customers from remote portal (primary source)
+        safe_print("📡 Fetching customers from remote portal...")
+        portal_customers = self.get_portal_customers()
+        
+        # Get local customers from workspace (backup)
         local_customers = self.get_local_customers()
         
         customer_options = []
-        if local_customers:
+        if portal_customers:
+            safe_print(f"✅ Found {len(portal_customers)} customers on portal")
+            customer_options.extend(portal_customers)
+        elif local_customers:
+            safe_print("⚠️ Portal unavailable, using local customers")
             customer_options.extend(local_customers)
+        else:
+            safe_print("📭 No customers found on portal or locally")
         
         # Add special options
         customer_options.extend(["[New Customer]", "[Test Run - No Customer]"])

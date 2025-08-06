@@ -86,6 +86,26 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
+def require_admin_key(f):
+    """Decorator to require admin API key for admin endpoints."""
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        # Get admin key from environment
+        expected_key = os.environ.get('ADMIN_API_KEY', 'secure_admin_key_2024_changeme')
+        
+        # Check Authorization header
+        auth_header = request.headers.get('Authorization', '')
+        if auth_header.startswith('Bearer '):
+            provided_key = auth_header[7:]  # Remove 'Bearer ' prefix
+        else:
+            provided_key = request.headers.get('X-Admin-Key', '')
+        
+        if not provided_key or provided_key != expected_key:
+            return jsonify({'error': 'Missing or invalid authorization header'}), 401
+        
+        return f(*args, **kwargs)
+    return decorated_function
+
 def get_customer_by_email(email):
     """Get customer by email address."""
     db_path = ADMIN_DATA_DIR / 'customers.db'
