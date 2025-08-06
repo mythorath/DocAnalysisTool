@@ -15,6 +15,13 @@ from pathlib import Path
 import argparse
 import logging
 
+# Try to import OpenAI analyzer
+try:
+    from openai_document_analyzer import OpenAIDocumentAnalyzer
+    HAS_OPENAI = True
+except ImportError:
+    HAS_OPENAI = False
+
 # Windows console emoji compatibility
 def safe_print(text):
     """Print text with emoji fallbacks for Windows console."""
@@ -40,7 +47,10 @@ def safe_print(text):
                    .replace('📥', '[DOWNLOAD]')
                    .replace('📝', '[EXTRACT]')
                    .replace('📈', '[COUNT]')
-                   .replace('👤', '[USER]'))
+                   .replace('👤', '[USER]')
+                   .replace('🤖', '[AI]')
+                   .replace('✨', '[ENHANCE]')
+                   .replace('🎯', '[TARGET]'))
     try:
         print(text)
     except UnicodeEncodeError:
@@ -117,19 +127,44 @@ class SimpleDownloader:
                     url_column = col
                     break
             
-            for _, row in df.iterrows():
+            for idx, row in df.iterrows():
                 doc_id = str(row.get('Document ID', ''))
                 urls_field = str(row.get(url_column, ''))
+                
+                # Auto-generate Document ID if missing
+                if not doc_id or doc_id == 'nan' or doc_id == '':
+                    if urls_field and urls_field != 'nan':
+                        # Extract from URL pattern (e.g., CMS-2025-0028-0002 from URL)
+                        import re
+                        url_match = re.search(r'([A-Z0-9-]+(?:-\d+){3,})', urls_field)
+                        if url_match:
+                            doc_id = url_match.group(1)
+                        else:
+                            # Fallback: use row index
+                            doc_id = f"DOC-{idx+1:04d}"
                 
                 if urls_field and urls_field != 'nan':
                     # Handle multiple URLs separated by commas
                     urls = [url.strip() for url in urls_field.split(',') if url.strip()]
                     
                     for i, url in enumerate(urls):
-                        if i == 0:
-                            filename = f"{doc_id}.pdf"  # Main file
+                        # Extract file extension from URL
+                        import urllib.parse
+                        parsed_url = urllib.parse.urlparse(url)
+                        url_path = parsed_url.path
+                        if url_path.endswith('.pdf'):
+                            extension = '.pdf'
+                        elif url_path.endswith('.docx'):
+                            extension = '.docx'
+                        elif url_path.endswith('.doc'):
+                            extension = '.doc'
                         else:
-                            filename = f"{doc_id}_attachment_{i+1}.pdf"  # Additional files
+                            extension = '.pdf'  # default
+                        
+                        if i == 0:
+                            filename = f"{doc_id}{extension}"  # Main file
+                        else:
+                            filename = f"{doc_id}_attachment_{i+1}{extension}"  # Additional files
                         
                         if self.download_file(url, filename):
                             successful += 1
@@ -147,18 +182,43 @@ class SimpleDownloader:
                         url_column = col
                         break
                 
-                for row in reader:
+                for idx, row in enumerate(reader):
                     doc_id = row.get('Document ID', '')
                     urls_field = row.get(url_column, '')
+                    
+                    # Auto-generate Document ID if missing
+                    if not doc_id:
+                        if urls_field:
+                            # Extract from URL pattern (e.g., CMS-2025-0028-0002 from URL)
+                            import re
+                            url_match = re.search(r'([A-Z0-9-]+(?:-\d+){3,})', urls_field)
+                            if url_match:
+                                doc_id = url_match.group(1)
+                            else:
+                                # Fallback: use row index
+                                doc_id = f"DOC-{idx+1:04d}"
                     
                     if urls_field:
                         urls = [url.strip() for url in urls_field.split(',') if url.strip()]
                         
                         for i, url in enumerate(urls):
-                            if i == 0:
-                                filename = f"{doc_id}.pdf"
+                            # Extract file extension from URL
+                            import urllib.parse
+                            parsed_url = urllib.parse.urlparse(url)
+                            url_path = parsed_url.path
+                            if url_path.endswith('.pdf'):
+                                extension = '.pdf'
+                            elif url_path.endswith('.docx'):
+                                extension = '.docx'
+                            elif url_path.endswith('.doc'):
+                                extension = '.doc'
                             else:
-                                filename = f"{doc_id}_attachment_{i+1}.pdf"
+                                extension = '.pdf'  # default
+                            
+                            if i == 0:
+                                filename = f"{doc_id}{extension}"
+                            else:
+                                filename = f"{doc_id}_attachment_{i+1}{extension}"
                             
                             if self.download_file(url, filename):
                                 successful += 1
@@ -321,7 +381,14 @@ class SimpleIndexer:
                 file_type TEXT,
                 character_count INTEGER,
                 extraction_method TEXT,
-                indexed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                indexed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                -- OpenAI enhanced fields
+                ai_summary TEXT,
+                document_type TEXT,
+                subject_area TEXT,
+                key_topics TEXT,
+                date_references TEXT,
+                ai_enhanced BOOLEAN DEFAULT 0
             )
         ''')
         
@@ -338,12 +405,20 @@ class SimpleIndexer:
     
     def add_document(self, filename, document_id, content, **metadata):
         """Add document to index."""
+        # Convert key_topics list to JSON string if present
+        key_topics_json = ''
+        if metadata.get('key_topics'):
+            import json
+            key_topics_json = json.dumps(metadata['key_topics'])
+        
         # Insert metadata
         cursor = self.conn.execute('''
             INSERT INTO document_metadata (
                 filename, document_id, source_url, organization, 
-                category, file_type, character_count, extraction_method
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                category, file_type, character_count, extraction_method,
+                ai_summary, document_type, subject_area, key_topics, 
+                date_references, ai_enhanced
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
             filename,
             document_id,
@@ -352,7 +427,13 @@ class SimpleIndexer:
             metadata.get('category', ''),
             metadata.get('file_type', ''),
             metadata.get('character_count', 0),
-            metadata.get('extraction_method', '')
+            metadata.get('extraction_method', ''),
+            metadata.get('ai_summary', ''),
+            metadata.get('document_type', ''),
+            metadata.get('subject_area', ''),
+            key_topics_json,
+            metadata.get('date_references', ''),
+            1 if metadata.get('ai_enhanced') else 0
         ))
         
         doc_pk = cursor.lastrowid
@@ -412,6 +493,22 @@ class LocalProcessorLite:
         for directory in [self.downloads_dir, self.text_dir, self.output_dir, self.logs_dir]:
             directory.mkdir(exist_ok=True)
         
+        # Initialize OpenAI analyzer if available
+        self.openai_analyzer = None
+        if HAS_OPENAI:
+            try:
+                self.openai_analyzer = OpenAIDocumentAnalyzer()
+                if self.openai_analyzer.is_available():
+                    safe_print("🤖 OpenAI document analysis enabled")
+                else:
+                    safe_print("⚠️ OpenAI API key not configured - using standard processing")
+                    self.openai_analyzer = None
+            except Exception as e:
+                safe_print(f"⚠️ OpenAI initialization failed: {e}")
+                self.openai_analyzer = None
+        else:
+            safe_print("💡 OpenAI not available - install with: pip install openai")
+        
         # Setup logging with emoji handling for Windows console
         class SafeFormatter(logging.Formatter):
             def format(self, record):
@@ -451,9 +548,6 @@ class LocalProcessorLite:
         try:
             if HAS_PANDAS:
                 df = pd.read_csv(csv_file)
-                if 'Document ID' not in df.columns:
-                    safe_print("❌ CSV must have 'Document ID' column")
-                    return None
                 
                 # Check for URL column (flexible naming)
                 url_column = None
@@ -467,15 +561,19 @@ class LocalProcessorLite:
                     return None
                 
                 safe_print(f"📎 Using '{url_column}' column for document URLs")
+                
+                # Check if Document ID column exists
+                has_doc_id = 'Document ID' in df.columns
+                if has_doc_id:
+                    safe_print("📋 Found 'Document ID' column")
+                else:
+                    safe_print("📋 No 'Document ID' column - will auto-generate from URLs")
                 total_docs = len(df)
             else:
                 # Basic validation without pandas
                 with open(csv_file, 'r', encoding='utf-8') as f:
                     reader = csv.DictReader(f)
                     headers = reader.fieldnames
-                    if 'Document ID' not in headers:
-                        safe_print("❌ CSV must have 'Document ID' column")
-                        return None
                     
                     url_column = None
                     for col in headers:
@@ -486,6 +584,15 @@ class LocalProcessorLite:
                     if url_column is None:
                         safe_print("❌ CSV must have a URL/Attachment column")
                         return None
+                    
+                    safe_print(f"📎 Using '{url_column}' column for document URLs")
+                    
+                    # Check if Document ID column exists
+                    has_doc_id = 'Document ID' in headers
+                    if has_doc_id:
+                        safe_print("📋 Found 'Document ID' column")
+                    else:
+                        safe_print("📋 No 'Document ID' column - will auto-generate from URLs")
                     
                     total_docs = sum(1 for _ in reader)
             
@@ -564,8 +671,22 @@ class LocalProcessorLite:
                     url_column = col
                     break
             
-            for _, row in df.iterrows():
+            for idx, row in df.iterrows():
                 doc_id = str(row.get('Document ID', ''))
+                urls_field = str(row.get(url_column, ''))
+                
+                # Auto-generate Document ID if missing (same logic as download)
+                if not doc_id or doc_id == 'nan' or doc_id == '':
+                    if urls_field and urls_field != 'nan':
+                        # Extract from URL pattern (e.g., CMS-2025-0028-0002 from URL)
+                        import re
+                        url_match = re.search(r'([A-Z0-9-]+(?:-\d+){3,})', urls_field)
+                        if url_match:
+                            doc_id = url_match.group(1)
+                        else:
+                            # Fallback: use row index
+                            doc_id = f"DOC-{idx+1:04d}"
+                
                 metadata_map[doc_id] = {
                     'source_url': row.get(url_column, ''),
                     'organization': row.get('Organization Name', row.get('Organization', '')),
@@ -585,8 +706,22 @@ class LocalProcessorLite:
                         url_column = col
                         break
                 
-                for row in reader:
+                for idx, row in enumerate(reader):
                     doc_id = row.get('Document ID', '')
+                    urls_field = row.get(url_column, '')
+                    
+                    # Auto-generate Document ID if missing (same logic as download)
+                    if not doc_id:
+                        if urls_field:
+                            # Extract from URL pattern (e.g., CMS-2025-0028-0002 from URL)
+                            import re
+                            url_match = re.search(r'([A-Z0-9-]+(?:-\d+){3,})', urls_field)
+                            if url_match:
+                                doc_id = url_match.group(1)
+                            else:
+                                # Fallback: use row index
+                                doc_id = f"DOC-{idx+1:04d}"
+                    
                     metadata_map[doc_id] = {
                         'source_url': row.get(url_column, ''),
                         'organization': row.get('Organization Name', row.get('Organization', '')),
@@ -595,7 +730,7 @@ class LocalProcessorLite:
                         'submitter': row.get('Submitter Representative', ''),
                     }
         
-        # Index all documents
+        # Index all documents with OpenAI enhancement
         indexed_count = 0
         for item in extracted_files:
             if os.path.exists(item['output_file']):
@@ -606,18 +741,56 @@ class LocalProcessorLite:
                 doc_id = os.path.splitext(filename)[0]
                 doc_metadata = metadata_map.get(doc_id, {})
                 
+                # Prepare basic document data
+                document_data = {
+                    'filename': filename,
+                    'document_id': doc_id,
+                    'content': content,
+                    'source_url': doc_metadata.get('source_url', ''),
+                    'organization': doc_metadata.get('organization', ''),
+                    'category': doc_metadata.get('category', ''),
+                    'file_type': item['metadata'].get('file_type', ''),
+                    'character_count': item['metadata'].get('character_count', 0),
+                    'extraction_method': item['metadata'].get('extraction_method', '')
+                }
+                
+                # Enhance with OpenAI if available
+                if self.openai_analyzer:
+                    try:
+                        safe_print(f"🤖 Analyzing '{filename}' with OpenAI...")
+                        enhanced_data = self.openai_analyzer.enhance_document_data(content, document_data)
+                        # Use enhanced title as filename for better display
+                        if enhanced_data.get('title'):
+                            enhanced_data['filename'] = enhanced_data['title']
+                            safe_print(f"✨ Enhanced title: '{enhanced_data['title']}'")
+                        if enhanced_data.get('ai_summary'):
+                            safe_print(f"📄 Summary: {enhanced_data['ai_summary'][:100]}...")
+                        if enhanced_data.get('document_type'):
+                            safe_print(f"📋 Type: {enhanced_data['document_type']}")
+                        document_data = enhanced_data
+                    except Exception as e:
+                        safe_print(f"⚠️ OpenAI enhancement failed for {filename}: {e}")
+                else:
+                    safe_print(f"📄 Processing '{filename}' (standard mode)")
+                
+                # Add document to index with enhanced metadata
+                safe_print(f"💾 Indexing document: {doc_id}")
                 indexer.add_document(
-                    filename=filename,
+                    filename=document_data.get('filename', filename),
                     document_id=doc_id,
                     content=content,
-                    source_url=doc_metadata.get('source_url', ''),
-                    organization=doc_metadata.get('organization', ''),
-                    category=doc_metadata.get('category', ''),
-                    file_type=item['metadata'].get('file_type', ''),
-                    character_count=item['metadata'].get('character_count', 0),
-                    extraction_method=item['metadata'].get('extraction_method', '')
+                    source_url=document_data.get('source_url', ''),
+                    organization=document_data.get('organization', ''),
+                    category=document_data.get('category', ''),
+                    file_type=document_data.get('file_type', ''),
+                    character_count=document_data.get('character_count', 0),
+                    extraction_method=document_data.get('extraction_method', ''),
+                    # Add OpenAI enhanced fields if available
+                    **{k: v for k, v in document_data.items() 
+                       if k.startswith('ai_') or k in ['document_type', 'subject_area', 'key_topics']}
                 )
                 indexed_count += 1
+                safe_print(f"✅ Indexed: {indexed_count}/{len(extracted_files)}")
         
         indexer.close()
         safe_print(f"✅ Indexed: {indexed_count} documents")

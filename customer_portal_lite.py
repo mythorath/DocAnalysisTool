@@ -920,13 +920,16 @@ def admin_upload_database():
         with open(db_file_path, 'wb') as f:
             f.write(db_content)
         
-        # Store database record
+        # Store database record with UUID
+        import uuid
+        project_id = str(uuid.uuid4())
         cursor.execute('''
             INSERT INTO customer_databases 
-            (customer_id, project_name, description, database_filename, 
+            (id, customer_id, project_name, description, database_filename, 
              document_count, uploaded_at)
-            VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+            VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
         ''', (
+            project_id,
             customer_id,
             project_name,
             description,
@@ -934,16 +937,16 @@ def admin_upload_database():
             database_info.get('document_count', 0)
         ))
         
-        database_id = cursor.lastrowid
         conn.commit()
         conn.close()
         
-        logger.info(f"Database uploaded via API: {project_name} for {customer_email}")
+        logger.info(f"Database uploaded via API: {project_name} for {customer_email} with project ID: {project_id}")
         
         # Return success with customer creation info if new
         response_data = {
             'success': True,
-            'database_id': database_id,
+            'database_id': project_id,
+            'project_id': project_id,
             'customer_created': customer is None,
             'default_password': 'welcome123' if customer is None else None,
             'message': f'Database uploaded successfully for {customer_email}'

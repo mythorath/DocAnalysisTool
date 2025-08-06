@@ -2,7 +2,7 @@
 echo Setting up remote management environment variables...
 
 REM Set your Railway portal URL
-set PORTAL_URL=https://narrow-clocks-production.up.railway.app
+set PORTAL_URL=https://narrow-clocks-staging.up.railway.app
 
 REM Set your admin API key (change this to something secure!)
 set ADMIN_API_KEY=your_secure_admin_key_change_me_123

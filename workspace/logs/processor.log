@@ -425,3 +425,307 @@
 2025-08-06 14:28:02,012 - INFO - Downloaded: CMS-2025-0028-0110_attachment_2.pdf
 2025-08-06 14:28:02,376 - INFO - Downloaded: CMS-2025-0028-0486.pdf
 2025-08-06 14:28:04,581 - WARNING - [WARNING] GPU extraction failed to initialize: 'charmap' codec can't encode character '\U0001f680' in position 0: character maps to <undefined>
+2025-08-06 15:11:54,084 - INFO - Downloaded: CMS-2025-0028-0002.pdf
+2025-08-06 15:11:55,065 - INFO - Downloaded: CMS-2025-0028-0003.pdf
+2025-08-06 15:11:55,488 - INFO - Downloaded: CMS-2025-0028-0005.docx
+2025-08-06 15:11:56,014 - INFO - Downloaded: CMS-2025-0028-0007.pdf
+2025-08-06 15:11:56,739 - INFO - Downloaded: CMS-2025-0028-0009.pdf
+2025-08-06 15:11:57,347 - INFO - Downloaded: CMS-2025-0028-0011.pdf
+2025-08-06 15:11:57,712 - INFO - Downloaded: CMS-2025-0028-0012.pdf
+2025-08-06 15:11:58,220 - INFO - Downloaded: CMS-2025-0028-0014.pdf
+2025-08-06 15:11:58,302 - INFO - Downloaded: CMS-2025-0028-0014.pdf
+2025-08-06 15:11:59,055 - INFO - Downloaded: CMS-2025-0028-0015.pdf
+2025-08-06 15:11:59,190 - INFO - Downloaded: CMS-2025-0028-0015.pdf
+2025-08-06 15:11:59,754 - INFO - Downloaded: CMS-2025-0028-0020.pdf
+2025-08-06 15:11:59,843 - INFO - Downloaded: CMS-2025-0028-0020.pdf
+2025-08-06 15:12:00,237 - INFO - Downloaded: CMS-2025-0028-0021.pdf
+2025-08-06 15:12:00,570 - INFO - Downloaded: CMS-2025-0028-0021.docx
+2025-08-06 15:12:01,494 - INFO - Downloaded: CMS-2025-0028-0022.pdf
+2025-08-06 15:12:01,867 - INFO - Downloaded: CMS-2025-0028-0025.pdf
+2025-08-06 15:12:02,237 - INFO - Downloaded: CMS-2025-0028-0025.docx
+2025-08-06 15:12:02,999 - INFO - Downloaded: CMS-2025-0028-0028.pdf
+2025-08-06 15:12:03,464 - INFO - Downloaded: CMS-2025-0028-0031.pdf
+2025-08-06 15:12:03,837 - INFO - Downloaded: CMS-2025-0028-0031.docx
+2025-08-06 15:12:04,193 - INFO - Downloaded: CMS-2025-0028-0032.pdf
+2025-08-06 15:12:04,611 - INFO - Downloaded: CMS-2025-0028-0034.pdf
+2025-08-06 15:12:05,099 - INFO - Downloaded: CMS-2025-0028-0036.pdf
+2025-08-06 15:12:05,612 - INFO - Downloaded: CMS-2025-0028-0038.docx
+2025-08-06 15:12:06,145 - INFO - Downloaded: CMS-2025-0028-0038.pdf
+2025-08-06 15:12:06,710 - INFO - Downloaded: CMS-2025-0028-0039.pdf
+2025-08-06 15:12:07,213 - INFO - Downloaded: CMS-2025-0028-0043.pdf
+2025-08-06 15:12:07,766 - INFO - Downloaded: CMS-2025-0028-0045.pdf
+2025-08-06 15:12:08,105 - INFO - Downloaded: CMS-2025-0028-0055.pdf
+2025-08-06 15:12:08,630 - INFO - Downloaded: CMS-2025-0028-0061.pdf
+2025-08-06 15:12:09,025 - INFO - Downloaded: CMS-2025-0028-0064.pdf
+2025-08-06 15:12:09,581 - INFO - Downloaded: CMS-2025-0028-0064.docx
+2025-08-06 15:12:09,954 - INFO - Downloaded: CMS-2025-0028-0068.pdf
+2025-08-06 15:12:10,642 - INFO - Downloaded: CMS-2025-0028-0070.pdf
+2025-08-06 15:12:11,234 - INFO - Downloaded: CMS-2025-0028-0073.pdf
+2025-08-06 15:12:11,643 - INFO - Downloaded: CMS-2025-0028-0076.pdf
+2025-08-06 15:12:12,253 - INFO - Downloaded: CMS-2025-0028-0078.pdf
+2025-08-06 15:12:12,817 - INFO - Downloaded: CMS-2025-0028-0079.pdf
+2025-08-06 15:12:13,418 - INFO - Downloaded: CMS-2025-0028-0081.pdf
+2025-08-06 15:12:13,955 - INFO - Downloaded: CMS-2025-0028-0083.pdf
+2025-08-06 15:12:14,339 - INFO - Downloaded: CMS-2025-0028-0084.pdf
+2025-08-06 15:12:14,862 - INFO - Downloaded: CMS-2025-0028-0085.pdf
+2025-08-06 15:12:15,509 - INFO - Downloaded: CMS-2025-0028-0086.pdf
+2025-08-06 15:12:16,051 - INFO - Downloaded: CMS-2025-0028-0087.pdf
+2025-08-06 15:12:16,440 - INFO - Downloaded: CMS-2025-0028-0089.pdf
+2025-08-06 15:12:16,990 - INFO - Downloaded: CMS-2025-0028-0089.docx
+2025-08-06 15:12:17,336 - INFO - Downloaded: CMS-2025-0028-0090.pdf
+2025-08-06 15:12:17,764 - INFO - Downloaded: CMS-2025-0028-0090.docx
+2025-08-06 15:12:22,583 - INFO - [TOOL] GPU Processing: [ERROR] Disabled
+2025-08-06 15:12:22,583 - INFO - [TOOL] EasyOCR (GPU): [ERROR] Not available
+2025-08-06 15:12:22,583 - INFO - [TOOL] Tesseract (CPU): [OK] Available
+2025-08-06 15:12:22,583 - INFO - [TOOL] PyMuPDF: [OK] Available
+2025-08-06 15:12:22,583 - INFO - [TOOL] PDF2Image: [OK] Available
+2025-08-06 15:12:22,583 - INFO - [GPU] GPU-enhanced extraction initialized
+2025-08-06 15:12:22,584 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0002.pdf
+2025-08-06 15:12:22,604 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0002.pdf
+2025-08-06 15:12:22,605 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0003.pdf
+2025-08-06 15:12:22,655 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0003.pdf
+2025-08-06 15:12:22,656 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0005.docx
+2025-08-06 15:12:22,678 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0005.docx
+2025-08-06 15:12:22,679 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0007.pdf
+2025-08-06 15:12:22,692 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0007.pdf
+2025-08-06 15:12:22,693 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0009.pdf
+2025-08-06 15:12:22,749 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0009.pdf
+2025-08-06 15:12:22,750 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0011.pdf
+2025-08-06 15:12:22,766 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0011.pdf
+2025-08-06 15:12:22,767 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0012.pdf
+2025-08-06 15:12:22,790 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0012.pdf
+2025-08-06 15:12:22,791 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0014.pdf
+2025-08-06 15:12:22,812 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0014.pdf
+2025-08-06 15:12:22,813 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0015.pdf
+2025-08-06 15:12:22,823 - INFO - [IMAGE] Page 1 appears to be image-based, using OCR...
+2025-08-06 15:12:24,066 - INFO - [IMAGE] Page 2 appears to be image-based, using OCR...
+2025-08-06 15:12:25,052 - INFO - [OK] GPU extraction successful (cpu_ocr): CMS-2025-0028-0015.pdf
+2025-08-06 15:12:25,053 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0020.pdf
+2025-08-06 15:12:25,067 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0020.pdf
+2025-08-06 15:12:25,069 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0021.docx
+2025-08-06 15:12:25,084 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0021.docx
+2025-08-06 15:12:25,086 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0021.pdf
+2025-08-06 15:12:25,104 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0021.pdf
+2025-08-06 15:12:25,105 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0022.pdf
+2025-08-06 15:12:25,121 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0022.pdf
+2025-08-06 15:12:25,123 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0025.docx
+2025-08-06 15:12:25,139 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0025.docx
+2025-08-06 15:12:25,140 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0025.pdf
+2025-08-06 15:12:25,155 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0025.pdf
+2025-08-06 15:12:25,156 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0028.pdf
+2025-08-06 15:12:25,165 - INFO - [IMAGE] Page 1 appears to be image-based, using OCR...
+2025-08-06 15:12:26,390 - INFO - [IMAGE] Page 2 appears to be image-based, using OCR...
+2025-08-06 15:12:27,487 - INFO - [IMAGE] Page 3 appears to be image-based, using OCR...
+2025-08-06 15:12:28,638 - INFO - [IMAGE] Page 4 appears to be image-based, using OCR...
+2025-08-06 15:12:29,396 - INFO - [OK] GPU extraction successful (cpu_ocr): CMS-2025-0028-0028.pdf
+2025-08-06 15:12:29,397 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0031.docx
+2025-08-06 15:12:29,438 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0031.docx
+2025-08-06 15:12:29,439 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0031.pdf
+2025-08-06 15:12:29,455 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0031.pdf
+2025-08-06 15:12:29,456 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0032.pdf
+2025-08-06 15:12:29,469 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0032.pdf
+2025-08-06 15:12:29,471 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0034.pdf
+2025-08-06 15:12:29,487 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0034.pdf
+2025-08-06 15:12:29,489 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0036.pdf
+2025-08-06 15:12:29,508 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0036.pdf
+2025-08-06 15:12:29,509 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0038.docx
+2025-08-06 15:12:29,526 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0038.docx
+2025-08-06 15:12:29,527 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0038.pdf
+2025-08-06 15:12:29,541 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0038.pdf
+2025-08-06 15:12:29,543 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0039.pdf
+2025-08-06 15:12:29,569 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0039.pdf
+2025-08-06 15:12:29,570 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0043.pdf
+2025-08-06 15:12:29,584 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0043.pdf
+2025-08-06 15:12:29,585 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0045.pdf
+2025-08-06 15:12:29,619 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0045.pdf
+2025-08-06 15:12:29,621 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0055.pdf
+2025-08-06 15:12:29,633 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0055.pdf
+2025-08-06 15:12:29,634 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0061.pdf
+2025-08-06 15:12:29,646 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0061.pdf
+2025-08-06 15:12:29,647 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0064.docx
+2025-08-06 15:12:29,662 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0064.docx
+2025-08-06 15:12:29,664 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0064.pdf
+2025-08-06 15:12:29,677 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0064.pdf
+2025-08-06 15:12:29,678 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0068.pdf
+2025-08-06 15:12:29,693 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0068.pdf
+2025-08-06 15:12:29,695 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0070.pdf
+2025-08-06 15:12:29,747 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0070.pdf
+2025-08-06 15:12:29,749 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0073.pdf
+2025-08-06 15:12:29,803 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0073.pdf
+2025-08-06 15:12:29,805 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0076.pdf
+2025-08-06 15:12:29,821 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0076.pdf
+2025-08-06 15:12:29,822 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0078.pdf
+2025-08-06 15:12:29,836 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0078.pdf
+2025-08-06 15:12:29,837 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0079.pdf
+2025-08-06 15:12:29,858 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0079.pdf
+2025-08-06 15:12:29,859 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0081.pdf
+2025-08-06 15:12:29,889 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0081.pdf
+2025-08-06 15:12:29,890 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0083.pdf
+2025-08-06 15:12:29,907 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0083.pdf
+2025-08-06 15:12:29,908 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0084.pdf
+2025-08-06 15:12:29,917 - INFO - [IMAGE] Page 1 appears to be image-based, using OCR...
+2025-08-06 15:12:30,906 - INFO - [OK] GPU extraction successful (cpu_ocr): CMS-2025-0028-0084.pdf
+2025-08-06 15:12:30,907 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0085.pdf
+2025-08-06 15:12:30,923 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0085.pdf
+2025-08-06 15:12:30,924 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0086.pdf
+2025-08-06 15:12:30,947 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0086.pdf
+2025-08-06 15:12:30,948 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0087.pdf
+2025-08-06 15:12:30,963 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0087.pdf
+2025-08-06 15:12:30,965 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0089.docx
+2025-08-06 15:12:30,989 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0089.docx
+2025-08-06 15:12:30,990 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0089.pdf
+2025-08-06 15:12:31,006 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0089.pdf
+2025-08-06 15:12:31,007 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0090.docx
+2025-08-06 15:12:31,018 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0090.docx
+2025-08-06 15:12:31,020 - INFO - [EXTRACT] Processing file: CMS-2025-0028-0090.pdf
+2025-08-06 15:12:31,032 - INFO - [IMAGE] Page 2 appears to be image-based, using OCR...
+2025-08-06 15:12:31,398 - INFO - [OK] GPU extraction successful (direct): CMS-2025-0028-0090.pdf
+2025-08-06 15:14:00,905 - INFO - Downloaded: CMS-2025-0028-0002.pdf
+2025-08-06 15:14:01,292 - INFO - Downloaded: CMS-2025-0028-0003.pdf
+2025-08-06 15:14:01,635 - INFO - Downloaded: CMS-2025-0028-0005.docx
+2025-08-06 15:14:02,001 - INFO - Downloaded: CMS-2025-0028-0007.pdf
+2025-08-06 15:14:02,395 - INFO - Downloaded: CMS-2025-0028-0009.pdf
+2025-08-06 15:14:02,737 - INFO - Downloaded: CMS-2025-0028-0011.pdf
+2025-08-06 15:14:03,070 - INFO - Downloaded: CMS-2025-0028-0012.pdf
+2025-08-06 15:14:03,376 - INFO - Downloaded: CMS-2025-0028-0014.pdf
+2025-08-06 15:14:03,698 - INFO - Downloaded: CMS-2025-0028-0014.pdf
+2025-08-06 15:14:04,140 - INFO - Downloaded: CMS-2025-0028-0015.pdf
+2025-08-06 15:14:04,495 - INFO - Downloaded: CMS-2025-0028-0015.pdf
+2025-08-06 15:14:04,839 - INFO - Downloaded: CMS-2025-0028-0020.pdf
+2025-08-06 15:14:05,193 - INFO - Downloaded: CMS-2025-0028-0020.pdf
+2025-08-06 15:14:05,574 - INFO - Downloaded: CMS-2025-0028-0021.pdf
+2025-08-06 15:14:05,904 - INFO - Downloaded: CMS-2025-0028-0021.docx
+2025-08-06 15:14:06,257 - INFO - Downloaded: CMS-2025-0028-0022.pdf
+2025-08-06 15:14:06,595 - INFO - Downloaded: CMS-2025-0028-0025.pdf
+2025-08-06 15:14:06,974 - INFO - Downloaded: CMS-2025-0028-0025.docx
+2025-08-06 15:14:07,437 - INFO - Downloaded: CMS-2025-0028-0028.pdf
+2025-08-06 15:14:07,772 - INFO - Downloaded: CMS-2025-0028-0031.pdf
+2025-08-06 15:14:08,101 - INFO - Downloaded: CMS-2025-0028-0031.docx
+2025-08-06 15:14:08,422 - INFO - Downloaded: CMS-2025-0028-0032.pdf
+2025-08-06 15:14:08,761 - INFO - Downloaded: CMS-2025-0028-0034.pdf
+2025-08-06 15:14:09,113 - INFO - Downloaded: CMS-2025-0028-0036.pdf
+2025-08-06 15:14:09,462 - INFO - Downloaded: CMS-2025-0028-0038.docx
+2025-08-06 15:14:09,813 - INFO - Downloaded: CMS-2025-0028-0038.pdf
+2025-08-06 15:14:10,178 - INFO - Downloaded: CMS-2025-0028-0039.pdf
+2025-08-06 15:14:10,526 - INFO - Downloaded: CMS-2025-0028-0043.pdf
+2025-08-06 15:14:10,924 - INFO - Downloaded: CMS-2025-0028-0045.pdf
+2025-08-06 15:14:11,257 - INFO - Downloaded: CMS-2025-0028-0055.pdf
+2025-08-06 15:14:11,593 - INFO - Downloaded: CMS-2025-0028-0061.pdf
+2025-08-06 15:14:11,911 - INFO - Downloaded: CMS-2025-0028-0064.pdf
+2025-08-06 15:14:12,255 - INFO - Downloaded: CMS-2025-0028-0064.docx
+2025-08-06 15:14:12,633 - INFO - Downloaded: CMS-2025-0028-0068.pdf
+2025-08-06 15:14:13,023 - INFO - Downloaded: CMS-2025-0028-0070.pdf
+2025-08-06 15:14:13,372 - INFO - Downloaded: CMS-2025-0028-0073.pdf
+2025-08-06 15:14:13,704 - INFO - Downloaded: CMS-2025-0028-0076.pdf
+2025-08-06 15:14:14,036 - INFO - Downloaded: CMS-2025-0028-0078.pdf
+2025-08-06 15:14:14,432 - INFO - Downloaded: CMS-2025-0028-0079.pdf
+2025-08-06 15:14:14,873 - INFO - Downloaded: CMS-2025-0028-0081.pdf
+2025-08-06 15:14:15,229 - INFO - Downloaded: CMS-2025-0028-0083.pdf
+2025-08-06 15:14:15,589 - INFO - Downloaded: CMS-2025-0028-0084.pdf
+2025-08-06 15:14:15,963 - INFO - Downloaded: CMS-2025-0028-0085.pdf
+2025-08-06 15:14:16,363 - INFO - Downloaded: CMS-2025-0028-0086.pdf
+2025-08-06 15:14:16,701 - INFO - Downloaded: CMS-2025-0028-0087.pdf
+2025-08-06 15:14:17,039 - INFO - Downloaded: CMS-2025-0028-0089.pdf
+2025-08-06 15:14:17,395 - INFO - Downloaded: CMS-2025-0028-0089.docx
+2025-08-06 15:14:17,752 - INFO - Downloaded: CMS-2025-0028-0090.pdf
+2025-08-06 15:14:18,066 - INFO - Downloaded: CMS-2025-0028-0090.docx
+2025-08-06 15:14:20,228 - WARNING - [WARNING] GPU extraction failed to initialize: 'charmap' codec can't encode character '\U0001f680' in position 0: character maps to <undefined>
+2025-08-06 15:49:40,171 - INFO - Downloaded: CMS-2025-0028-0002.pdf
+2025-08-06 15:49:40,316 - INFO - Downloaded: CMS-2025-0028-0003.pdf
+2025-08-06 15:49:40,385 - INFO - Downloaded: CMS-2025-0028-0005.docx
+2025-08-06 15:49:40,471 - INFO - Downloaded: CMS-2025-0028-0007.pdf
+2025-08-06 15:49:40,633 - INFO - Downloaded: CMS-2025-0028-0009.pdf
+2025-08-06 15:49:40,721 - INFO - Downloaded: CMS-2025-0028-0011.pdf
+2025-08-06 15:49:40,816 - INFO - Downloaded: CMS-2025-0028-0012.pdf
+2025-08-06 15:49:40,871 - INFO - Downloaded: CMS-2025-0028-0014.pdf
+2025-08-06 15:49:40,956 - INFO - Downloaded: CMS-2025-0028-0014.pdf
+2025-08-06 15:49:41,075 - INFO - Downloaded: CMS-2025-0028-0015.pdf
+2025-08-06 15:49:41,194 - INFO - Downloaded: CMS-2025-0028-0015.pdf
+2025-08-06 15:49:41,264 - INFO - Downloaded: CMS-2025-0028-0020.pdf
+2025-08-06 15:49:41,343 - INFO - Downloaded: CMS-2025-0028-0020.pdf
+2025-08-06 15:49:41,416 - INFO - Downloaded: CMS-2025-0028-0021.pdf
+2025-08-06 15:49:41,480 - INFO - Downloaded: CMS-2025-0028-0021.docx
+2025-08-06 15:49:41,577 - INFO - Downloaded: CMS-2025-0028-0022.pdf
+2025-08-06 15:49:41,645 - INFO - Downloaded: CMS-2025-0028-0025.pdf
+2025-08-06 15:49:41,685 - INFO - Downloaded: CMS-2025-0028-0025.docx
+2025-08-06 15:49:41,802 - INFO - Downloaded: CMS-2025-0028-0028.pdf
+2025-08-06 15:49:41,851 - INFO - Downloaded: CMS-2025-0028-0031.pdf
+2025-08-06 15:49:41,922 - INFO - Downloaded: CMS-2025-0028-0031.docx
+2025-08-06 15:49:41,976 - INFO - Downloaded: CMS-2025-0028-0032.pdf
+2025-08-06 15:49:42,035 - INFO - Downloaded: CMS-2025-0028-0034.pdf
+2025-08-06 15:49:42,099 - INFO - Downloaded: CMS-2025-0028-0036.pdf
+2025-08-06 15:49:42,171 - INFO - Downloaded: CMS-2025-0028-0038.docx
+2025-08-06 15:49:42,239 - INFO - Downloaded: CMS-2025-0028-0038.pdf
+2025-08-06 15:49:42,312 - INFO - Downloaded: CMS-2025-0028-0039.pdf
+2025-08-06 15:49:42,363 - INFO - Downloaded: CMS-2025-0028-0043.pdf
+2025-08-06 15:49:42,472 - INFO - Downloaded: CMS-2025-0028-0045.pdf
+2025-08-06 15:49:42,522 - INFO - Downloaded: CMS-2025-0028-0055.pdf
+2025-08-06 15:49:42,595 - INFO - Downloaded: CMS-2025-0028-0061.pdf
+2025-08-06 15:49:42,662 - INFO - Downloaded: CMS-2025-0028-0064.pdf
+2025-08-06 15:49:42,751 - INFO - Downloaded: CMS-2025-0028-0064.docx
+2025-08-06 15:49:42,810 - INFO - Downloaded: CMS-2025-0028-0068.pdf
+2025-08-06 15:49:42,915 - INFO - Downloaded: CMS-2025-0028-0070.pdf
+2025-08-06 15:49:43,011 - INFO - Downloaded: CMS-2025-0028-0073.pdf
+2025-08-06 15:49:43,064 - INFO - Downloaded: CMS-2025-0028-0076.pdf
+2025-08-06 15:49:43,131 - INFO - Downloaded: CMS-2025-0028-0078.pdf
+2025-08-06 15:49:43,204 - INFO - Downloaded: CMS-2025-0028-0079.pdf
+2025-08-06 15:49:43,297 - INFO - Downloaded: CMS-2025-0028-0081.pdf
+2025-08-06 15:49:43,374 - INFO - Downloaded: CMS-2025-0028-0083.pdf
+2025-08-06 15:49:43,437 - INFO - Downloaded: CMS-2025-0028-0084.pdf
+2025-08-06 15:49:43,505 - INFO - Downloaded: CMS-2025-0028-0085.pdf
+2025-08-06 15:49:43,614 - INFO - Downloaded: CMS-2025-0028-0086.pdf
+2025-08-06 15:49:43,674 - INFO - Downloaded: CMS-2025-0028-0087.pdf
+2025-08-06 15:49:43,754 - INFO - Downloaded: CMS-2025-0028-0089.pdf
+2025-08-06 15:49:43,815 - INFO - Downloaded: CMS-2025-0028-0089.docx
+2025-08-06 15:49:43,859 - INFO - Downloaded: CMS-2025-0028-0090.pdf
+2025-08-06 15:49:43,919 - INFO - Downloaded: CMS-2025-0028-0090.docx
+2025-08-06 15:53:32,312 - INFO - Downloaded: CMS-2025-0028-0002.pdf
+2025-08-06 15:53:32,751 - INFO - Downloaded: CMS-2025-0028-0003.pdf
+2025-08-06 15:53:33,052 - INFO - Downloaded: CMS-2025-0028-0005.docx
+2025-08-06 15:53:33,404 - INFO - Downloaded: CMS-2025-0028-0007.pdf
+2025-08-06 15:53:33,780 - INFO - Downloaded: CMS-2025-0028-0009.pdf
+2025-08-06 15:53:34,130 - INFO - Downloaded: CMS-2025-0028-0011.pdf
+2025-08-06 15:53:34,469 - INFO - Downloaded: CMS-2025-0028-0012.pdf
+2025-08-06 15:53:34,780 - INFO - Downloaded: CMS-2025-0028-0014.pdf
+2025-08-06 15:53:35,103 - INFO - Downloaded: CMS-2025-0028-0014.pdf
+2025-08-06 15:53:35,471 - INFO - Downloaded: CMS-2025-0028-0015.pdf
+2025-08-06 15:53:35,838 - INFO - Downloaded: CMS-2025-0028-0015.pdf
+2025-08-06 15:53:36,187 - INFO - Downloaded: CMS-2025-0028-0020.pdf
+2025-08-06 15:53:36,544 - INFO - Downloaded: CMS-2025-0028-0020.pdf
+2025-08-06 15:53:36,863 - INFO - Downloaded: CMS-2025-0028-0021.pdf
+2025-08-06 15:53:37,175 - INFO - Downloaded: CMS-2025-0028-0021.docx
+2025-08-06 15:53:37,528 - INFO - Downloaded: CMS-2025-0028-0022.pdf
+2025-08-06 15:53:37,847 - INFO - Downloaded: CMS-2025-0028-0025.pdf
+2025-08-06 15:53:38,140 - INFO - Downloaded: CMS-2025-0028-0025.docx
+2025-08-06 15:53:38,489 - INFO - Downloaded: CMS-2025-0028-0028.pdf
+2025-08-06 15:53:38,797 - INFO - Downloaded: CMS-2025-0028-0031.pdf
+2025-08-06 15:53:39,120 - INFO - Downloaded: CMS-2025-0028-0031.docx
+2025-08-06 15:53:39,425 - INFO - Downloaded: CMS-2025-0028-0032.pdf
+2025-08-06 15:53:39,748 - INFO - Downloaded: CMS-2025-0028-0034.pdf
+2025-08-06 15:53:40,544 - INFO - Downloaded: CMS-2025-0028-0036.pdf
+2025-08-06 15:53:40,897 - INFO - Downloaded: CMS-2025-0028-0038.docx
+2025-08-06 15:53:41,536 - INFO - Downloaded: CMS-2025-0028-0038.pdf
+2025-08-06 15:53:41,902 - INFO - Downloaded: CMS-2025-0028-0039.pdf
+2025-08-06 15:53:42,353 - INFO - Downloaded: CMS-2025-0028-0043.pdf
+2025-08-06 15:53:42,710 - INFO - Downloaded: CMS-2025-0028-0045.pdf
+2025-08-06 15:53:43,057 - INFO - Downloaded: CMS-2025-0028-0055.pdf
+2025-08-06 15:53:43,410 - INFO - Downloaded: CMS-2025-0028-0061.pdf
+2025-08-06 15:53:43,732 - INFO - Downloaded: CMS-2025-0028-0064.pdf
+2025-08-06 15:53:44,056 - INFO - Downloaded: CMS-2025-0028-0064.docx
+2025-08-06 15:53:44,359 - INFO - Downloaded: CMS-2025-0028-0068.pdf
+2025-08-06 15:53:44,727 - INFO - Downloaded: CMS-2025-0028-0070.pdf
+2025-08-06 15:53:45,064 - INFO - Downloaded: CMS-2025-0028-0073.pdf
+2025-08-06 15:53:45,367 - INFO - Downloaded: CMS-2025-0028-0076.pdf
+2025-08-06 15:53:45,703 - INFO - Downloaded: CMS-2025-0028-0078.pdf
+2025-08-06 15:53:46,023 - INFO - Downloaded: CMS-2025-0028-0079.pdf
+2025-08-06 15:53:46,331 - INFO - Downloaded: CMS-2025-0028-0081.pdf
+2025-08-06 15:53:46,667 - INFO - Downloaded: CMS-2025-0028-0083.pdf
+2025-08-06 15:53:46,967 - INFO - Downloaded: CMS-2025-0028-0084.pdf
+2025-08-06 15:53:47,280 - INFO - Downloaded: CMS-2025-0028-0085.pdf
+2025-08-06 15:53:47,607 - INFO - Downloaded: CMS-2025-0028-0086.pdf
+2025-08-06 15:53:47,913 - INFO - Downloaded: CMS-2025-0028-0087.pdf
+2025-08-06 15:53:48,229 - INFO - Downloaded: CMS-2025-0028-0089.pdf
+2025-08-06 15:53:48,548 - INFO - Downloaded: CMS-2025-0028-0089.docx
+2025-08-06 15:53:48,863 - INFO - Downloaded: CMS-2025-0028-0090.pdf
+2025-08-06 15:53:49,149 - INFO - Downloaded: CMS-2025-0028-0090.docx
+2025-08-06 15:53:51,418 - WARNING - [WARNING] GPU extraction failed to initialize: 'charmap' codec can't encode character '\U0001f680' in position 0: character maps to <undefined>

@@ -291,6 +291,30 @@ class RemoteDataManager:
             safe_print(f"❌ Error creating customer: {e}")
             return False
     
+    def repair_database(self):
+        """Repair NULL project IDs in the database."""
+        try:
+            safe_print("🔧 Repairing NULL project IDs in database...")
+            
+            url = urljoin(self.portal_url, '/admin/repair-database')
+            
+            response = self.session.post(url, json={}, timeout=30)
+            
+            if response.status_code == 200:
+                result = response.json()
+                safe_print(f"✅ Database repair completed")
+                safe_print(f"   Repaired projects: {result.get('repaired_count', 0)}")
+                safe_print(f"   Message: {result.get('message', 'No details')}")
+                return True
+            else:
+                safe_print(f"❌ Failed to repair database: {response.status_code}")
+                safe_print(f"   Error: {response.text}")
+                return False
+                
+        except Exception as e:
+            safe_print(f"❌ Error repairing database: {e}")
+            return False
+    
     def sync_local_to_remote(self, local_db_dir="customer_databases"):
         """Sync local databases to remote portal."""
         local_dir = Path(local_db_dir)
@@ -426,6 +450,9 @@ def main():
     create_customer_parser.add_argument('--name', help='Customer name (optional)')
     create_customer_parser.add_argument('--password', help='Customer password (optional, defaults to welcome123)')
     
+    # Repair database command
+    repair_parser = subparsers.add_parser('repair', help='Repair NULL project IDs in database')
+    
     # Sync command
     sync_parser = subparsers.add_parser('sync', help='Sync local databases to portal')
     sync_parser.add_argument('--local-dir', default='customer_databases', help='Local database directory')
@@ -463,6 +490,8 @@ def main():
         manager.remove_remote_customer(args.customer_email)
     elif args.command == 'create-customer':
         manager.create_remote_customer(args.customer_email, args.name, args.password)
+    elif args.command == 'repair':
+        manager.repair_database()
     elif args.command == 'sync':
         manager.sync_local_to_remote(args.local_dir)
 

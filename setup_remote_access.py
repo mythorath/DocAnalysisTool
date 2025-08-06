@@ -59,7 +59,7 @@ def main():
     print("=" * 50)
     
     # Default values
-    default_portal_url = "https://narrow-clocks-production.up.railway.app"
+    default_portal_url = "https://narrow-clocks-staging.up.railway.app"
     default_admin_key = "secure_admin_key_2024_changeme"
     
     safe_print(f"\n📍 Portal URL: {default_portal_url}")

@@ -38,7 +38,7 @@ class QuickCustomerManager:
     """Fast customer management without redeployment."""
     
     def __init__(self):
-        self.portal_url = os.getenv('PORTAL_URL', 'https://narrow-clocks-production.up.railway.app')
+        self.portal_url = os.getenv('PORTAL_URL', 'https://narrow-clocks-staging.up.railway.app')
         self.admin_key = os.getenv('ADMIN_API_KEY', 'secure_admin_key_2024_changeme')
         
     def run_api_command(self, action, *args):

@@ -58,7 +58,7 @@ def safe_print(text):
 
 class InteractiveManager:
     def __init__(self):
-        self.portal_url = "https://narrow-clocks-production.up.railway.app"
+        self.portal_url = "https://narrow-clocks-staging.up.railway.app"
         self.admin_key = "secure_admin_key_2024_changeme"
         
     def clear_screen(self):
@@ -1394,9 +1394,30 @@ class InteractiveManager:
         print("3. 🗑️ Manage local projects")
         print("4. 👤 Customer Management") 
         print("5. 🌐 Remote Site Management")
-        print("6. 📚 Quick Reference")
+        print("6. 🤖 Setup OpenAI (Enhanced Processing)")
+        print("7. 📚 Quick Reference")
         print("0. 🚪 Exit")
         print("=" * 60)
+    
+    def setup_openai(self):
+        """Setup OpenAI API key for enhanced document processing."""
+        self.clear_screen()
+        self.show_header()
+        safe_print("🤖 OpenAI Enhanced Processing Setup")
+        print("=" * 60)
+        
+        try:
+            import subprocess
+            result = subprocess.run(['python', 'setup_openai.py'], 
+                                  capture_output=False, text=True)
+            if result.returncode == 0:
+                safe_print("\n✅ OpenAI setup completed successfully!")
+            else:
+                safe_print("\n⚠️ OpenAI setup encountered issues")
+        except Exception as e:
+            safe_print(f"❌ Error running OpenAI setup: {e}")
+        
+        input("\nPress Enter to continue...")
     
     def show_quick_reference(self):
         """Show quick reference."""
@@ -1447,6 +1468,8 @@ class InteractiveManager:
                 elif choice == "5":
                     self.remote_management_menu()
                 elif choice == "6":
+                    self.setup_openai()
+                elif choice == "7":
                     self.show_quick_reference()
                 else:
                     safe_print("❌ Invalid choice")

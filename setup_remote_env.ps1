@@ -2,7 +2,7 @@
 Write-Host "Setting up remote management environment variables..." -ForegroundColor Green
 
 # Set your Railway portal URL
-$env:PORTAL_URL = "https://narrow-clocks-production.up.railway.app"
+$env:PORTAL_URL = "https://narrow-clocks-staging.up.railway.app"
 
 # Set your admin API key (change this to something secure!)
 $env:ADMIN_API_KEY = "your_secure_admin_key_change_me_123"

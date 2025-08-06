@@ -645,7 +645,9 @@
             }
             
             // Hide the old view original button since we're using the footer buttons
-            viewOriginalBtn.style.display = 'none';
+            if (viewOriginalBtn) {
+                viewOriginalBtn.style.display = 'none';
+            }
             
             // Create document viewer content
             let contentHtml = `
