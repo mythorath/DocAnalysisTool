@@ -178,6 +178,12 @@ def dashboard():
         'latest_upload': customer_databases[0]['uploaded_at'][:10] if customer_databases else 'None'
     }
     
+    # If no databases, show welcome page instead
+    if not customer_databases:
+        return render_template('welcome_dashboard.html', 
+                             customer_name=session['customer_name'],
+                             stats=stats)
+    
     return render_template('enhanced_dashboard.html', 
                          databases=customer_databases,
                          stats=stats)
@@ -890,6 +896,115 @@ def admin_remove_customer_endpoint():
     except Exception as e:
         logger.error(f"Admin remove customer error: {e}")
         return jsonify({'error': f'Removal failed: {str(e)}'}), 500
+
+@app.route('/admin/upload-database', methods=['POST'])
+@require_admin_key
+def admin_upload_database():
+    """Upload a database for a customer via API (creates customer if doesn't exist)."""
+    try:
+        data = request.get_json()
+        customer_email = data.get('customer_email')
+        project_name = data.get('project_name')
+        description = data.get('description', '')
+        database_data = data.get('database_data')  # Base64 encoded
+        database_info = data.get('database_info', {})
+        
+        if not all([customer_email, project_name, database_data]):
+            return jsonify({'error': 'Missing required fields: customer_email, project_name, database_data'}), 400
+        
+        customer_email = customer_email.strip().lower()
+        
+        # Get or create customer
+        db_path = ADMIN_DATA_DIR / 'customers.db'
+        conn = sqlite3.connect(db_path)
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+        
+        # Check if customer exists
+        cursor.execute('SELECT * FROM customers WHERE email = ?', (customer_email,))
+        customer = cursor.fetchone()
+        
+        if not customer:
+            # Create new customer with default password
+            customer_name = customer_email.split('@')[0].replace('.', ' ').title()
+            default_password = 'welcome123'  # Customer should change this
+            password_hash = generate_password_hash(default_password)
+            
+            cursor.execute('''
+                INSERT INTO customers (email, name, password_hash, created_at)
+                VALUES (?, ?, ?, CURRENT_TIMESTAMP)
+            ''', (customer_email, customer_name, password_hash))
+            
+            customer_id = cursor.lastrowid
+            logger.info(f"Auto-created customer via upload: {customer_email}")
+        else:
+            customer_id = customer['id']
+        
+        # Check if project already exists
+        cursor.execute('''
+            SELECT id FROM customer_databases 
+            WHERE customer_id = ? AND project_name = ?
+        ''', (customer_id, project_name))
+        
+        if cursor.fetchone():
+            conn.close()
+            return jsonify({'error': f'Project "{project_name}" already exists for this customer'}), 409
+        
+        # Decode and save database file
+        try:
+            import base64
+            db_content = base64.b64decode(database_data)
+        except Exception as e:
+            conn.close()
+            return jsonify({'error': f'Invalid database data encoding: {str(e)}'}), 400
+        
+        # Generate filename
+        safe_filename = f"{customer_email.replace('@', '_at_').replace('.', '_')}_{project_name.replace(' ', '_')}.db"
+        db_file_path = CUSTOMER_DATABASES_DIR / safe_filename
+        
+        # Save database file
+        CUSTOMER_DATABASES_DIR.mkdir(exist_ok=True)
+        with open(db_file_path, 'wb') as f:
+            f.write(db_content)
+        
+        # Store database record
+        cursor.execute('''
+            INSERT INTO customer_databases 
+            (customer_id, project_name, description, database_filename, 
+             file_size, document_count, uploaded_at)
+            VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+        ''', (
+            customer_id,
+            project_name,
+            description,
+            safe_filename,
+            len(db_content),
+            database_info.get('document_count', 0)
+        ))
+        
+        database_id = cursor.lastrowid
+        conn.commit()
+        conn.close()
+        
+        logger.info(f"Database uploaded via API: {project_name} for {customer_email}")
+        
+        # Return success with customer creation info if new
+        response_data = {
+            'success': True,
+            'database_id': database_id,
+            'customer_created': customer is None,
+            'default_password': 'welcome123' if customer is None else None,
+            'message': f'Database uploaded successfully for {customer_email}'
+        }
+        
+        if customer is None:
+            response_data['notice'] = 'New customer account created. Default password: welcome123'
+        
+        return jsonify(response_data)
+        
+    except Exception as e:
+        logger.error(f"Admin upload database error: {e}")
+        return jsonify({'error': f'Upload failed: {str(e)}'}), 500
 
 
 

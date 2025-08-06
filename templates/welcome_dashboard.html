@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Document Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --background-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--background-gradient);
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        .welcome-header {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .welcome-icon {
+            font-size: 4rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .welcome-title {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-subtitle {
+            color: #6c757d;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .status-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .status-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .waiting-icon {
+            color: #f39c12;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h5 {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .info-card .fas {
+            margin-right: 0.5rem;
+        }
+
+        .btn-refresh {
+            background: var(--secondary-color);
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-refresh:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .logout-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            border-radius: 10px;
+            padding: 8px 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+
+        .timeline-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            width: 40px;
+            text-align: center;
+        }
+
+        .completed {
+            color: var(--success-color);
+        }
+
+        .current {
+            color: #f39c12;
+        }
+
+        .pending {
+            color: #95a5a6;
+        }
+    </style>
+</head>
+<body>
+    <a href="{{ url_for('logout') }}" class="logout-btn">
+        <i class="fas fa-sign-out-alt"></i> Logout
+    </a>
+
+    <div class="container">
+        <!-- Welcome Header -->
+        <div class="welcome-header">
+            <div class="welcome-icon">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <h1 class="welcome-title">Welcome, {{ customer_name }}!</h1>
+            <p class="welcome-subtitle">Your secure document portal is ready and waiting for your first project.</p>
+        </div>
+
+        <!-- Current Status -->
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="status-card">
+                    <div class="status-icon waiting-icon pulse">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Waiting for Your First Project</h3>
+                    <p class="text-muted">Your account is active and ready to receive processed documents. Once your first project is uploaded, you'll be able to search and access your documents here.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Information Cards -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info-card">
+                    <h5><i class="fas fa-shield-alt"></i> Secure & Private</h5>
+                    <p>Your documents are stored securely and only accessible by you. Each customer has their own isolated data space.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="info-card">
+                    <h5><i class="fas fa-search"></i> Powerful Search</h5>
+                    <p>Once documents are uploaded, you'll have access to full-text search with highlighting and advanced filtering.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- What to Expect -->
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="status-card">
+                    <h4><i class="fas fa-list-check"></i> What to Expect</h4>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-icon completed">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div>
+                                <strong>Account Created</strong><br>
+                                <small class="text-muted">Your secure account is ready</small>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon current pulse">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <div>
+                                <strong>Awaiting First Project</strong><br>
+                                <small class="text-muted">Documents will be processed and uploaded to your account</small>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon pending">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <div>
+                                <strong>Search & Access</strong><br>
+                                <small class="text-muted">Full-text search and document viewing capabilities</small>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon pending">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <div>
+                                <strong>Export & Download</strong><br>
+                                <small class="text-muted">Download search results and access original documents</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Refresh Button -->
+        <div class="text-center">
+            <button onclick="location.reload()" class="btn btn-refresh">
+                <i class="fas fa-sync-alt"></i> Check for Updates
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-4">
+            <p class="text-white-50">
+                <i class="fas fa-info-circle"></i> 
+                If you have questions about your account or expected projects, please contact your document processing team.
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Auto-refresh every 30 seconds to check for new data
+        setTimeout(function() {
+            location.reload();
+        }, 30000);
+
+        // Show welcome animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const welcomeHeader = document.querySelector('.welcome-header');
+            welcomeHeader.style.opacity = '0';
+            welcomeHeader.style.transform = 'translateY(30px)';
+            
+            setTimeout(function() {
+                welcomeHeader.style.transition = 'all 0.8s ease';
+                welcomeHeader.style.opacity = '1';
+                welcomeHeader.style.transform = 'translateY(0)';
+            }, 200);
+        });
+    </script>
+</body>
+</html>
