@@ -2,21 +2,22 @@
   "version": 2,
   "builds": [
     {
-      "src": "simple_vercel_app.py",
-      "use": "@vercel/python",
-      "config": {
-        "runtime": "python3.9"
-      }
+      "src": "customer_portal.py",
+      "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "simple_vercel_app.py"
+      "dest": "/customer_portal.py"
     }
   ],
   "env": {
-    "FLASK_ENV": "production",
-    "SECRET_KEY": "demo-key-2024"
+    "FLASK_ENV": "production"
+  },
+  "functions": {
+    "customer_portal.py": {
+      "maxDuration": 30
+    }
   }
 }

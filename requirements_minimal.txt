@@ -1,2 +1,21 @@
-# Minimal requirements for Vercel demo
-flask==2.3.3
+# Core web framework
+Flask>=2.3.0
+Werkzeug>=2.3.0
+requests>=2.31.0
+python-dotenv>=1.0.0
+
+# Data processing (let pip choose compatible versions)
+pandas>=1.5.0
+numpy>=1.21.0
+
+# Document processing (optional - install manually if needed)
+# PyMuPDF>=1.20.0
+# pdf2image>=3.0.0
+# pytesseract>=0.3.0
+# Pillow>=9.0.0
+# python-docx>=0.8.0
+# scikit-learn>=1.2.0
+# nltk>=3.8
+
+# Heavy ML dependencies (install separately if needed)
+# sentence-transformers>=2.2.0

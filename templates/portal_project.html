@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ project.project_name }} - Customer Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .search-header {
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .result-card {
+            border: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: transform 0.2s ease;
+        }
+        .result-card:hover {
+            transform: translateY(-2px);
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 0.1rem 0.2rem;
+            border-radius: 0.25rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('dashboard') }}">
+                <i class="bi bi-database-fill me-2"></i>Customer Portal
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="{{ url_for('dashboard') }}">
+                    <i class="bi bi-house me-1"></i>Dashboard
+                </a>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle me-1"></i>{{ session.customer_name }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><h6 class="dropdown-header">{{ session.customer_email }}</h6></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ url_for('logout') }}">
+                            <i class="bi bi-box-arrow-right me-2"></i>Sign Out
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <!-- Project Header -->
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <h1 class="display-6 fw-bold mb-2">{{ project.project_name }}</h1>
+                {% if project.description %}
+                    <p class="text-muted mb-3">{{ project.description }}</p>
+                {% endif %}
+                <div class="row">
+                    <div class="col-auto">
+                        <small class="text-muted">Documents:</small>
+                        <span class="fw-bold ms-1">{{ project.document_count or 0 }}</span>
+                    </div>
+                    <div class="col-auto">
+                        <small class="text-muted">Uploaded:</small>
+                        <span class="fw-bold ms-1">{{ project.uploaded_at[:10] if project.uploaded_at else 'N/A' }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 text-md-end">
+                {% if has_database %}
+                    <a href="{{ url_for('api_export', project_id=project.id, format='csv') }}" 
+                       class="btn btn-outline-primary">
+                        <i class="bi bi-download me-1"></i>Export CSV
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if has_database %}
+            <!-- Search Section -->
+            <div class="search-header">
+                <h3 class="mb-2">
+                    <i class="bi bi-search me-2"></i>Search Your Documents
+                </h3>
+                <p class="mb-0 opacity-75">Search through {{ project.document_count or 0 }} processed documents using keywords or phrases</p>
+            </div>
+
+            <!-- Search Form -->
+            <form id="searchForm" class="mb-4">
+                <div class="row g-3">
+                    <div class="col-md-8">
+                        <input type="text" class="form-control form-control-lg" 
+                               id="searchQuery" placeholder="Enter search terms..." 
+                               autocomplete="off" required>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-select form-select-lg" id="resultLimit">
+                            <option value="10">10 results</option>
+                            <option value="25" selected>25 results</option>
+                            <option value="50">50 results</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            <i class="bi bi-search me-2"></i>Search
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Loading Spinner -->
+            <div class="text-center d-none" id="loadingSpinner">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Searching...</span>
+                </div>
+                <p class="mt-2 text-muted">Searching your documents...</p>
+            </div>
+
+            <!-- Search Results -->
+            <div id="searchResults"></div>
+
+            <!-- Search Help -->
+            <div class="card border-info mt-4">
+                <div class="card-body">
+                    <h6 class="card-title text-info">
+                        <i class="bi bi-info-circle me-2"></i>Search Tips
+                    </h6>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <strong>Phrase search:</strong> Use quotes for exact phrases<br>
+                            <code>"payment rate"</code>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Multiple terms:</strong> Search for multiple keywords<br>
+                            <code>medicare quality measures</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% else %}
+            <!-- No Database Available -->
+            <div class="text-center py-5">
+                <i class="bi bi-database-x display-1 text-muted mb-4"></i>
+                <h4 class="text-muted mb-3">Data Not Available</h4>
+                <p class="text-muted">The search database for this project is not available.</p>
+                <p class="text-muted">Contact your service provider for assistance.</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Document Viewer Modal -->
+    <div class="modal fade" id="documentModal" tabindex="-1" aria-labelledby="documentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="documentModalLabel">
+                        <i class="bi bi-file-text me-2"></i>Document Viewer
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0" id="documentModalBody">
+                    <!-- Document content will be loaded here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="viewOriginalBtn" style="display: none;">
+                        <i class="bi bi-box-arrow-up-right me-1"></i>View Original
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        {% if has_database %}
+        document.getElementById('searchForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const query = document.getElementById('searchQuery').value.trim();
+            const limit = document.getElementById('resultLimit').value;
+            
+            if (!query) {
+                alert('Please enter a search query');
+                return;
+            }
+            
+            // Show loading spinner
+            document.getElementById('loadingSpinner').classList.remove('d-none');
+            document.getElementById('searchResults').innerHTML = '';
+            
+            try {
+                const response = await fetch(`{{ url_for('api_search', project_id=project.id) }}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        query: query,
+                        limit: parseInt(limit)
+                    })
+                });
+                
+                const data = await response.json();
+                
+                // Hide loading spinner
+                document.getElementById('loadingSpinner').classList.add('d-none');
+                
+                if (response.ok) {
+                    displayResults(data);
+                } else {
+                    displayError(data.error || 'Search failed');
+                }
+                
+            } catch (error) {
+                document.getElementById('loadingSpinner').classList.add('d-none');
+                displayError('Network error: ' + error.message);
+            }
+        });
+        
+        function displayResults(data) {
+            const resultsContainer = document.getElementById('searchResults');
+            
+            if (data.results.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="text-center py-4">
+                        <i class="bi bi-search display-4 text-muted mb-3"></i>
+                        <h5 class="text-muted">No results found</h5>
+                        <p class="text-muted">Try different keywords</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = `
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0">Search Results</h5>
+                    <span class="text-muted">${data.total_results} documents found for "${data.query}"</span>
+                </div>
+            `;
+            
+            data.results.forEach((result, index) => {
+                html += `
+                    <div class="card result-card mb-3" style="cursor: pointer;" onclick="viewDocument('${result.document_id}')" 
+                         data-document-id="${result.document_id}">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h6 class="card-title">
+                                        <i class="bi bi-file-text me-2"></i>${result.filename || result.document_id}
+                                        <i class="bi bi-eye ms-2 text-primary" title="Click to view document"></i>
+                                    </h6>
+                                    ${result.organization ? `<p class="text-muted mb-2"><strong>Organization:</strong> ${result.organization}</p>` : ''}
+                                    ${result.category ? `<p class="text-muted mb-2"><strong>Category:</strong> ${result.category}</p>` : ''}
+                                    ${result.snippet ? `<p class="card-text">${result.snippet}</p>` : ''}
+                                </div>
+                                <div class="col-md-4 text-md-end">
+                                    <small class="text-muted">
+                                        <i class="bi bi-file-earmark me-1"></i>${result.file_type || 'Unknown'}<br>
+                                        <i class="bi bi-type me-1"></i>${result.character_count ? result.character_count.toLocaleString() : 'N/A'} chars
+                                    </small>
+                                    <div class="mt-2">
+                                        <button class="btn btn-sm btn-outline-primary" onclick="event.stopPropagation(); viewDocument('${result.document_id}')">
+                                            <i class="bi bi-eye me-1"></i>View
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            resultsContainer.innerHTML = html;
+        }
+        
+        function displayError(message) {
+            const resultsContainer = document.getElementById('searchResults');
+            resultsContainer.innerHTML = `
+                <div class="alert alert-danger" role="alert">
+                    <i class="bi bi-exclamation-triangle me-2"></i>
+                    <strong>Search Error:</strong> ${message}
+                </div>
+            `;
+        }
+        
+        // Focus on search box
+        document.getElementById('searchQuery').focus();
+        
+        // Document viewing functionality
+        async function viewDocument(documentId) {
+            const modal = new bootstrap.Modal(document.getElementById('documentModal'));
+            const modalBody = document.getElementById('documentModalBody');
+            const modalTitle = document.getElementById('documentModalLabel');
+            const viewOriginalBtn = document.getElementById('viewOriginalBtn');
+            
+            // Show loading state
+            modalBody.innerHTML = `
+                <div class="text-center py-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-3 text-muted">Loading document...</p>
+                </div>
+            `;
+            
+            modal.show();
+            
+            try {
+                const response = await fetch(`{{ url_for('api_get_document', project_id=project.id, document_id='DOCUMENT_ID') }}`.replace('DOCUMENT_ID', documentId));
+                const data = await response.json();
+                
+                if (response.ok) {
+                    displayDocumentContent(data, documentId);
+                } else {
+                    displayDocumentError(data.error || 'Failed to load document');
+                }
+                
+            } catch (error) {
+                displayDocumentError('Network error: ' + error.message);
+            }
+        }
+        
+        function displayDocumentContent(data, documentId) {
+            const modalBody = document.getElementById('documentModalBody');
+            const modalTitle = document.getElementById('documentModalLabel');
+            const viewOriginalBtn = document.getElementById('viewOriginalBtn');
+            
+            // Update modal title
+            modalTitle.innerHTML = `
+                <i class="bi bi-file-text me-2"></i>${data.document.filename || data.document.document_id}
+            `;
+            
+            // Show/hide original button
+            if (data.has_original) {
+                viewOriginalBtn.style.display = 'inline-block';
+                viewOriginalBtn.onclick = () => {
+                    window.open(`{{ url_for('api_get_original_document', project_id=project.id, document_id='DOCUMENT_ID') }}`.replace('DOCUMENT_ID', documentId), '_blank');
+                };
+            } else {
+                viewOriginalBtn.style.display = 'none';
+            }
+            
+            // Create document viewer content
+            let contentHtml = `
+                <div class="container-fluid p-4">
+                    <!-- Document Metadata -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h6 class="card-title">Document Information</h6>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <small class="text-muted">Document ID</small>
+                                            <div class="fw-bold">${data.document.document_id}</div>
+                                        </div>
+                                        ${data.document.organization ? `
+                                        <div class="col-md-3">
+                                            <small class="text-muted">Organization</small>
+                                            <div class="fw-bold">${data.document.organization}</div>
+                                        </div>
+                                        ` : ''}
+                                        ${data.document.category ? `
+                                        <div class="col-md-3">
+                                            <small class="text-muted">Category</small>
+                                            <div class="fw-bold">${data.document.category}</div>
+                                        </div>
+                                        ` : ''}
+                                        <div class="col-md-3">
+                                            <small class="text-muted">File Type</small>
+                                            <div class="fw-bold">${data.document.file_type || 'Unknown'}</div>
+                                        </div>
+                                    </div>
+                                    ${data.document.extraction_method ? `
+                                    <div class="row mt-2">
+                                        <div class="col-md-6">
+                                            <small class="text-muted">Extraction Method</small>
+                                            <div class="fw-bold">${data.document.extraction_method}</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <small class="text-muted">Characters</small>
+                                            <div class="fw-bold">${(data.document.character_count || 0).toLocaleString()}</div>
+                                        </div>
+                                    </div>
+                                    ` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            `;
+            
+            // Add extracted text content
+            if (data.extracted_text) {
+                contentHtml += `
+                    <div class="row">
+                        <div class="col-12">
+                            <h6 class="mb-3">
+                                <i class="bi bi-file-text me-2"></i>Extracted Text Content
+                                ${data.has_original ? '<small class="text-muted ms-2">(Click "View Original" to see the source document)</small>' : ''}
+                            </h6>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div style="max-height: 600px; overflow-y: auto; white-space: pre-wrap; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6;">
+                                        ${escapeHtml(data.extracted_text)}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                contentHtml += `
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="alert alert-warning">
+                                <i class="bi bi-exclamation-triangle me-2"></i>
+                                No extracted text content available for this document.
+                                ${data.has_original ? 'You can view the original document using the button below.' : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            contentHtml += '</div>';
+            modalBody.innerHTML = contentHtml;
+        }
+        
+        function displayDocumentError(message) {
+            const modalBody = document.getElementById('documentModalBody');
+            modalBody.innerHTML = `
+                <div class="text-center py-5">
+                    <i class="bi bi-exclamation-triangle display-1 text-warning mb-3"></i>
+                    <h5>Unable to Load Document</h5>
+                    <p class="text-muted">${message}</p>
+                </div>
+            `;
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        {% endif %}
+    </script>
+</body>
+</html>
+

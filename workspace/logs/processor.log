@@ -1,0 +1,70 @@
+2025-08-06 09:46:41,307 - ERROR - Failed to download https://example.com/doc1.pdf: 404 Client Error: Not Found for url: https://example.com/doc1.pdf
+2025-08-06 09:46:42,412 - ERROR - Failed to download https://example.com/doc2.pdf: 404 Client Error: Not Found for url: https://example.com/doc2.pdf
+2025-08-06 09:46:43,328 - ERROR - Failed to download https://example.com/doc3.docx: 404 Client Error: Not Found for url: https://example.com/doc3.docx
+2025-08-06 09:46:43,329 - ERROR - Failed to download  URL: Invalid URL 'URL': No scheme supplied. Perhaps you meant https://URL?
+2025-08-06 09:46:43,329 - ERROR - Failed to download  Category: Invalid URL 'Category': No scheme supplied. Perhaps you meant https://Category?
+2025-08-06 09:51:03,685 - ERROR - Failed to download https://example.com/doc1.pdf: 404 Client Error: Not Found for url: https://example.com/doc1.pdf
+2025-08-06 09:51:46,464 - ERROR - Failed to download https://example.com/doc2.pdf: 404 Client Error: Not Found for url: https://example.com/doc2.pdf
+2025-08-06 09:52:29,201 - ERROR - Failed to download https://example.com/doc3.docx: 404 Client Error: Not Found for url: https://example.com/doc3.docx
+2025-08-06 09:52:29,203 - ERROR - Failed to download  URL: Invalid URL 'URL': No scheme supplied. Perhaps you meant https://URL?
+2025-08-06 09:52:29,203 - ERROR - Failed to download  Category: Invalid URL 'Category': No scheme supplied. Perhaps you meant https://Category?
+2025-08-06 10:09:19,461 - INFO - Downloaded: CMS-2025-0028-0227.pdf
+2025-08-06 10:09:20,012 - INFO - Downloaded: CMS-2025-0028-0578.pdf
+2025-08-06 10:09:20,571 - INFO - Downloaded: CMS-2025-0028-0631.pdf
+2025-08-06 10:09:21,205 - INFO - Downloaded: CMS-2025-0028-0480.pdf
+2025-08-06 10:09:21,788 - INFO - Downloaded: CMS-2025-0028-0460.pdf
+2025-08-06 10:09:22,358 - INFO - Downloaded: CMS-2025-0028-0286.pdf
+2025-08-06 10:09:22,936 - INFO - Downloaded: CMS-2025-0028-0191.pdf
+2025-08-06 10:09:23,543 - INFO - Downloaded: CMS-2025-0028-0527.pdf
+2025-08-06 10:09:24,128 - INFO - Downloaded: CMS-2025-0028-0611.pdf
+2025-08-06 10:09:24,706 - INFO - Downloaded: CMS-2025-0028-0457.pdf
+2025-08-06 10:09:25,283 - INFO - Downloaded: CMS-2025-0028-0560.pdf
+2025-08-06 10:09:25,883 - INFO - Downloaded: CMS-2025-0028-0110.pdf
+2025-08-06 10:09:26,446 - INFO - Downloaded: CMS-2025-0028-0110_attachment_2.pdf
+2025-08-06 10:09:27,065 - INFO - Downloaded: CMS-2025-0028-0486.pdf
+2025-08-06 10:25:33,497 - INFO - Downloaded: CMS-2025-0028-0227.pdf
+2025-08-06 10:25:33,870 - INFO - Downloaded: CMS-2025-0028-0578.pdf
+2025-08-06 10:25:34,259 - INFO - Downloaded: CMS-2025-0028-0631.pdf
+2025-08-06 10:25:34,713 - INFO - Downloaded: CMS-2025-0028-0480.pdf
+2025-08-06 10:25:35,133 - INFO - Downloaded: CMS-2025-0028-0460.pdf
+2025-08-06 10:25:35,534 - INFO - Downloaded: CMS-2025-0028-0286.pdf
+2025-08-06 10:25:35,949 - INFO - Downloaded: CMS-2025-0028-0191.pdf
+2025-08-06 10:25:36,382 - INFO - Downloaded: CMS-2025-0028-0527.pdf
+2025-08-06 10:25:36,824 - INFO - Downloaded: CMS-2025-0028-0611.pdf
+2025-08-06 10:25:37,278 - INFO - Downloaded: CMS-2025-0028-0457.pdf
+2025-08-06 10:25:37,966 - INFO - Downloaded: CMS-2025-0028-0560.pdf
+2025-08-06 10:25:38,501 - INFO - Downloaded: CMS-2025-0028-0110.pdf
+2025-08-06 10:25:39,060 - INFO - Downloaded: CMS-2025-0028-0110_attachment_2.pdf
+2025-08-06 10:25:39,659 - INFO - Downloaded: CMS-2025-0028-0486.pdf
+2025-08-06 10:57:36,674 - INFO - Downloaded: CMS-2025-0028-0227.pdf
+2025-08-06 10:57:37,003 - INFO - Downloaded: CMS-2025-0028-0578.pdf
+2025-08-06 10:57:37,313 - INFO - Downloaded: CMS-2025-0028-0631.pdf
+2025-08-06 10:57:37,649 - INFO - Downloaded: CMS-2025-0028-0480.pdf
+2025-08-06 10:57:38,006 - INFO - Downloaded: CMS-2025-0028-0460.pdf
+2025-08-06 10:57:38,344 - INFO - Downloaded: CMS-2025-0028-0286.pdf
+2025-08-06 10:57:38,672 - INFO - Downloaded: CMS-2025-0028-0191.pdf
+2025-08-06 10:57:39,009 - INFO - Downloaded: CMS-2025-0028-0527.pdf
+2025-08-06 10:57:39,357 - INFO - Downloaded: CMS-2025-0028-0611.pdf
+2025-08-06 10:57:39,682 - INFO - Downloaded: CMS-2025-0028-0457.pdf
+2025-08-06 10:57:40,005 - INFO - Downloaded: CMS-2025-0028-0560.pdf
+2025-08-06 10:57:40,365 - INFO - Downloaded: CMS-2025-0028-0110.pdf
+2025-08-06 10:57:40,670 - INFO - Downloaded: CMS-2025-0028-0110_attachment_2.pdf
+2025-08-06 10:57:41,033 - INFO - Downloaded: CMS-2025-0028-0486.pdf
+2025-08-06 10:57:47,962 - WARNING - Downloading detection model, please wait. This may take several minutes depending upon your network connection.
+2025-08-06 10:57:49,557 - INFO - Download complete
+2025-08-06 10:57:49,558 - WARNING - Downloading recognition model, please wait. This may take several minutes depending upon your network connection.
+2025-08-06 10:57:50,087 - INFO - Download complete.
+2025-08-06 11:11:25,956 - INFO - Downloaded: CMS-2025-0028-0227.pdf
+2025-08-06 11:11:26,307 - INFO - Downloaded: CMS-2025-0028-0578.pdf
+2025-08-06 11:11:26,625 - INFO - Downloaded: CMS-2025-0028-0631.pdf
+2025-08-06 11:11:26,949 - INFO - Downloaded: CMS-2025-0028-0480.pdf
+2025-08-06 11:11:27,281 - INFO - Downloaded: CMS-2025-0028-0460.pdf
+2025-08-06 11:11:28,109 - INFO - Downloaded: CMS-2025-0028-0286.pdf
+2025-08-06 11:11:28,536 - INFO - Downloaded: CMS-2025-0028-0191.pdf
+2025-08-06 11:11:29,043 - INFO - Downloaded: CMS-2025-0028-0527.pdf
+2025-08-06 11:11:29,447 - INFO - Downloaded: CMS-2025-0028-0611.pdf
+2025-08-06 11:11:29,839 - INFO - Downloaded: CMS-2025-0028-0457.pdf
+2025-08-06 11:11:30,218 - INFO - Downloaded: CMS-2025-0028-0560.pdf
+2025-08-06 11:11:30,590 - INFO - Downloaded: CMS-2025-0028-0110.pdf
+2025-08-06 11:11:30,920 - INFO - Downloaded: CMS-2025-0028-0110_attachment_2.pdf
+2025-08-06 11:11:31,259 - INFO - Downloaded: CMS-2025-0028-0486.pdf

@@ -1,8 +1,9 @@
-filename,url,source
-sample_comment_1.pdf,https://example.com/sample1.pdf,Example Agency
-sample_comment_2.pdf,https://example.com/sample2.pdf,Example Department  
-sample_comment_3.docx,https://example.com/sample3.docx,Sample Organization
+Document ID,URL,Organization,Category
+TEST-001,https://example.com/doc1.pdf,Test Organization,Test Category
+TEST-002,https://example.com/doc2.pdf,Another Org,Sample Category
+TEST-003,https://example.com/doc3.docx,Sample Corp,Analysis
 
 # This is a sample CSV file showing the expected format
-# Replace with your actual comment URLs before running the tool
-# Format: filename,url,source
+# Replace with your actual document URLs before running the tool
+# Required columns: Document ID, URL
+# Optional columns: Organization, Category

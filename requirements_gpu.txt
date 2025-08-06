@@ -1,0 +1,33 @@
+# GPU-Enhanced Document Processing Requirements
+# Install these for RTX 3080 Ti acceleration
+
+# Core dependencies (from requirements.txt)
+Flask>=2.3.0
+Werkzeug>=2.3.0
+requests>=2.31.0
+python-dotenv>=1.0.0
+pandas>=1.5.0
+numpy>=1.21.0
+
+# Document processing
+PyMuPDF>=1.20.0
+pdf2image>=3.0.0
+pytesseract>=0.3.0
+Pillow>=9.0.0
+python-docx>=0.8.0
+
+# GPU-accelerated OCR and processing
+torch>=2.0.0
+torchvision>=0.15.0
+easyocr>=1.7.0
+
+# Enhanced text processing
+scikit-learn>=1.2.0
+nltk>=3.8
+
+# Optional for advanced features
+# sentence-transformers>=2.2.0  # Uncomment for advanced embeddings
+# transformers>=4.21.0         # Uncomment for advanced NLP
+
+# Note: For CUDA support, install PyTorch with CUDA:
+# pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118

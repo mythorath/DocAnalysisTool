@@ -1,0 +1,146 @@
+ 
+ 
+June 10, 2025 
+CMS-1833-P 
+ 
+Dear Administrator Oz, 
+Thank you for the opportunity to share comments on the Medicare Program; Hospital Inpatient 
+Prospective Payment Systems for Acute Care Hospitals and the Long-Term Care Hospital 
+Prospective Payment System and Policy Changes and Fiscal Year 2026 Rates; Requirements for 
+Quality Programs; and Other Policy Changes.1  
+Founded in 2013, Unite Us is the nation’s leading software company bringing the health care, 
+government, and human service sectors together to coordinate care in real-time and improve the 
+health and well-being of communities. Our technology powers the prediction, delivery, and 
+payment of non-medical drivers of health to eliminate fragmented silos between health and 
+community-based care teams, reduce the burden placed on individuals seeking care, and 
+improve health outcomes while lowering costs. Our goal is to ensure every individual, no matter 
+who they are or where they live, can access the critical services they need to thrive.  
+We commend CMS for proposing changes to the measurement and improvement of the quality of 
+care and services provided to Medicare beneficiaries in inpatient facility settings. Policies that 
+allow for the inclusion of evidence-based non-clinical and community-based activities that 
+address non-medical drivers of health and other upstream factors can incentivize plans and 
+providers to deliver preventive, whole-person care for their patients. This reduces long-term 
+burden on the healthcare system, reduces costs, and promotes community and individual health 
+improvement. Screening for non-medical needs is a critical front-line activity. However, screening 
+alone, without coordinating and tracking the community based intervention, will not improve 
+preventive care and lower costs.  
+Further details on our recommendations are on the following pages. Please contact me with any 
+questions regarding these recommendations. We look forward to continued dialogue with you on 
+these important issues and hope to have the opportunity to meet with your staff soon. 
+Sincerely, 
+ 
+Keith Gardner​
+SVP, Regulatory and Government Affairs​
+keith.gardner@uniteus.com​
+UniteUs.com 
+1 CMS concurrently released proposed rules related to payment and quality reporting changes for Skilled 
+Nursing Facilities, Inpatient Psychiatric Facilities, Inpatient Rehabilitation Facilities, and Hospices. To 
+streamline our comments we apply our feedback broadly to the changes proposed to the respective 
+quality reporting programs, collectively referred to as “Quality Reporting Programs.” 
+217 Broadway Floor 8 New York, NY 10007​
+​
+ www.UniteUs.com  
+ 
+ 
+Comments 
+Unite Us applauds CMS’s continued commitment to refining the measure sets for Quality 
+Reporting Programs. We support CMS’s efforts to reduce administrative burden while driving 
+meaningful insights on the quality of care and services provided to Medicare beneficiaries. We 
+also applaud CMS’s commitment to addressing non-medical drivers of health by exploring new 
+quality measures related to prevention, nutrition, and individual well-being. 
+For more than a decade, Unite Us has grown nationally to power real-time coordinated care 
+networks of health care, government, and community based services across the country. We 
+have facilitated more than 70 million connections to care, and we enable access to more than 1.5 
+million community based and social services across the country, including housing, mental and 
+behavioral health, transportation, education, employment, legal, food, and benefits assistance. 
+Our experience has shown us first-hand that screening for unmet needs is an important first step 
+in helping individuals achieve self-sufficiency and improved quality of life. For example, engaging 
+community health workers with high-risk patients before and after they leave the hospital can 
+help with identifying non-medical needs early and provide continued support in the community. 
+By layering data on non-medical needs with clinical quality measures, health systems and 
+hospitals can tailor interventions and improve long-term health outcomes.  
+As CMS stated in the FY 2024 Hospital IPPS and LTCH PPS Proposed Rule, in which the 
+Screening for Social Drivers of Health (SDoH) and Screen Positive Rate for SDoH measures were 
+proposed for adoption, “collecting patient-level…data through screening is essential for the 
+long-term in encouraging meaningful collaboration between healthcare providers and 
+community-based organizations, and in implementing and evaluating related innovations in 
+health and social care delivery.” In our feedback to CMS on that proposed rule, Unite Us 
+supported the inclusion of such measures as a starting point for improving community health. 
+However, we also cautioned that “assessing needs without ensuring they are addressed, and 
+addressed with urgency, is unlikely to improve quality significantly.” That point remains central to 
+our position today. 
+We believe that screening measures alone are insufficient. Without corresponding investment 
+in 
+real-time 
+coordination 
+and 
+referral 
+infrastructure, 
+along 
+with 
+partnerships 
+with 
+community-based organizations (CBOs), assessing needs without ensuring they are addressed, 
+and addressed with urgency, is unlikely to significantly improve quality. As we explained in our 
+previous comment letters, the measures document an administrative process only and do not 
+ultimately provide insights into the extent providers are connecting patients to needed resources 
+and services or whether patients are actually benefiting from the screenings. We recommend the 
+creation of quality measures that evaluate whether services to address non-medical needs are 
+coordinated, tracked, and provided in a timely manner. In other words, when hospitals identify an 
+unmet need or barrier that needs to be addressed, they should be measured on the intervention 
+and outcome.  
+We therefore urge CMS to prioritize measures that assess both identification and outcomes. 
+To that end, we recommend inclusion of a measure similar to NCQA’s HEDIS Social Needs 
+Screening and Intervention (SNS-E) measure. Although designed for health plans, SNS-E 
+provides a useful framework for hospitals of a true measure of community and social service 
+intervention. The SNS-E measure is inclusive of both enrollee screening for social needs and 
+whether the enrollee receives a corresponding intervention if screened positive. By contrast, the 
+current Hospital VBP total performance score (TPS) domains (Clinical, Safety, Patient and 
+2 
+ 
+ 
+Community Engagement and Cost and Effectiveness) do not measure whether a corresponding 
+intervention was delivered. Including measures in the existing TPS domains that assess 
+providers' ability to identify and intervene to address patient’s non-medical needs further 
+incentivizes progress on key risk factors that drive health improvement. 
+Many health systems are focused on reducing readmissions and patients who are frequently 
+readmitted have more than twice the likelihood of having more than one unaddressed 
+non-medical need. In the population health space, for conditions such as diabetes, hypertension, 
+and other ambulatory quality measures, the use of Unite Us technology allows hospitals to 
+overlay factors such as food insecurity, housing, and transportation to those quality measures to 
+see where there is a demonstrable impact on health outcomes. Providers are then able to tailor 
+strategies and interventions to continuously improve performance on those health outcomes. 
+Tying screening for social needs to quality scores, while originally meant to standardize data 
+collection and encourage provider participation, has resulted in over-screening without 
+meaningfully helping patients. Incentivizing screening without also funding downstream 
+infrastructure to intervene and address positive screens—e.g., referrals, community partnerships, 
+building community-based organization capacity—only exacerbates disparities rather than 
+reducing them. As our hospital and health system partners have shared with us, addressing 
+non-medical needs isn’t a one-off initiative - it is now, and must be, a part of the organization’s 
+long-term strategy and operations. Organizations that have taken steps to integrate screening for 
+non-medical needs into routine care, using their electronic health records in conjunction with 
+Unite Us’ closed-loop referral system, are scaling and streamlining processes to ensure patients’ 
+needs are identified early and addressed proactively with external partners in a cohesive and 
+standardized approach.  
+In evaluating how to address these issues, CMS can consider adopting the following positions:  
+●​ Encourage voluntary, targeted screening paired with infrastructure grants, such as 
+HITECH-like funding for electronic and outcome focused referral management and 
+coordination platforms to track delivery of services in community based settings;  
+●​ Develop contextualized quality measures that assess not just screening for non-medical 
+needs but also follow-up, patient engagement, and community capacity; and  
+●​ Support technical assistance to help providers build partnerships with community-based 
+organizations and adopt technology solutions. 
+Finally, regarding CMS’ request for input on new measures for nutrition and well-being, Unite Us 
+supports the incorporation of new measures that are endorsed and tested by external validators. 
+We recommend the creation of measures that evaluate whether services to address non-medical 
+needs are provided in a timely manner, moving from administrative or process measures to 
+outcome measures. Assessing needs without ensuring they are addressed, and addressed with 
+urgency, is unlikely to improve quality significantly.  
+Unite Us is grateful for CMS’s continued commitment to incentivizing “the improvement of care 
+quality and health outcomes for all patients through transparency and use of appropriate quality 
+measures.” Screening for social needs was only a first step. To deliver on the promise of 
+person-centered care, CMS should consider incentivizing systems that connect individuals to 
+services and track outcomes. We look forward to working with the agency to help build a 
+healthcare system where identified needs have paths to resolution. 
+3 
+ 

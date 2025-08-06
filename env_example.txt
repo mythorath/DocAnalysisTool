@@ -1,0 +1,12 @@
+# Remote Management Configuration
+# Copy this to .env and update the values
+
+# Your Railway portal URL
+PORTAL_URL=https://narrow-clocks-production.up.railway.app
+
+# Your admin API key (change this to something secure!)
+ADMIN_API_KEY=your_secure_admin_key_change_me_123
+
+# Optional: Local development settings
+FLASK_ENV=development
+SECRET_KEY=local_dev_secret_key

@@ -1,0 +1,309 @@
+ 
+ 
+1 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+June 10, 2025 
+ 
+Dr. Mehmet Oz, M.D. 
+Administrator    
+Centers for Medicare & Medicaid Services  
+Department of Health & Human Services 
+ 
+Submitted electronically to: http://www.regulations.gov 
+ 
+Re:  CMS-1808-P: Medicare and Medicaid Programs and the Children’s Health Insurance Program; 
+Hospital Inpatient Prospective Payment Systems for Acute Care Hospitals and the Long-Term Care 
+Hospital Prospective Payment System and Policy Changes and Fiscal Year 2025 Rates; Quality 
+Programs Requirements; and Other Policy Changes 
+ 
+Dear Administrator Oz: 
+ 
+On behalf of University of Vermont Health Network (UVMHN), I am writing to provide comments to 
+the Centers for Medicare & Medicaid Services (CMS) on the fiscal year (FY) 2026 Inpatient 
+Prospective Payment System (IPPS) proposed rule, which was published in the April 30, 2025 Federal 
+Register. 
+ 
+UVM Health Network shares CMS’s commitment to transforming America’s health care system to 
+ensure patients have access to high-quality care in their communities. However, we have significant 
+concerns over continued payment updates that fail to account for rising labor costs, inflation and 
+tariffs, all of which threaten the resiliency of our hospital network and its providers.  
+ 
+Market Basket Update 
+ 
+CMS proposes to rebase and revise the IPPS market basket to a 2023-base year beginning in FY 2026 
+using Medicare cost reports that began on or after October 1, 2022, and before October 1, 2023. 
+Based on its standard methodology for updating the hospital market basket, CMS proposes to 
+update IPPS operating payments for FY 2026 based on a forecasted 3.2% increase to the hospital 
+market basket. After accounting for the -0.8% adjustment for productivity, which is double that of 
+previous years, CMS estimates that operating payments will increase by 2.4% in FY 2026. 
+ 
+UVM Health Network is very concerned that Medicare payments to hospitals are insufficient to meet 
+the cost of care, resulting in cost shifting to commercial payers and consumers of health insurance. 
+MedPAC shares this concern and has recommended a market basket increase plus 1%, equaling a 
+PPS hospital update of 4.6%. MedPAC tracks a group of relatively efficient hospitals, and those 
+hospitals generated a -2% median Medicare margin in FY 2023. These hospitals consistently achieve 
+ 
+ 
+2 
+ 
+high quality outcomes at a lower cost than the average PPS hospital. The median Medicare margin for 
+all PPS hospitals in FY 2023 was -13%, according to MedPAC in its December 2024 meeting.  
+ 
+Labor expenses, inflation, and other outside factors continue to increase operating costs for 
+hospitals, further contributing to the hospitals’ financial instability.  Medicare payments to hospitals 
+conintue to be insufficient and will jeopardize their ability to keep doors open for the patients who 
+rely on them.  To develop a more accurate payment update that reflects the actual cost of providing 
+care, it is critical for CMS to adopt additional data elements in its calculation of the IPPS market 
+basket. 
+ 
+It is imperative that CMS leverage its full statutory authority to make appropriate adjustments to the 
+market basket in response to exogenous events and extraordinary circumstances as recommended 
+by MedPAC. 
+ 
+Hospital Wage Index for Acute Care Hospitals 
+ 
+CMS proposes to continue with the discontinued low-wage hospital index policy in FY 2026, just as it 
+did for FY 2025, with a transitional adjustment for low-wage index hospitals. Under this proposal, if a 
+hospital’s proposed FY 2026 wage index decreases by more than 9.75% compared to FY 2024, then 
+the transitional FY 2026 wage index would equal  90.25% of its FY 2024 wage index. The limit on the 
+reduction in the wage index for a low wage-index hospital would be 5% annually in FY 2025 and FY 
+2026 (or 9.75% over two years) due to the 5% cap on year-to-year decreases that was adopted in the 
+FY 2023 IPPS rule. CMS proposes to apply the transitional policy in a budget neutral manner. 
+ 
+We appreciate CMS's recognition of a shortcoming in the wage index methodology, which has been 
+detrimental to hospitals - especially rural hospitals - located in areas with depressed wages. UVM 
+Health Network is generally supportive of the narrow transitional policy to address hospitals that are 
+most affected by the discontinuation of the low-wage index hospital policy; however, CMS should not 
+apply the narrow transitional policy in a budget neutral manner. 
+ 
+Changes to the TEAM Model 
+ 
+We are pleased to see that CMS continues to refine the TEAM model in response to public 
+comments. Since it was finalized in 2024, many hospitals have invested time and money in 
+preparation of TEAM’s launch in 2026. 
+ 
+UVM Health Network offers these general comments on the TEAM Model: 
+- 
+We support adding the “Information Transfer PRO-PM” measure in TEAM performance years 
+3–5, applicable to joint replacement and spinal fusion. 
+- 
+We recommend extending the lookback period to one year to fully capture patients' risk 
+profiles, especially for those with earlier annual visits. We also recommend accounting for 
+both Hierarchical Condition Category (HCC) weights and counts, including HCCs identified 
+during the episode. 
+- 
+We recommend using the episode end date for both attribution and reconciliation. Using the 
+discharge date could delay reconciliation for episodes ending after year-end. 
+ 
+ 
+3 
+ 
+- 
+We support extending the SNF 3 day waiver to include swing bed arrangements in hospitals 
+and CAHs for TEAM beneficiaries, as this expands access to Post Accute Care (PAC) in 
+rural/underserved areas and maintains parity among providers. 
+- 
+We recommend establishing a low-volume policy using a threshold of 40 episodes per 
+category in the baseline. Low-volume hospitals should remain in Track 1 and avoid 
+mandatory Track 2. Small case counts create high volatility and risk of financial harm. 
+- 
+We recommend adding a “Standard User” role in the Data Portal to allow data custodians to 
+delegate access, reducing administrative burden and enabling analytics teams to perform 
+their work. 
+- 
+We recommend adjusting episode target prices to reflect unexpected medical supply/device 
+cost increases (e.g., tariffs), especially for device-heavy episodes like CABG and spinal 
+fusion. 
+ 
+Quality Reporting Programs 
+ 
+A.  Hospital Quality Reporting (IQR) Program and Value Based Purchasing (VBP) Program 
+ 
+Starting with FY 2027, CMS proposes refinements to two measures; MORT-30-STK: 30-day all-cause 
+mortality after acute ischemic stroke and COMP-HIP-KNEE: Risk-standardized complication rate 
+after elective hip/knee arthroplasty.  The proposed refinements are: 
+- 
+Include Medicare Advantage (MA) patients, doubling cohort size. 
+- 
+Shorten performance period from three years to two years. 
+- 
+Maintain current exclusions (e.g., hospice enrollment, discharge against medical advice). 
+CMS also proposes technical updates to seven measures beginning with FY 2027, as well as 
+proposing two technical measure updates for FY 2027 that include: 
+- 
+Transition risk adjustment from HCCs to ICD-10 codes for better precision. 
+- 
+Remove COVID-19 exclusions, due to the end of the Public Health Emergency (PHE). 
+ 
+Additionally, CMS proposes removing four measures due to high burden and low utility: 
+- 
+Hospital Commitment to Health Equity (HCHE) 
+- 
+COVID-19 Vaccination Coverage Among Healthcare Personnel 
+- 
+SDOH-1: Screening for Social Drivers of Health 
+- 
+SDOH-2: Screen Positive Rate for SDOH 
+ 
+Lastly CMS proposes changes to the reporting and submission requirements for hybrid measures 
+that starting in FY 2028 that include: 
+- 
+Lower reporting thresholds: from 90% to 70% (CCDEs) and 95% to 70% (linking variables). 
+- 
+Allow more missing data: up to two missing lab results and two vital signs. 
+ 
+UVM Health Network supports both proposals for the measure refinements including maintating 
+current exclusions and shortening the reporting period, however we urge CMS to ensure the quality of 
+MA data that is being used and caution against reliance on low-quality data. 
+ 
+UVM Health Network supports the technical measure updates but recommends maintaining an 
+active diagnosis of COVID-19 as a risk variable where relevant. 
+ 
+ 
+ 
+4 
+ 
+UVM Health Network generally supports the proposal of the four measures being removed, however, 
+hospitals should not be penalized for anticipating regulatory requirements, and we strongly urge CMS 
+to avoid retroactive effective dates when proposing to remove measures, especially for relatively new 
+measures, as it places undue burden on hospitals. 
+UVM Health Network supports the proposal involving reporting and submission requirements for 
+hybrid measures and agrees with CMS that it will allow more hospitals to meet the reporting 
+thresholds and will reduce the reporting burden for hospitals.   
+ 
+B.  Hospital Readmission Reduction Program (HRRP) 
+ 
+CMS proposes refinements to six readmission measures under the Hospital Readmissions 
+Reduction Program (HRRP): 
+- 
+30-Day Readmission Rate After Acute Myocardial Infarction (AMI) 
+- 
+30-Day Readmission Rate After Heart Failure (HF) 
+- 
+30-Day Readmission Rate After Pneumonia (PN) 
+- 
+30-Day Readmission Rate After Chronic Obstructive Pulmonary Disease (COPD) 
+- 
+30-Day Readmission Rate After Total Hip/Knee Arthroplasty (THA/TKA) 
+- 
+30-Day Readmission Rate After Coronary Artery Bypass Graft (CABG) 
+ 
+Like IQR above, CMS again proposes to include Medicare Advantage (MA) beneficiaries in each 
+measure cohort while shortening the performance period from three years to two years. 
+ 
+Additionally CMS proposes similar technical changes by removing all COVID-19-related exclusions, 
+including: index and readmission exclusions for COVID-19 diagnoses, ICD-10 codes for secondary 
+COVID-19 diagnoses and risk adjustment for history of COVID-19 within 12 months. 
+ 
+UVM Health Network supports all proposed changes, aligning with its earlier support for IQR 
+refinements, but we recommend CMS integrate risk from COVID-19 history into updated risk 
+adjustment models to avoid penalizing hospitals for potential increased risk in affected patients. 
+ 
+C.  Promoting Interoperability Program 
+ 
+CMS is requesting information  on the Prescription Drug Monitoring Program (PDMP) Measure; 
+Specifically, CMS seeks feedback on: 
+- 
+Transitioning the measure to a performance-based format (numerator/denominator). 
+- 
+Expanding the drug types covered by the measure. 
+ 
+CMS is considering the following descriptions for the measure: 
+- 
+Denominator: Number of Schedule II/III/IV drugs electronically prescribed using CEHRT. 
+- 
+Numerator: Number of those prescriptions for which the PDMP was queried via CEHRT at the 
+time of prescribing. 
+ 
+While we support performance-based measures, we would like to highlight major operational 
+barriers.  First, PDMP–EHR integration is inconsistent across hospitals, and many EHRs cannot 
+automatically capture PDMP queries. Additionally, many rural hospitals and Critical Access 
+Hospitals (CAHs) will find this measure particular challenging. 
+ 
+ 
+ 
+5 
+ 
+UVM Health Network believes the proposal for the PDMP measures is premature and that CMS 
+should convene stakeholders and experts to examine if PDMP queries reduce opioid prescribing. 
+CMS should also evaluate the effectiveness before mandating a performance-based measure.  If 
+CMS does decide to move forward, the measure should be optional and eligible for bonus points 
+until data and interoperability standards are fully supported. 
+ 
+CMS is also requesting information on data quality. Specifically, CMS seeks input on how to improve 
+data quality in electronic health information (EHI) exchanges to reduce risks to patient safety, public 
+health, and research due to poor data quality. 
+ 
+UVM Health Network would like to note operational barriers around the current health IT ecosystem, 
+as it lags behind current needs.  EHRs are focused on transactional care, not population health or 
+longitudinal data.  Promoting Interoperability Program and legacy Meaningful Use definitions 
+continue to be outdated. Data exchanges remain fragmented, and EHR vendors often limit access to 
+bulk data, stifling innovation. Significant time and resources are required for data extraction, usually 
+involving third-party vendors. 
+ 
+There needs to be a fundamental shift in how CMS defines and supports health IT in order to enable a 
+modern and data -driven health care system focusd on improving outcomes. UVM Health Network 
+recommends that CMS focus on a way to leverage the Promoting Interoperability Program to help 
+make data more accessible for quality improvement and population health activities, which would 
+help improve patient outcomes while improving efficiency and reducing costs in health care. 
+Modifying the certification standards for health IT, meaningful use criteria and overall incentives to 
+include data usability and availability for quality, benchmarking, and process improvement activities 
+would unlock the potential of health care data.   
+ 
+D.  RFI: Toward Digital Quality Measurement in CMS Quality Program 
+ 
+CMS is seeking public input on its proposed transition to FHIR-based electronic clinical quality 
+measures (eCQMs) across its quality programs (e.g., HIQR, HOQR, and Promoting Interoperability), 
+with the goal of supporting greater digital interoperability and quality measurement.  
+ 
+As noted above in the previous sections,  existing health IT and interoperability rules are outdated 
+and no longer align with modern health care data needs.  Additionally, the regulatory framework (e.g., 
+meaningful use, ONC rules) emphasizes compliance over innovation and hampers efficient data use 
+for AI, analytics, and care coordination. 
+ 
+CMS should take care that any requirements – or interoperability mechanisms developed to promote 
+eCQM reporting – do not complicate bulk data sharing for other crucial purposes, such as patient 
+care coordination, analytics, AI or benchmarking to understand care or cost opportunities. There is a 
+danger that developing infrastructure solely for FHIR-based eCQMs could detract from broader 
+interoperability goals, and health care needs a unified, scalable data-sharing approach – not 
+piecemeal compliance solutions. Current EHR and hybrid measures struggle with data inconsistency 
+across systems and without uniform calibration and definitions (e.g., for lab results), quality 
+measurement risks being unreliable and potentially unfair if linked to payment. 
+ 
+UVM Health Network recommends a 4-year transition period instead of the CMS proposed 2-year 
+period to address any troubleshooting and implementation delays within EHRs and to allow those 
+ 
+ 
+6 
+ 
+hospitals and providers in rural or low-resource settings more time to implement changes. Future 
+investments should prioritize hospital readiness, not just vendor capabilities while addressing and 
+limiting information blocking by EHR vendors that restrict third-party access to data. 
+ 
+UVM Health Network urges that CMS’s efforts on interoperability must be focused on simplification 
+and standardization across reporting and use cases, and that CMS must avoid creating separate 
+mechanisms for each program or goal and instead push toward true, universal interoperability. 
+ 
+Conclusion 
+ 
+UVM Health Network thanks HHS for allowing us the opportunity to submit public comment on the FY 
+2026 IPPS proposed rule.  We look forward to continuing to work with CMS on developing policies 
+that help transform America’s health care system so that hospitals and health systems can continue 
+to ensure patients have access to high-quality care in their communities. 
+ 
+Sincerely, 
+ 
+ 
+ 
+Kelly Champney 
+Vice President, Revenue Strategy and Performance 
+University of Vermont Health Network 
+ 
+ 

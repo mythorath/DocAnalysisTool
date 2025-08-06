@@ -1,0 +1,742 @@
+ 
+ Government & External Affairs  
+1776 West Lakes Parkway, Suite 400  
+West Des Moines, IA 50266  
+unitypoint.org 
+ 
+ Page 1 
+ 
+ 
+June 10, 2025 
+ 
+ 
+Secretary Robert F. Kennedy, Jr. 
+Centers for Medicare and Medicaid Services (CMS)  
+Department of Health and Human Services  
+Attention: CMS–1833-P 
+P.O. Box 8013 
+Baltimore, MD 21244–8013 
+ 
+RE: CMS–1833-P - Medicare Program; Hospital Inpatient Prospective Payment Systems for Acute Care 
+Hospitals and the Long-Term Care Hospital Prospective Payment System and Policy Changes and Fiscal 
+Year 2026 Rates; Requirements for Quality Programs; and Other Policy Changes; published at Vol. 90, 
+No. 82 Federal Register 18002-18491 on April 30, 2025. 
+ 
+Submitted electronically via https://www.regulations.gov 
+ 
+ 
+Dear Secretary Kennedy, 
+ 
+UnityPoint Health appreciates this opportunity to provide comments on this proposed rule related to 
+Hospital Inpatient Prospective Payment Systems for Acute Care Hospitals and the Long-Term Care Hospital 
+Prospective Payment System and Policy Changes and Fiscal Year 2025 Rates. UnityPoint Health is one of 
+the nation’s most integrated healthcare systems. Through more than 29,000 employees and our 
+relationships with 390+ physician clinics, 36 hospitals in urban and rural communities, five Inpatient 
+Rehabilitation Facilities, and 12 home care areas of service across our eight regions, UnityPoint Health 
+provides care throughout Iowa, central Illinois, and southern Wisconsin.  
+In addition, UnityPoint Health is committed to payment reform and is actively engaged in numerous 
+initiatives which support population health and value-based care. UnityPoint Accountable Care is the 
+Accountable Care Organization (ACO) affiliated with UnityPoint Health and has value-based contracts with 
+multiple payers, including Medicare. UnityPoint Accountable Care currently participates in the CMS 
+Medicare Shared Savings Program (MSSP), and it contains providers that have participated in the Center 
+for Medicare and Medicaid Innovation (CMMI) Global and Professional Direct Contracting Model, Next 
+Generation ACO Model, and the Pioneer ACO Model. 
+UnityPoint Health appreciates the time and effort of CMS in developing this proposed rule. UnityPoint 
+Health is a member of the American Hospital Association and Premier, Inc. and generally supports 
+their formal comment letters. In addition, UnityPoint Health respectfully offers the following 
+comments. 
+CMS-1833-P 
+UnityPoint Health 
+ 
+ 
+Page 2 
+INPATIENT PROSPECTIVE PAYMENT SYSTEM UPDATE (IPPS) 
+For FY 2026, CMS proposes to increase Medicare IPPS hospital rates by a net 2.4% (market basket update 
+of 3.2% and -0.8% decrease for the productivity adjustment). 
+Comment: UnityPoint Health appreciates the increased Medicare payment rate, but this increase falls 
+short of addressing inflationary pressures and the significant rise in healthcare labor and supply costs. 
+For the sixth consecutive year, the CMS payment update has not aligned with actual hospital cost 
+increases, resulting in strained hospital operating margins. UnityPoint Health IPPS hospitals have an 
+average public payer mix of 68%. When Medicare and Medicaid reimburse services at rates below cost, 
+commercial payers must subsidize these services, or hospitals must reconsider the scope and level of 
+services provided to their communities. To ensure financial stability and effective planning, we reiterate 
+our recommendations: (1) implement a retrospective adjustment for FY 2026 to account for the 
+discrepancy between the market basket update implemented for FY 2025 and the current projection 
+for FY 2025; and (2) eliminate the productivity cut for FY 2026. 
+LOW WAGE INDEX HOSPITAL POLICY  
+In October 2024, CMS issued an interim final rule in response to litigation announcing the termination and 
+phase out of the low wage index hospital policy. For FY 2026, CMS proposes to continue a phase-out 
+through a modified transitional policy. 
+Comment: We are frustrated with the litigation’s outcome. UnityPoint Health supports the intent of the 
+low wage index hospital policy and CMS’ transitional policy. With hospital payment not keeping pace 
+with labor and inflationary expenses, hospitals within the lowest quadrant are particularly hard hit. We 
+encourage CMS to continue to evaluate policies to address wage index disparities that will promote the 
+fiscal wellbeing of hospitals serving rural and underserved populations.  
+LOW-VOLUME HOSPITAL PAYMENT ADJUSTMENTS 
+For FY 2026 and in the absence of Congressional action, CMS is proposing to revert to the 2005 eligibility 
+criteria for low-volume hospital status, including a total discharge criteria of 200 or less and a distance 
+criteria of 25 miles. 
+Comment: Without Congressional action, UnityPoint Health is concerned about the changes to the low-
+volume adjustment criteria and how it will affect small rural hospitals and their communities. UnityPoint 
+Health has two1 “tweener” hospitals that qualify for the low-volume adjustment under both the 2011 and 
+2019 criteria. These hospitals have discharges between 200 and 1,600 annually. If eligibility reverts to FY 
+2005 criteria, Medicare payment will drop by over $850,000 for each hospital. These hospitals already 
+have thin operating margins, and this loss from their largest payer will make it difficult to sustain current 
+service offerings. Retaining the 2019 criteria2 is crucial to support healthcare access in rural areas.  
+RURAL COMMUNITY HOSPITAL DEMONSTRATION PROGRAM 
+This demonstration program began in 2004 and allows rural hospitals with fewer than 51 acute care beds 
+ 
+1 This number could potentially be four; however, UnityPoint Health has two hospitals participating the Rural 
+Community Hospital Demonstration program.  
+2 Criteria 2019 through 2024 and 2025 discharges through December 31, 2024: (1) distance criteria of 15 miles and 
+(2) total annual discharges of up to 3,800 with tiered adjustments. 
+CMS-1833-P 
+UnityPoint Health 
+ 
+ 
+Page 3 
+to assess the feasibility of Part A cost-based reimbursement. This program is limited to 30 hospitals 
+nationally. CMS proposes to continue the budget neutrality offset. 
+Comment: UnityPoint Health has two Iowa hospitals (Grinnell Regional Medical Center in Grinnell; and 
+Trinity Regional Medical Center in Fort Dodge) participating in the Rural Community Hospital 
+Demonstration Program. We strongly support the continuation of this program but, given its 
+demonstration status, this program does not offer long-term financial sustainability needed to maintain 
+healthcare access in rural areas. We reiterate the following recommendations for program improvement 
+from our 2023 IPPS comment letter: 
+• 
+Permanent Status. Given its demonstration status, program participants are dependent upon program 
+renewal every five years. This hampers long-term planning for healthcare access in rural areas. With 
+a program duration of 20+ years, it is time for program permanency. 
+• 
+Sole Community Hospital Participant Financial Stability. For Sole Community Hospital (SCH) 
+participants, CMS should incorporate the “Safety Net” financial stability provisions pertaining to SCHs. 
+Specifically, the demonstration should retain the financial SCH safeguard – “to provide a continued 
+safety net for the SCH’s first cost reporting period payment for covered inpatient services, excluding 
+services in a psychiatric or rehabilitation unit that is a distinct part of the hospital, will be ‘the greater 
+of’ the reasonable cost of providing such services or the hospitals IPPS payments.” Presently, SCHs 
+who are demonstration hospitals must give up this safety net guardrail. 
+• 
+Assignment of Medicare Administrative Contractors (MACs). Medicare Administrative Contractor 
+(MAC) audits should be assigned by geography. Under the demonstration, one MAC is assigned to 
+audit all demonstration participants, which may vary from the MAC assigned to the demonstration 
+hospital’s state. Because perspectives/interpretations may differ between the regional MAC and the 
+audit MAC, this creates administrative uncertainties and operational challenges on the back end. 
+MEDICARE QUALITY REPORTING PROGRAMS – OVERALL COMMENTS 
+For hospitals, CMS has established several quality programs – Hospital Inpatient Quality Reporting (IQR) 
+Program; Hospital Value-Based Purchasing (HVBP) Program; Hospital-Acquired Conditions (HAC) 
+Reduction Program; Hospital Readmissions Reduction Program; and the Medicare Promoting 
+Interoperability Program. Each have different metrics, scoring, payment implementations, and public 
+reporting features. For hospitals participating in value-based programs, additional requirements apply. 
+Comment: UnityPoint Health believes that quality is our best strategy. We welcome CMS’ partnership to 
+strengthen this strategy and actual outcomes. As CMS drives quality priorities across multiple programs, 
+we request that CMS: 
+• 
+Limit Annual Measure Changes and Provide Realistic Implementation Timeframes. We urge CMS to 
+examine the collective time and effort of hospitals across all Medicare quality programs prior to 
+instituting new measures, revising current measures, and altering public reporting. Each involves 
+resources, time and costs, and several measures from last year are still undergoing resource-
+intensive training, testing, and implementation. We appreciate CMS’ exercise of restraint in 
+minimizing overall changes in this proposed rule.  
+CMS-1833-P 
+UnityPoint Health 
+ 
+ 
+Page 4 
+• 
+Continue to Streamline the Single All-Inclusive Tracking Report for Quality Data Submission. 
+UnityPoint Health applauds CMS’ continuing efforts to streamline and improve quality tracking. 
+Although not all-inclusive, the recent addition of the HQR Submission Requirements Dashboard with 
+the ability to include in a single report our submission and outcomes for objectives and eCQMs is 
+phenomenal. The HQR Measure Detail View is another value add in that it shows facility performance 
+and national averages. We really appreciate that CMS is listening to and acting upon stakeholder 
+input. As these tools and dashboards continue to evolve, we request that CMS embed download 
+options for reports, including CSV and Excel file options. In particular, it would be helpful for Overall 
+Star Rating under the Measure Detail View to have download options outside PDF. While a PDF 
+version is user friendly on the front end and easy to read, it is not ideal for analyses and side-by-side 
+comparisons. Currently these analyses require a manual PDF conversion. The ability to download 
+Overall Star Rating reports as CVS or Excel files would be a time saver in our efforts to improve 
+patient care. 
+HOSPITAL READMISSIONS REDUCTION PROGRAM 
+CMS proposes to (1) refine readmission measures to add Medicare Advantage (MA) patient cohort data; 
+(2) remove the COVID-19 diagnosed patients measure denominator exclusion from readmission measures; 
+(3) reduce the applicable period from three years to two years; (4) modify the diagnosis-related group 
+(DRG) payment ratios in the payment adjustment formula to include MA beneficiaries; and (5) update and 
+codify the Extraordinary Circumstance Exception (ECE)  policy. 
+Comment:  
+MA Data and Applicable Period: UnityPoint Health generally supports the addition of MA patient cohort 
+data and the shorten performance period from three to two years. Since the advent of MA, quality 
+programs for Medicare beneficiaries have been bifurcated making quality comparisons between fee-for-
+service (FFS) beneficiaries and MA beneficiaries challenging, if not impossible. CMS projects the inclusion 
+of MA encounter data for these measures will double the cohort size, thereby improving measure 
+reliability and more accurately reflecting the quality of care for all beneficiaries. While we support goals 
+of improving measure reliability and accuracy, we are optimistic but urge caution when incorporating 
+MA encounter data due to longstanding questions about data collection. We encourage CMS to 
+carefully monitor this data and impact on these measures, including the DRG payment ratio. CMS could 
+consider comparing measure results with and without MA encounter data to affirm reliability and 
+accuracy improvements. 
+From an operational standpoint, it will be important for hospitals to receive baseline reports including the 
+MA patient cohort data as soon as possible. In the past, CMS has released baseline reports in the August 
+timeframe. The FY2026 IPPS Final Rule is not anticipated to be released until September. It is unclear 
+whether the August reports will include the revised baseline or whether there will be a separate 
+distribution. We encourage CMS to clarify when revised baseline reports will be distributed. 
+COVID-19 Diagnosis: Following the end of the public health emergency, COVID-19 diagnosis has been 
+removed from exclusion lists and included in standard reporting. We support this standard reporting 
+within performance and baseline periods. Because a COVID-19 diagnosis is often considered a secondary 
+CMS-1833-P 
+UnityPoint Health 
+ 
+ 
+Page 5 
+diagnosis, we also recommend that CMS include COVID-19 on the co-condition list for risk adjustment 
+stratification. 
+ECE Policy: We support. 
+HOSPITAL VALUE-BASED PURCHASING (VBP)  PROGRAM 
+CMS proposes to (1) modify the COMP-HIP-KNEE (CMIT ID #1550) measure; (2) remove the COVID-19 
+exclusion from six Clinical Outcomes domain measures; (3) update five NHSN Healthcare Associated 
+Infection (HAI) measures; (4)  update and codify the ECE policy; (5) eliminate the health equity adjustment; 
+and (6) revise and establish performance standards. 
+Comment: UnityPoint Health appreciates that CMS is not proposing new measures. The Hospital VBP 
+measure modifications as proposed align with the Hospital IQR program modifications. As such, although 
+specific Hospital VBP measures may vary, UnityPoint Health’s input is consistent with our Hospital IQR 
+feedback and we direct CMS to that narrative below.  
+HOSPITAL ACQUIRED CONDITION (HAC) REDUCTION PROGRAM 
+CMS proposes to (1) update the NHSN HAI measures baseline; and (2) update and codify the ECE policy. 
+Comment: UnityPoint Health supports these changes. 
+HOSPITAL INPATIENT QUALITY REPORTING (IQR) PROGRAM 
+The Hospital IQR Program is a pay-for-reporting quality program. CMS proposes to (1) refine two claims-
+based mortality/complications measures; (2) modify submission requirements for two hybrid measures; 
+(3) remove four measures; and (4) update and codify the ECE policy. 
+Comment: Thank you for limiting the number and breadth of proposed Hospital IQR Program revisions. 
+Claims-Based Mortality/Complications Measures: MORT-30-SKT (CMIT ID #4595) and COMP-HIP-KNEE 
+(CMIT ID #1550) are being revised to add MA patient cohort data, shorten the performance period from 
+three to two years, and change the risk adjustment methodology. As stated in our Hospital Readmissions 
+Reduction Program feedback above, we support goals of improving measure reliability and accuracy, but 
+urge caution when incorporating MA encounter data due to longstanding questions about data 
+collection, and we encourage CMS to carefully monitor this data and impact on these measures. We 
+also see clarification when CMS will distribute revised baseline reports. CMS could consider comparing 
+measure results with and without MA encounter data to affirm reliability and accuracy improvements.  
+In other measurement revisions, we support the two-year performance period as well as the use of ICD-
+10 codes. 
+Hybrid (Claims and Electronic) Data Measures: Hybrid HWM (CMIT ID #3502e) and Hybrid HWR (CMIT ID 
+#2879e) are being revised to lower the number of core clinical data elements (CCDEs) for laboratory 
+results and vital signs, reduce the CCDEs submission threshold of discharges, and reduce the submission 
+threshold of linking variables to discharges beginning July 1, 2025. We support these revisions to facilitate 
+measure submission – thank you!  
+Measure Removal: CMS is removing measures for Hospital Commitment to Health Equity, COVID-19 
+Vaccination Coverage among Healthcare Personnel (HCP), as well as both Screening and Screen Positive 
+CMS-1833-P 
+UnityPoint Health 
+ 
+ 
+Page 6 
+for Social Drivers of Health. Despite investing in infrastructure to capture and report the four standardized 
+patient assessment data elements, UnityPoint Health agrees that the CMS mandate to capture these 
+data elements across multiple care settings is burdensome and duplicative for patients and staff. In 
+particular, the COVID-19 Vaccination Coverage among HCP measure definition has become challenging, 
+inaccurate, and essentially meaningless. As vaccines developed and different versions were approved, 
+version approval and administration did and do not fall neatly within one CMS data capture and reporting 
+period. As a result, reporting and data capture tied to the administration of the most recent vaccine 
+version created arbitrary time demarcations and failed to recognize/credit past efforts to administer 
+former vaccine versions.  
+ECE Policy: We support. 
+HOSPITAL CONSUMER ASSESSMENT OF HEALTHCARE PROVIDERS AND SYSTEMS (HCAHPS) 
+SURVEY MEASURES IN THE HOSPITAL IQR PROGRAM, HOSPITAL VBP PROGRAM, AND PCHQR 
+PROGRAM 
+CMS does not propose additional changes to the HCAHPS survey. 
+Comment: UnityPoint Health agrees that the patient perspective is extremely important to capture to 
+enable a patient's experience to be improved within the hospital. We continue to encourage CMS to 
+shorten the survey, remove redundant questions, and consider authorizing real-time survey 
+alternatives to HCAHPS. Real-time alternatives to HCAPHS gather broader patient feedback and are 
+timelier, more actionable, and less costly. 
+We also remain concerned about patient survey fatigue due to the sheer number of surveys being asked 
+of patients during a stay. Patients are answering multiple questions as part of their general admission 
+process under the CoP requirements, receiving post-care surveys for HCAHPS, as well as additional surveys 
+based on procedures undergone during their hospitalization, such as survey requirements within the 
+TKA/THA PRO-PM and Information Transfer PRO-PM. Additionally, private registries have developed. For 
+hip and knee replacement data, the American Academy of Orthopedic Surgeons has the AAOS American 
+Joint Replacement Registry (AJRR), which requires additional surveys at 30-, 60-, 90-, 150- and 300-day 
+intervals. It is no surprise that HCAHPS survey response rates across the nation are trending downward.  
+MEDICARE PROMOTING INTEROPERABILITY PROGRAM 
+CMS proposes to (1) amend the definition of “EHR reporting period for a payment adjustment year”; (2) 
+modify the Security Risk Analysis measure to require an attestation for security risk management; (3) 
+modify the SAFER Guides measure to require an attestation for an annual self-assessment;  and (4) add an 
+optional bonus measure to the Public Health and Clinical Data Exchange objective for submission of health 
+information to a public health agency (PHA) using the Trusted Exchange Framework and Common 
+Agreement TM (TEFCA). 
+Comment: UnityPoint Health supports maintaining the 180-day reporting period without expansion and 
+modifying the Security Risk Analysis.  
+SAFER Guides: We support updates to the Safer Guides and likewise support the attestation. We request 
+that CMS clarify when the Safer Guides version subject to the attestation will change from 2016 to 2025. 
+For the 2025 performance year, CMS stated that the 2026 SAFER Guides were to be required to conduct 
+CMS-1833-P 
+UnityPoint Health 
+ 
+ 
+Page 7 
+the self-assessments.3 In the FY2025 IPPS Final Rule (CMS-1808-F), CMS indicated that while the SAFER 
+Guides were last updated in 2016, “We anticipate that updated versions of the SAFER Guides may become 
+available as early as CY 2025, and we would consider proposing a change to the SAFER Guides measure 
+for the EHR reporting period beginning in CY 2026 to permit use of an updated version of the SAFER Guides 
+at that time.”4 The 2025 SAFER Guides are available on the ASTP website; however, the 2016 SAFER Guides 
+are still listed as the measures for the Medicare Promoting Interoperability Program.5 
+TEFCA: UnityPoint Health participates in the Epic Nexus QHIN. This new optional attestation under the 
+Public Health and Clinical Data Exchange objective appears to overlap with the Enabling Exchange under 
+TEFCA measure under the Health Information Exchange objective. We seek clarification as to whether 
+hospitals can attest to both TEFCA measures or if only one TEFCA measure can be reported. 
+TRANSFORMING EPISODE ACCOUNTABILITY MODEL (TEAM) 
+CMS proposes several eligibility, quality, financial and operational updates to TEAM. TEAM will continue 
+to be a five-year mandatory model that will begin on January 1, 2026. 
+Comment: UnityPoint Health through our Accountable Care Organization, UnityPoint Accountable Care, 
+is a member of Accountable for Health and the National Association of ACOs (NAACOS) and supports 
+their formal comment letters on TEAM in addition to the separate comment letters on TEAM submitted 
+by the AHA and Premier Inc. UnityPoint Accountable Care has a proven track record of improving quality 
+of care and reducing costs for patients residing in urban and rural communities and across care settings 
+for over a decade. ACOs are responsible for total cost of care, which may include episodic payment 
+bundles. Our success relies on coordinating care between primary care physicians, hospitals, specialists, 
+skilled nursing, and public or private health payers with a goal of providing higher quality of patient care 
+while lowering costs. UnityPoint Health has hospitals in two markets (Cedar Rapids, IA; and Dubuque, IA) 
+selected for TEAM participation. 
+UnityPoint Health offers general model feedback first before reacting to the specific proposed 
+modifications to TEAM. 
+GENERAL FEEDBACK: 
+• 
+Oppose Mandatory Subset Models – As proposed, UnityPoint Health is opposed to the 
+mandatory nature of TEAM. This random selection of geographies forces a subset of vital 
+community hospitals to test an alternative payment model. If CMS desires an uptake in provider 
+participation (specifically, specialist engagement in value-based models), a better approach would 
+be to incentivize participation within TEAM constructs as opposed to a mandate.  
+• 
+Allow Hospital Participants to Select Individual Clinical Episodes – The episodes selected are 
+dissimilar, require different workflows, processes and specialist engagement, and equate to not 
+ 
+3 CMS Specifications Manual for Eligible Hospitals and Critical Access Hospitals Participating in the Medicare 
+Promoting Interoperability Program, Electronic Health Record Reporting Period in Calendar Year 2025 accessed at 
+https://www.cms.gov/files/document/cms-specifications-manual-ehr-period-cy-2025.pdf  
+4 89(167) Fed Reg 69625 
+5 https://www.healthit.gov/topic/safety/safer-guides  
+CMS-1833-P 
+UnityPoint Health 
+ 
+ 
+Page 8 
+one mandated program but at least five individual programs. CMS should allow TEAM 
+Participants to self-select one or more clinical episodes that make the most sense for their 
+patient population and align with their clinical areas of focus. Through TEAM, CMS has 
+effectively stepped into hospital operations and mandated time, effort, and resources be devoted 
+to specific care episodes without regard to participant capacity, patient need, or overall 
+healthcare environment. This burden is then multiplied five-fold. 
+• 
+Exclude Safety Net Hospitals, Rural Hospitals, and Special Designation Hospitals from TEAM – 
+Many safety net, rural hospitals, and special designation hospitals do not have the experience or 
+the infrastructure to be successful in risk-based models. Additionally, communities rely on these 
+critical acute care settings to serve in low-volume geographic areas, but CMS mandating TEAM 
+participation may further financially strain these critical organizations. UnityPoint Health 
+recommends excluding rural hospitals, safety net hospitals, and special designation hospitals 
+from the TEAM proposal given existing financial constraints.  
+• 
+Allow Hospital Participants within Integrated Healthcare Systems to Voluntarily Add Affiliated 
+Hospitals – Aside from randomly selected TEAM Participants, the TEAM model only permits BPCI-
+A Participants to opt into TEAM. If intended to create a comparison group, this methodology is 
+flawed. For integrated healthcare systems comprised of multiple hospitals (often across multiple 
+states), there is often efforts and investments to standardize clinical operations across the 
+enterprise. For UnityPoint Health, we disseminate clinical best practices across our markets. 
+When TEAM is being mandated in two of our eight markets, it is not practical or efficient to 
+operate those markets differently. We would also posit that if TEAM is a preferred model, CMS 
+should encourage and permit voluntary opt in annually, particularly for other hospitals 
+affiliated with TEAM Participants. 
+• 
+Include Benefit Enhancements for Post-Discharge Home Visits: UnityPoint Health encourages CMS 
+to embed benefit enhancements within TEAM to promote operational flexibilities. TEAM includes 
+episodes of care categories that target a reduction in post-acute care costs. Medicare ACO models 
+housed in CMMI and dating back to the Next Generation ACO Model have tested Post-Discharge 
+Home Visits. UnityPoint Accountable Care has tested and utilized this benefit enhancement to 
+improve quality outcomes. TEAM Participants should have the option to provide Post-Discharge 
+Home Visits like those currently available to REACH ACO Participants. 
+FEEDBACK ON PROPOSED TEAM MODIFICATIONS: 
+Patient Reported Outcome-Based Performance Measures (PRO-PM): CMS proposes to add the 
+Information Transfer Patient Reported Outcome-based Performance Measure (Information Transfer PRO-
+PM) to the TEAM quality measure set. This measure would join the TKA/THA PRO-PM as the second TEAM 
+PRO-PM. 
+(1) Information Transfer PRO–PM Measure (CMIT ID #1797). The purpose of this nine-question, three-
+domain survey is to assess a patient’s understanding of clear and personalized recovery information 
+after a facility-based outpatient procedure or surgery. It is proposed to be administered in days two 
+through seven post-procedure. 
+CMS-1833-P 
+UnityPoint Health 
+ 
+ 
+Page 9 
+Although this is currently within the Outpatient Quality Reporting (OQR) Program, UnityPoint 
+Health believes the Information Transfer PRO-PM measure should be incorporated into the OAS 
+CAHPS survey and not a separate measure/instrument. Information Transfer PRO-PM is duplicative 
+and creates unnecessary administrative burden, including additional costs related to third-party 
+vendor distribution. As CMS continues to push out patient surveys, this exacerbates “survey fatigue” 
+that is commonplace within the patient experience. The Information Transfer PRO–PM is not just a 
+separate survey, but it overlaps the OAS CAHPS survey. For some patients like those with a total hip 
+or knee arthroplasty (THA/TKA) procedure, this is a third survey.6 The duplication involves both 
+content and timeframe. For content, the domains are covered in OAS CAHPS survey; and for 
+timeframe, the post-procedure timeframe conflicts with the paper OAS CAHPS survey and a THA/TKA 
+PRO-PM survey. 
+(2) THA/TKA PRO-PM Measure (CMIT ID #1618). The Risk-Standardized Patient Reported Outcome-Based 
+Performance Measure Following Elective Primary Total Hip Arthroplasty and/or Total Knee 
+Arthroplasty is also an existing measure within the OQR Program. Our concerns remain as this 
+measure presents operational challenges when surveying patients pre- and post-surgical events and 
+is overly burdensome, is limited to a subset of patients, and lacks exclusions for small sample sizes. 
+Challenges include: 
+• 
+Measure Definition: The denominator includes four sources of data – PRO-PM, claims data, 
+enrollment data, and Census Bureau survey data. Multiple data sources inherently create 
+complexities and undue burdens to avoid the potential for mismatched patient information. 
+• 
+Multiple Surveys: Patients are potentially surveyed multiple times during a year under the PRO-
+PM, which presents challenges for administering the survey pre- and post-procedure. Post-acute 
+surveys often fall outside the purview of the TEAM Participant. When surgeries are performed 
+under the auspices of independent physicians with the TEAM Participant serving as the site of 
+service, TEAM Participants become the reporting agent for locums. TEAM Participants become 
+the de facto reporter for pre- and post-surgical outcomes that are not centrally located within 
+one EHR or even be available across platforms. The measure also requires a follow-up care survey 
+after a 300-day window. This long window from the reference point may create confusion and 
+inaccurate responses and may also conflict with the distribution of CAHPS surveys. 
+• 
+Data Collection and Tracking: Aside from TEAM Participants presently not collecting the 
+proposed survey information, the information regarding pre- and post-surgical outcomes for 
+the PRO-PM is not centrally located. Often this data may not be housed in the same electronic 
+health record (EHR) or even be available across platforms. Given current state, TEAM 
+Participants will also incur a cost to manage and report this data. 
+• 
+Patient Experience: Like the Information Transfer PRO-PM, the potential for survey fatigue and 
+patient frustration is heightened with this measure. First, while this measure targets inpatient 
+ 
+6 For patients with providers participating in the AAOS American Joint Replacement Registry (AJRR), additional 
+surveys at administered at 30-, 60-, 90-, 150- and 300-day intervals. 
+CMS-1833-P 
+UnityPoint Health 
+ 
+ 
+Page 10 
+stays for survey reporting, patients may also receive various other surveys – CAHPS surveys 
+mandated by CMS, pre-op surveys, and surveys from their specialist. Second, extremely long 
+post-episode survey window creates issues of its own. Gaps exist within the PRO-PM around 
+addressing patient dissatisfaction through follow-up care after the 300-day window. 
+Additionally, a survey on surgical outcomes of care requested a year after the procedure may 
+pose confusion and result in inaccurate responses from elderly patients as well as caregivers.  
+Target Price Methodology When Coding Changes: CMS proposes a standard, three-step approach to 
+account for MS-DRG and HCPCS/APC changes by remapping and adjusting relevant MS-DRG/HCPCS 
+episode types during the baseline period to estimate performance year costs. UnityPoint Health supports 
+this approach to assist with financial sustainability. 
+Normalization Factor and Prospective Trend Factor: CMS proposes to calculate normalization factors at the 
+MS-DRG/HCPCS region level – producing a total of 261 normalization factors (one per region and each MS-
+DRG/HCPCS episode type). The prospective trends factor will be calculated (1) using an annual percentage 
+change based on a linear regression model; (2) including two years of additional episode spending prior 
+to the three-year baseline period; and (3) using a blend of regional and national trend factors. UnityPoint 
+Health agrees with this approach that is intended to make trend adjustments more reliable. As an early 
+adopter of the Medicare ACO programming, UnityPoint Accountable Care continually evaluates a potential 
+ratcheting effect (i.e., every year it gets harder to beat the trend). We appreciate that CMS has increased 
+the number of baseline years as well as the size of the region. 
+Low Volume Hospital Policy: CMS proposes to maintain the current policy of having no low volume episode 
+policy, but seeks further comment. UnityPoint Health is disappointed that CMS did not finalize a low-
+volume threshold last year. BPCI-A had a 41-episode threshold per clinical category, and it is unclear why 
+CMMI would deviate from this threshold. UnityPoint Health recommends that CMS utilize a low-volume 
+threshold to ensure statistical significance, establish separate thresholds within each clinical episode 
+category, and fully exclude hospitals not meeting those thresholds from participation. CMS should 
+exclude low-volume hospitals from TEAM to protect against large financial losses due to random variation 
+as a result of assessing a small number of cases.  
+Beneficiary Risk Adjustment: CMS proposes to use a 180-day lookback period for beneficiary risk 
+adjustment. While UnityPoint Health prefers a 180-day lookback period over the current 90-day period, 
+we recommend a 365-day period. By expanding the lookback to one year, it enables Annual Wellness 
+Visits to be consistently incorporated. 
+Date Range for Episode Attribution: CMS proposes that an episode with an anchor hospitalization 
+beginning in a given baseline year and an anchor hospitalization discharge date in the subsequent baseline 
+year would be attributed to the baseline year when the anchor hospitalization discharge date occurred. 
+We agree. 
+Referral to Primary Care Services: CMS seeks comment on current policy that requires a TEAM Participant 
+to refer a TEAM beneficiary to a supplier of primary care services on or prior to discharge from an anchor 
+hospital or anchor procedure. This referral may differ from a beneficiary’s existing primary care 
+relationship. UnityPoint Health supports the Accountable For Health recommendations to maintain a 
+CMS-1833-P 
+UnityPoint Health 
+ 
+ 
+Page 11 
+primary care referral requirement in TEAM, provide additional incentives to connect patients to a 
+longitudinal primary care relationship, and adopt additional safeguards to ensure that patients who are 
+already aligned to a provider be “tucked back in” to that provider. 
+Expanding the Skilled Nursing Facility (SNF) 3-Day Rule Waiver: To address stakeholder concerns 
+surrounding post-acute care (PAC) access in rural and underserved areas, CMS proposes to allow TEAM 
+Participants to use the TEAM SNF 3-Day Rule Waiver for TEAM beneficiaries discharged to hospitals and 
+Critical Access Hospitals (CAHs) providing PAC under swing bed arrangements. UnityPoint Health supports 
+this PAC option for TEAM Participants and believes TEAM Participants should have contractual flexibility 
+for its PAC network. While CMS cited swing bed quality and their lack of Star Ratings as a potential network 
+deterrent, our ACO has found that swing beds may not make financial sense as they often have costs 
+similar to an acute readmission, which push total episode cost beyond the benchmark. 
+REQUEST FOR INFORMATION: TOWARD DIGITAL QUALITY MEASUREMENT IN CMS QUALITY 
+PROGRAMS 
+CMS solicits comments on the use of the Health Level 7® Fast Healthcare Interoperability Resources® 
+(FHIR®) in electronic clinical quality measure (eCQM) reporting in various quality reporting programs.  
+Comment: UnityPoint Health appreciates that CMS is seeking stakeholder input on this important 
+program. We offer input on these select questions:  
+Approach to FHIR Patient Assessment Reporting in the IPFQR Program: 
+To what extent does your IPF use health IT systems to maintain and exchange patient records? If your 
+facility has transitioned to using electronic records in whole or in part, what types of health IT does your 
+IPF use to maintain electronic patient records? Are these health IT systems certified under the ONC Health 
+IT Certification Program? Does your facility use EHRs or other health IT products or systems that are not 
+certified under the ONC Health IT Certification Program? If so, do these systems exchange data using 
+standards and implementation specifications adopted by HHS?305 Please specify. 
+UnityPoint Health utilizes EHR technology for patient documentation and care. We have a single 
+instance of EHR for all patient care platforms within our health system. This software utilizes CERHT 
+requirements for patient data exchange through various Health Information Exchange and EHR 
+functionality. We maintain the most current CEHRT version of Epic, as defined by the ONC. 
+Does your IPF submit patient data to CMS directly from your health IT system, without the assistance of a 
+third-party intermediary? If a third-party intermediary is used to report data, what type of intermediary 
+service is used? How does your facility currently exchange health information with other healthcare 
+providers or systems, specifically between IPFs and other provider types or with public health agencies? 
+What challenges do you face with electronic exchange of health information? 
+UnityPoint Health exchanges data with other healthcare systems and public health agencies across 
+our multistate footprint, but faces challenges due to inconsistent state data sharing laws, regulations, 
+and submission methods. In one state, providers pay a third-party vendor to submit CMS-required 
+state-level public health data. That vendor created unique submission requirements utilizing USCDI 
+standards, which are financially burdensome and resource intensive. Additionally, not all healthcare 
+systems maintain direct addresses for data exchange, and the NPPES provider directory is often 
+outdated. Lastly, some healthcare entities use third-party EHR support, which can complicate direct 
+CMS-1833-P 
+UnityPoint Health 
+ 
+ 
+Page 12 
+address sharing. 
+Does limited internet or lack of internet connectivity impact your ability to exchange data with other 
+healthcare providers, including community-based care services, or your ability to submit patient data to 
+CMS? 
+Connectivity issues may hinder immediate data exchanges. Internet connectivity may be limited, 
+especially in rural areas. UnityPoint Health has intentionally bult in network redundancies. We also 
+employ workarounds like hotspots, network locations, and VPNs, but they are not available in all 
+situations. While natural disasters and weather-related issues hamper connectivity, we have seen 
+increasing incidents of breaks in underground utility lines due to construction or roadwork without 
+811 notices. 
+What steps does your IPF take to ensure compliance in using health IT with security and patient privacy 
+requirements such as the requirements of the regulations promulgated under the Health Insurance 
+Portability and accountability Act (HIPAA) and related regulations? 
+UnityPoint Health reviews HIPAA laws to ensure we are meeting protected Patient Health Information 
+guidelines. UnityPoint Health further investigates state guidelines to ensure we meet the most strict 
+laws to maintain compliance. 
+Does your IPF refer to the SAFER Guides to self-assess EHR safety practices? 
+Yes. The SAFER Guides are utilized in compliance with IPPS requirements. 
+Does your facility have any experience using technology that shares electronic health information using 
+one or more versions of the USCDI standard? 
+While we support structured data elements to assist in standardized reporting, platforms to collect, 
+warehouse, and ultimately report data vary, which adds provider burden. In one of our states, a third-
+party vendor serves as an HIE and data warehouse for the State public health agency and is charged 
+with supporting our state’s public health data submission utilizing USCDI standards. This vendor 
+created their own message system to submit USCDI data that does not utilize EHR software 
+technology standards outlined under ONC’s CEHRT standards. To submit USCDI data, providers must 
+now "build" interface connections. Additionally, the vendor often exceeds base data submission 
+guidelines for public health reporting standards under the USCDI. This nonstandard reporting also 
+requires extra burden and expense for providers.  
+What other information should we consider to facilitate successful adoption and integration of FHIR-based 
+technologies and standardized data for patient assessment instruments like the IPF-PAI? We invite any 
+feedback, suggestions, best practices, or success stories related to the implementation of these 
+technologies. 
+For FHIR technology to be easily adaptable and capable of expanding the Health Information 
+Exchange, FHIR technology needs to be standardized and consistent across EHR vendors, healthcare 
+facilities, and those identified entities receiving the data, such as public health agencies and CMS.  
+General Solicitation of Comments: 
+Specific to FHIR-based quality reporting, are there any additional factors, or considerations to account for, 
+that may help foster data harmonization and reduce reporting burden across entities? 
+CMS-1833-P 
+UnityPoint Health 
+ 
+ 
+Page 13 
+Standardized requirements should extend beyond healthcare organizations to those entities receiving 
+data--state and federal agencies, third party payers, various data warehouse registries, etc.  
+How could Trusted Exchange Framework and Common Agreement™ (TEFCA™) potentially support 
+exchange of FHIR-based quality measures and patient assessment submissions consistent with the FHIR 
+Roadmap? How might TEFCA enable the use of patient assessment data for secondary uses such as 
+treatment and research? 
+UnityPoint Health is a member of TEFCA under the Epic Nexus contract. This ensures standardized 
+FHIR API use and data sharing among QHIN organizations and facilitates sharing of patient assessment 
+and EHR data. Not all entities need to participate in TEFCA or a QHIN to meet their data submission 
+requirements therefore leaning on the use of TEFCA standards will not include all entities sending and 
+receiving data. The FHIR API endpoint standardization is great, and if included in the TEFCA "rules of 
+the roads" for standards of data points, this is also great; but CMS needs to account for numerous 
+entities that require data submission or data sharing who are NOT included in the regulatory 
+standards under the various rules. 
+REQUEST FOR INFORMATION: QUERY OF PRESCRIPTION DRUG MONITORING PROGRAM 
+(PDMP) MEASURE 
+CMS seeks public input to make improvements to the Medicare Promoting Interoperability Program that 
+promote patient safety and encourage appropriate prescribing of controlled substances while minimizing 
+provider burden. 
+Comment: UnityPoint Health offers input on select RFI questions below. 
+Changing the Query of PDMP Measure from an Attestation-Based Measure to a Performance-Based 
+Measure: 
+Should CMS propose to adopt a performance-based (numerator/denominator) reporting requirement for 
+the Query of PDMP measure? If so, how should the numerator and denominator be defined? 
+No, this is operationally difficult and overly burdensome. 
+What are potential barriers for eligible hospitals and CAHs meeting the Query of PDMP measure as a 
+performance-based measure? 
+Not all PDMPs at a state level have the capability of being integrated completely within an EHR system. 
+Although hospitals have the ability to link out and review PDMP data, hospitals cannot capture that 
+the PDMP was reviewed (i.e., looked at) prior to prescribing a Schedule II drug. As a result, hospitals 
+will not  receive credit for using PDMP Query, as it is not trackable and linkable to a Schedule II 
+prescription 
+How should CMS account for varying levels of readiness and capacity for performance-based reporting, 
+particularly for small and rural providers, including eligible hospitals and CAHs? 
+Regardless of size or location, readiness does not exist for this reporting. Until ALL state PDMPs have 
+standardized capabilities and integration functionality, AND CMS has created a mechanism to link 
+PDMP queries at an order level within an EHR, the reporting of numerator denominator values is 
+extremely burdensome. 
+CMS-1833-P 
+UnityPoint Health 
+ 
+ 
+Page 14 
+What timeframe would allow for systems and process changes to account for a change of the Query of 
+PDMP measure from an attestation measure to a performance-based measure while minimizing burden? 
+The timeline is contingent on the updating of state PDMP registries and their work with EHR 
+developers to ensure this data can be accounted for within CEHRT technology. 
+Modification of the Query of PDMP Measure to Include All Schedule II Drugs: 
+What challenges exist, if any, around expanding the Query of PDMP measure to include all Schedule II 
+drugs? 
+The same burdens apply at current state for the current requirement of PDMP query versus all 
+Schedule II drugs. 
+REQUEST FOR INFORMATION: PERFORMANCE-BASED MEASURES 
+CMS seeks public input to both encourage and support eligible hospitals’ and Critical Access Hospitals’ use 
+of modern technologies and standards to ensure data are usable, complete, accurate, timely, and 
+consistent. 
+Comment: UnityPoint Health supports standardized, performance-based measures generally and 
+applauds CMS for seeking to ensure data that is captured and reported is meaningful – namely, usable, 
+complete, accurate, timely, and consistent. Until there is a standardized requirement for data submission 
+across all state public health entities and clinical-based registries, measurement is premature, excessively 
+burdensome, and difficult to capture accurately. UnityPoint Health offers input on select RFI questions 
+below. 
+Measure concepts: 
+What data quality challenges does your health care organization experience (for example, discrepancies 
+in data accuracy, completeness, reliability, and consistency)? How are you working to address data quality 
+challenges? What data quality challenges persist longitudinally across your patient population(s)? 
+When measures are restructured, the value proposition needs to be clearly stated to ensure that 
+benefits outweigh the costs, not only to the government but to the providers. Additionally, most of 
+the HIT costs for providers are not borne by inhouse personnel revising software platforms and 
+reports but by HIT vendors. HIT costs are costs that are diverted from direct patient care. Examples of 
+challenges and considerations: 
+• 
+Numerator Denominator Measures: The incorporation of numerator denominator values 
+within existing measures requires rebuilds of data submission and information pulling 
+processes as most public health registries capture actual patient volume numbers.  
+• 
+Volume: Data capture can potentially be astronomical for some measures. For instance, 
+electronic lab reporting or case reporting will have extremely large datasets with many 
+variables.  
+• 
+Syndromic Surveillance: This is just one example of instances where there are multiple 
+reporting incidences per individual. For syndromic surveillance, this involves providing initial 
+ADT information and then providing subsequent subset information. Identifying the 
+appropriate numerator and denominator becomes convoluted and a resource-intensive 
+CMS-1833-P 
+UnityPoint Health 
+ 
+ 
+Page 15 
+exercise. 
+For the Electronic Laboratory Reporting measure, should we require eligible hospitals and CAHs to report 
+how many laboratory tests were ordered using Logical Observation Identifiers Names and Codes (LOINC) 
+and how many results used Systematized Nomenclature of Medicine (SNOMED) codes? 
+This is operationally challenging. As each state has a different list of cases being accepted for state 
+reporting, it would be difficult to determine case thresholds. 
+Scoring approach: 
+Should we score all public health measures for which we finalize a numerator and denominator based on 
+performance? Or should we only score a subset of measures based on performance? 
+Performance-based scoring for public health measures is completely contingent on the capabilities 
+of the receiving entity and is potentially problematic for entities in states that do not have expansive 
+or updated submission processes. It can be financially burdensome for entities that must submit data 
+to states with subcontracted third-party, for-profit vendors that collect and maintain data. 
+Opportunities to leverage FHIR-based capabilities: 
+What are the most promising uses of FHIR approaches to the public health reporting requirements under 
+the Medicare Promoting Interoperability Program? What approaches have the most potential to reduce 
+the burden of reporting on eligible hospitals and CAHs and increase the quality and timeliness of data 
+submitted to PHAs? 
+Until all state and federal agencies are capable of utilizing FHIR technology and a standardized 
+requirement is established for all states, the use of FHIR for data submission to state agencies is 
+burdensome and complex.  
+REQUEST FOR INFORMATION: DATA QUALITY 
+CMS seeks public input on refinement and development of the Public Health and Clinical Data Exchange 
+objective measures. 
+Comment: The federal government has incentivized meaningful use in some healthcare settings, but not 
+all. As a result, organizations and care settings vary in their commitment and capacity to prioritize data 
+exchange, and high-quality data collection is hampered by the rapid pace of reporting changes, 
+inconsistent mapping, multiple coding systems, and varied state processes for collection. 
+What are the primary barriers to collecting high-quality data? What resources do you believe could help 
+your organization address these challenges? 
+Simply, the primary barrier is the inconsistent mapping of data across organizations with multiple 
+coding systems being used. 
+What steps should CMS consider to drive further improvement in the quality and usability of health 
+information being exchanged? How can CMS partner with eligible hospitals, CAHs, industry, and Federal 
+agencies to drive further improvements in the quality and usability of health information being exchanged? 
+What methods should CMS and other partners explore to further rectify data quality issues in the health 
+care community? 
+The answer is standardization, and there are foundational steps that are missing. When exchanging 
+data with other healthcare systems, not all healthcare systems are consistent in supplying and 
+CMS-1833-P 
+UnityPoint Health 
+ 
+ 
+Page 16 
+maintaining their direct addresses for exchange. Many sites do not maintain CEHRT required EHR 
+software, and therefore do not have this functionality available. The NPPES provider directory is not 
+user friendly for collecting and updating direct addresses, and therefore is often outdated. Some 
+facilities utilize third-party resourcing for EHR support, which also makes contacting the appropriate 
+resources to share these direct addresses difficult. 
+At the state level, there is wide variation in state data sharing laws and regulations and data 
+submission methods to state agencies. Minimally requiring states to utilize USCDI standards for state 
+exchanges and platforms is a good first step. 
+ADDITIONAL INPUT – AT HOME CARE DELIVERY AND PAYMENTS 
+In November 2020, CMS announced the Acute Hospital Care at Home waiver, building upon the Hospital 
+Without Walls program. Acute Hospital Care at Home is for beneficiaries with defined acute conditions 
+who require an acute inpatient admission to a hospital and at least daily rounding by a physician and a 
+medical team monitoring their care needs on an ongoing basis. In order to gather more data, Congress 
+extended this waiver program in the short term. 
+Comment: UnityPoint Health encourages CMS to continue a platform to test the Acute Hospital Care at 
+Home services beyond 2025. Such a platform would enable patients to be cared for at home and support 
+efficiencies within the inpatient setting. Under the leadership of UnityPoint at Home (our Home Health 
+arm), UnityPoint Health was one of the first six health systems with extensive experience providing acute 
+hospital care at home approved for the hospital at home waiver. UnityPoint Health was the first to enroll 
+a patient and to bill and be reimbursed under this Medicare waiver. As of April 1, 2025, 142 health systems 
+with 398 CCNs in 39 states have applied and been approved to participate in this waiver7. Given the 
+infrastructure investment needed to stand up this program and the uncertainty of its duration, UnityPoint 
+Health only operates this model in two of our eight markets, and it is likely that more UnityPoint Health 
+hospitals as well as other healthcare systems would participate under a program that has a longer 
+duration and firm regulatory standing.  
+Additionally, UnityPoint Health urges CMS to authorize a full array of Medicare At Home services and 
+permit patient admissions that originate from the home. While we recognize that CMS stood up the 
+hospital at home waiver as a result of the COVID-19 public health emergency to avoid exposure to and 
+spread of the COVID-19 infection, its efficacy beyond the public health emergency and an inpatient setting 
+is undeniable. Best practices and lessons learned from shifting care delivery to patients’ homes should be 
+built upon, with the purpose of expanding At Home services from other care settings. UnityPoint Health 
+has implemented an At Home care model that is a safe, high-quality, and cost-saving alternative for 
+patients. By shifting care to home with the proper supports, UnityPoint Health has maintained high patient 
+satisfaction rates (97%) and achieved outstanding clinical outcomes, including markedly reduced 
+readmission and preventable ED visit rates. This was accomplished through a post-acute care bundling 
+strategy under an ACO waiver in which appropriate services were wrapped around the patient. Our 
+bundles include hospital to home (two-hour response time), primary care at home (four-hour response 
+time), palliative care at home, and skilled nursing facility at home. Starting in 2023, UnityPoint Health 
+ 
+7 https://qualitynet.cms.gov/acute-hospital-care-at-home/resources  
+CMS-1833-P 
+UnityPoint Health 
+ 
+ 
+Page 17 
+began offering At Home services in some of our commercial health plan contracts. We attribute our 
+expansion to commercial plans as a direct result of being able to demonstrate proof of concept via the 
+Medicare waiver program. We welcome the opportunity to further engage with CMS and/or CMMI on 
+this topic. 
+ 
+We are pleased to provide input on this proposed rule and its impact on our hospitals, patients, and 
+communities. To discuss our comments or for additional information on any of the addressed topics, 
+please contact Cathy Simmons, Government & External Affairs at Cathy.Simmons@unitypoint.org or 319-
+361-2336. 
+ 
+Sincerely, 
+ 
+ 
+Cathy Simmons, JD, MPP 
+Executive Director, Government & External Affairs 

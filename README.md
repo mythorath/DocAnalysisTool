@@ -1,6 +1,6 @@
-# Public Comment Analysis Tool
+# Secure Document Analysis Platform
 
-A comprehensive Python CLI tool for downloading, processing, and analyzing public comment documents from CSV files containing URLs.
+A secure, multi-tenant SaaS platform where customers can privately access their processed document analysis results through a professional web interface.
 
 ## 🚀 Features
 
@@ -28,39 +28,33 @@ A comprehensive Python CLI tool for downloading, processing, and analyzing publi
 - **Search result highlighting** with snippets
 - **Metadata integration** from original CSV
 
-## 📦 Installation
+## 🚀 Quick Deployment
 
-1. **Install dependencies:**
+### Railway (Recommended)
 ```bash
-pip install -r requirements.txt
+python railway_deploy.py
 ```
 
-2. **Install system dependencies:**
-- **Tesseract OCR**: Required for scanned PDF processing
-- **Poppler**: Required for PDF to image conversion
-
-### Windows (via Conda):
+### Vercel (For Demos)
 ```bash
-conda install poppler tesseract -c conda-forge
+python vercel_deploy.py
+vercel
 ```
 
-## 🎯 Usage
+## 🎯 Platform Features
 
-### Complete Workflow Example
+### For Customers
+- **Secure login** to private dashboard
+- **Full-text search** across processed documents
+- **Advanced filtering** by organization, category, file type
+- **Export capabilities** (CSV, JSON)
+- **Real-time processing status**
 
-```bash
-# 1. Download all documents from CSV
-python main.py download input/comment_links.csv
-
-# 2. Extract text from all downloaded documents
-python main.py extract --input-dir downloads --output-dir text
-
-# 3. Build searchable index
-python main.py index --text-dir text
-
-# 4. Search the documents
-python main.py search "medicare payment rates" --limit 10
-```
+### For Admins
+- **Customer management** (create accounts, manage access)
+- **Document processing** workflow from CSV uploads
+- **Platform monitoring** and usage statistics
+- **Audit logging** and security oversight
 
 ### Individual Module Usage
 
