@@ -922,14 +922,13 @@ def admin_upload_database():
         cursor.execute('''
             INSERT INTO customer_databases 
             (customer_id, project_name, description, database_filename, 
-             file_size, document_count, uploaded_at)
-            VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+             document_count, uploaded_at)
+            VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
         ''', (
             customer_id,
             project_name,
             description,
             safe_filename,
-            len(db_content),
             database_info.get('document_count', 0)
         ))
         
